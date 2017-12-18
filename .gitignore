@@ -1,0 +1,6 @@
+kopano-core-dependencies/_buildenv
+kopano-core-dependencies/*.changes
+kopano-core-dependencies/*gz
+kopano-core-dependencies/*.dsc
+kopano-core-dependencies/_statistics
+
