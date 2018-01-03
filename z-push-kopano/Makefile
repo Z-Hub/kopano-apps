@@ -1,7 +1,7 @@
 app_name=z-push-kopano
 app_version=$(shell ./version.sh)
 
-ucs_version=4.2
+ucs_version=4.3
 
 #docker_repo=fbartels
 #docker_name=univention-mattermost
@@ -15,7 +15,7 @@ add-version:
 	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 get-core-dependencies:
-	for pkg in libgsoap-kopano-2-8 libkcutil0 libkcmapi0 libmapi1 libkcfreebusy0 libkcsoapclient0 libkcssl0 libkcsync0 kopano-lang kopano-client kopano-contacts libkcicalmapi0 libvmime-kopano0 libkcinetmapi0 php5-mapi; do \
+	for pkg in libgsoap-kopano libkcutil0 libkcmapi0 libmapi1 libkcfreebusy0 libkcsoap libkcssl0 libkcsync0 kopano-lang kopano-client kopano-contacts libkcicalmapi0 libvmime-kopano libkcinetmapi0 php7-mapi; do \
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
 

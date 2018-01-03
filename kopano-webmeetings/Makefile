@@ -1,7 +1,7 @@
 app_name=kopano-webmeetings
 app_version=$(shell ./version.sh)
 
-ucs_version=4.2
+ucs_version=4.3
 
 #docker_repo=fbartels
 #docker_name=univention-mattermost
@@ -15,7 +15,7 @@ add-version:
 	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 get-core-dependencies:
-	for pkg in libkcpyconv0 libkcpydirector0 python-mapi python-kopano kopano-presence kopano-common python-flask python-jinja2 python-sleekxmpp python-mapi libkcpyconv0 libkcpydirector0; do \
+	for pkg in python-mapi python-kopano kopano-presence kopano-common; do \
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
 
