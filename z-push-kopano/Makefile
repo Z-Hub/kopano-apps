@@ -26,7 +26,7 @@ get-binaries:
 	mkdir -p kopano4ucs|| exit 0
 	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.2 x86_64 -d kopano4ucs
 	cp kopano4ucs/kopano4ucs-z-push*.deb packages/
-	osc getbinaries z-push:final z-push Univention_4.2 x86_64 -d packages
+	osc getbinaries z-push:final z-push Debian_9.0 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi

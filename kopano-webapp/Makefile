@@ -27,28 +27,28 @@ get-binaries:
 	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.2 x86_64 -d kopano4ucs
 	cp kopano4ucs/kopano4ucs-lib*.deb packages/
 	cp kopano4ucs/kopano4ucs-webapp*.deb packages/
-	osc getbinaries webapp:final kopano-webapp Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-desktopnotifications Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-filepreviewer Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-intranet Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-at Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-ch Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-de Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-gb Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-us Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-es-es Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-fr-fr Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-it-it Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-nl-nl Univention_4.2 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-pl-pl Univention_4.2 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-desktopnotifications Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-filepreviewer Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-intranet Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-at Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-ch Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-de Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-gb Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-us Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-es-es Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-fr-fr Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-it-it Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-nl-nl Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-spell-pl-pl Debian_9.0 x86_64 -d packages
 
-	osc getbinaries files:final kopano-webapp-plugin-files Univention_4.2 x86_64 -d packages
-	osc getbinaries files:final kopano-webapp-plugin-filesbackend-owncloud Univention_4.2 x86_64 -d packages
-	osc getbinaries files:final kopano-webapp-plugin-filesbackend-smb Univention_4.2 x86_64 -d packages
+	osc getbinaries files:final kopano-webapp-plugin-files Debian_9.0 x86_64 -d packages
+	osc getbinaries files:final kopano-webapp-plugin-filesbackend-owncloud Debian_9.0 x86_64 -d packages
+	osc getbinaries files:final kopano-webapp-plugin-filesbackend-smb Debian_9.0 x86_64 -d packages
 
-	osc getbinaries mdm:final kopano-webapp-plugin-mdm Univention_4.2 x86_64 -d packages
-	osc getbinaries smime:final kopano-webapp-plugin-smime Univention_4.2 x86_64 -d packages
+	osc getbinaries mdm:final kopano-webapp-plugin-mdm Debian_9.0 x86_64 -d packages
+	osc getbinaries smime:final kopano-webapp-plugin-smime Debian_9.0 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi

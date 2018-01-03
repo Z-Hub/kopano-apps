@@ -1,7 +1,7 @@
 app_name=kopano-core
 app_version=$(shell ./version.sh)
 
-ucs_version=4.2
+ucs_version=4.3
 
 #docker_repo=fbartels
 #docker_name=univention-mattermost
@@ -12,7 +12,8 @@ all: get-binaries add-version appcenter-files
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
-	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	#univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	univention-appcenter-control new-version "4.2/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 get-binaries:
 	rm -rf packages || exit 0
@@ -25,7 +26,7 @@ get-binaries:
 	cp kopano4ucs/kopano4ucs-schema_*.deb packages/
 	cp kopano4ucs/kopano4ucs-udm_*.deb packages/
 	cp kopano4ucs/kopano4ucs_*.deb packages/
-	osc getbinaries core:final:dist a_aggregate Univention_4.2 x86_64 -d packages
+	osc getbinaries core:final:dist a_aggregate Debian_9.0 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi

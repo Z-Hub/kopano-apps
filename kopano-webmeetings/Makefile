@@ -22,8 +22,8 @@ get-core-dependencies:
 get-binaries:
 	rm -rf packages || exit 0
 	mkdir -p packages|| exit 0
-	osc getbinaries webmeetings:final kopano-webapp-plugin-meetings Univention_4.2 x86_64 -d packages
-	osc getbinaries webmeetings:final kopano-webmeetings Univention_4.2 x86_64 -d packages
+	osc getbinaries webmeetings:final kopano-webapp-plugin-meetings Debian_9.0 x86_64 -d packages
+	osc getbinaries webmeetings:final kopano-webmeetings Debian_9.0 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
