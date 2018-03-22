@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -f /etc/kopano/konnectd-encryption-secret.key ]; then
+	openssl rand 32 -out /etc/kopano/konnectd-encryption-secret.key
+fi
+
+if [ ! -f /etc/kopano/konnectd-tokens-signing-key.pem ]; then
+	openssl genpkey -algorithm RSA -out /etc/kopano/konnectd-tokens-signing-key.pem -pkeyopt rsa_keygen_bits:4096
+fi

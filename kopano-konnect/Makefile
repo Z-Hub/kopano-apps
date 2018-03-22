@@ -51,7 +51,8 @@ clean:
 
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	appcenter/README_EN
+	appcenter/README_EN \
+	kopano-konnect.env kopano-konnect.preinst
 	#minio.inst minio.preinst minio.uinst minio.configure_host minio.settings minio.env \
 	univention-appcenter-control set --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	--json '{"DockerImage": $(docker_name)}'
