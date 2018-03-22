@@ -6,6 +6,8 @@ ucs_version=4.2
 docker_name="kopano/konnectd:$(app_version)"
 
 hostname=$(shell hostname -f)
+PUID=$(shell id -u kopano)
+PGID=$(shell id -g kopano)
 
 all: run
 #build run
@@ -30,9 +32,19 @@ pull:
 	sudo docker pull $(docker_name)
 
 run: pull clean
-	sudo docker run -it \
-	-p 8777:8777 \
-	--name=$(app_name) $(docker_name) serve --iss=https://$(hostname) kc
+	sudo docker run -it --rm=true --name=$(app_name) \
+	--read-only \
+	--volume /etc/ssl/certs:/etc/ssl/certs:ro \
+	--volume /etc/kopano/konnectd-tokens-signing-key.pem:/run/secrets/konnectd_signing_private_key:ro \
+	--volume /etc/kopano/konnectd-encryption.key:/run/secrets/konnectd_encryption_secret:ro \
+	--env KOPANO_SERVER_DEFAULT_URI=file:///run/kopano/server.sock \
+	--volume /run/kopano:/run/kopano:rw \
+	--publish 127.0.0.1:8777:8777 \
+	--user $(PUID):$(PGID) \
+	$(docker_name) \
+	serve \
+	--iss=https://$(hostname) \
+	kc
 
 clean:
 	sudo docker rm $(app_name) || true
