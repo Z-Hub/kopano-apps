@@ -8,7 +8,7 @@ ucs_version=4.3
 #docker_login=`cat ~/.docker-account-user`
 #docker_pwd=`cat ~/.docker-account-pwd`
 
-all: get-binaries get-core-dependencies add-version appcenter-files
+all: get-binaries get-integration get-core-dependencies add-version appcenter-files
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
@@ -18,6 +18,10 @@ get-core-dependencies:
 	for pkg in python-mapi python-kopano kopano-presence kopano-common; do \
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
+
+get-integration:
+	rm packages/meetings4ucs_* || exit 0
+	osc getbinaries kopano4ucs meetings4ucs Univention_4.2 x86_64 -d packages
 
 get-binaries:
 	rm -rf packages || exit 0
