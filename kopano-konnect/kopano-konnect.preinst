@@ -15,4 +15,4 @@ if [ ! -f /etc/kopano/konnectd-tokens-signing-key.pem ]; then
 fi
 
 # set process of container to the id of Kopano
-ucr set appcenter/apps/kopano-konnect/docker/params=--read-only --user="$KOPANOUID":"$KOPANOGID"
+ucr set appcenter/apps/kopano-konnect/docker/params="--read-only --user=$KOPANOUID:$KOPANOGID"
