@@ -20,5 +20,46 @@ if [ ! -f /etc/kopano/konnectd-tokens-signing-key.pem ]; then
 	openssl genpkey -algorithm RSA -out /etc/kopano/konnectd-tokens-signing-key.pem -pkeyopt rsa_keygen_bits:4096
 fi
 
+if [ ! -f /etc/kopano/identifier-registration.yaml ]; then
+	echo "creating template client registration"
+	cat <<-EOF >"/etc/kopano/identifier-registration.yaml"
+---
+
+# Konnect needs to be restarted for changes to take effect.
+# OpenID Connect client registry.
+clients:
+#  - id: playground.js
+#    name: OIDC Playground
+#    application_type: web
+#    redirect_uris:
+#       - https://my-host:8509/
+
+#  - id: playground-trusted.js
+#    name: Trusted OIDC Playground
+#    trusted: yes
+#    application_type: web
+#    redirect_uris:
+#       - https://my-host:8509/
+
+#  - id: playground-trusted.js
+#    name: Trusted Insecure OIDC Playground
+#    trusted: yes
+#    application_type: web
+#    insecure: yes
+
+#  - id: first
+#    secret: lala
+#    application_type: native
+#    redirect_uris:
+#      - my://app
+
+#  - id: second
+#    secret: lulu
+#    application_type: native
+#    redirect_uris:
+#      - http://localhost
+EOF
+fi
+
 echo "setting process of container to the id of the kopano user"
 ucr set appcenter/apps/kopano-konnect/docker/params="--read-only --user=$KOPANOUID:$KOPANOGID"

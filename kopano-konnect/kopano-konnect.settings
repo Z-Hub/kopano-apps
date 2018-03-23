@@ -1,6 +1,6 @@
 [ARGS]
 Description= Startup argument for Kopano Konnect.
 Type = String
-InitialValue = --iss=https://@%@hostname@%@.@%@domainname@%@ kc
+InitialValue = --iss=https://@%@hostname@%@.@%@domainname@%@ --identifier-registration-conf /etc/kopano/identifier-registration.yaml kc
 Required = True
-Show = Install
+Show = Install, Settings
