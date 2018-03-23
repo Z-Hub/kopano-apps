@@ -1,9 +1,18 @@
 #!/bin/bash
 
+# get numberical user and group id of the kopano user
+KOPANOUID=$(id -u kopano)
+KOPANOGID=$(id -g kopano)
+
+# create encryption key if not already present
 if [ ! -f /etc/kopano/konnectd-encryption-secret.key ]; then
 	openssl rand 32 -out /etc/kopano/konnectd-encryption-secret.key
 fi
 
+# create token signing key if not already present
 if [ ! -f /etc/kopano/konnectd-tokens-signing-key.pem ]; then
 	openssl genpkey -algorithm RSA -out /etc/kopano/konnectd-tokens-signing-key.pem -pkeyopt rsa_keygen_bits:4096
 fi
+
+# set process of container to the id of Kopano
+ucr set appcenter/apps/kopano-konnect/docker/params=--readonly --user="$KOPANOUID":"$KOPANOGID"
