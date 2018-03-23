@@ -5,8 +5,8 @@ KOPANOUID=$(id -u kopano)
 KOPANOGID=$(id -g kopano)
 
 # create encryption key if not already present
-if [ ! -f /etc/kopano/konnectd-encryption-secret.key ]; then
-	openssl rand 32 -out /etc/kopano/konnectd-encryption-secret.key
+if [ ! -f /etc/kopano/konnectd-encryption.key ]; then
+	openssl rand 32 -out /etc/kopano/konnectd-encryption.key
 fi
 
 # create token signing key if not already present
