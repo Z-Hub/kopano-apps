@@ -1,0 +1,6 @@
+[ARGS]
+Description= Startup argument for Kopano Konnect.
+Type = String
+InitialValue = --iss=https://@%@hostname@%@.@%@domainname@%@ kc
+Required = True
+Show = Install
