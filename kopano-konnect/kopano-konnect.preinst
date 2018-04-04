@@ -3,8 +3,13 @@
 set -euo pipefail
 
 # get numberical user and group id of the kopano user
-KOPANOUID=$(id -u kopano)
-KOPANOGID=$(id -g kopano)
+if [ id kopano >/dev/null 2>&1 ]; then
+	KOPANOUID=$(id -u kopano)
+	KOPANOGID=$(id -g kopano)
+else
+	KOPANOUID=$(id -u nobody)
+	KOPANOGID=$(id -g nobody)
+fi
 
 mkdir -p /etc/kopano/
 
@@ -19,7 +24,7 @@ if [ ! -f /etc/kopano/konnectd-tokens-signing-key.pem ]; then
 	echo "creating new token signing key"
 	openssl genpkey -algorithm RSA -out /etc/kopano/konnectd-tokens-signing-key.pem -pkeyopt rsa_keygen_bits:4096
 fi
-chown kopano:kopano /etc/kopano/konnectd-tokens-signing-key.pem
+chown $KOPANOUID:$KOPANOGID /etc/kopano/konnectd-tokens-signing-key.pem
 
 if [ ! -f /etc/kopano/identifier-registration.yaml ]; then
 	echo "creating template client registration"
@@ -62,5 +67,5 @@ clients:
 EOF
 fi
 
-echo "setting process of container to the id of the kopano user"
+echo "setting process of container to the id of the kopano or nobody user"
 ucr set appcenter/apps/kopano-konnect/docker/params="--read-only --user=$KOPANOUID:$KOPANOGID"
