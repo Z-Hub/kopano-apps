@@ -20,13 +20,13 @@ get-binaries:
 	mkdir -p packages|| exit 0
 	rm -rf kopano4ucs || exit 0
 	mkdir -p kopano4ucs|| exit 0
-	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.2 x86_64 -d kopano4ucs
+	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
 	cp kopano4ucs/kopano4ucs-lib_*.deb packages/
 	cp kopano4ucs/kopano4ucs-multiserver_*.deb packages/
 	cp kopano4ucs/kopano4ucs-schema_*.deb packages/
 	cp kopano4ucs/kopano4ucs-udm_*.deb packages/
 	cp kopano4ucs/kopano4ucs_*.deb packages/
-	osc getbinaries core:final:dist a_aggregate Debian_9.0 x86_64 -d packages
+	osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
