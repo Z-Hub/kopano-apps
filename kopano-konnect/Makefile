@@ -52,7 +52,7 @@ clean:
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	appcenter/README_EN \
-	kopano-konnect.env kopano-konnect.preinst kopano-konnect.inst kopano-konnect.uinst kopano-konnect.settings
+	kopano-konnect.env kopano-konnect.preinst kopano-konnect.inst kopano-konnect.uinst kopano-konnect.settings kopano-konnect.configure_host
 	univention-appcenter-control set --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	--json '{"DockerImage": $(docker_name)}'
 

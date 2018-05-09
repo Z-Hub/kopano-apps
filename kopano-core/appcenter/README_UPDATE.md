@@ -1,5 +1,12 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano Core 8.5.x and Kopano4UCS 1.4.0
+
+* Replace Debian 9 packages with packages specifically built for Univention 4.3
+* add IMAP service to host to route network internal smtp traffic
+* update repo definitions for Univention 4.3 repository
+* make --set primarygroup definition obsolete again
+
 ### Changes in Kopano Core 8.4.5 and Kopano4UCS 1.3.9
 
 * to ease the upgrade from UCS 4.1 to 4.2 Kopano Core has been updated to 8.4.5. Please have a look at the [changelog](https://documentation.kopano.io/kopano_changelog/kc.html#kopano-core-8-4) for all changes since 8.3.1.

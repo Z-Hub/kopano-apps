@@ -24,13 +24,14 @@ get-binaries:
 	mkdir -p packages|| exit 0
 	rm -rf kopano4ucs || exit 0
 	mkdir -p kopano4ucs|| exit 0
-	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.2 x86_64 -d kopano4ucs
+	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
 	cp kopano4ucs/kopano4ucs-lib*.deb packages/
 	cp kopano4ucs/kopano4ucs-webapp*.deb packages/
 	osc getbinaries webapp:final kopano-webapp Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-desktopnotifications Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-filepreviewer Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-intranet Debian_9.0 x86_64 -d packages
+	osc getbinaries webapp:final kopano-webapp-plugin-mattermost Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-spell Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-at Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-ch Debian_9.0 x86_64 -d packages
@@ -49,6 +50,7 @@ get-binaries:
 
 	osc getbinaries mdm:final kopano-webapp-plugin-mdm Debian_9.0 x86_64 -d packages
 	osc getbinaries smime:final kopano-webapp-plugin-smime Debian_9.0 x86_64 -d packages
+	osc getbinaries smime:final php-kopano-smime Debian_9.0 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
