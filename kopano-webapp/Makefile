@@ -47,6 +47,7 @@ get-binaries:
 	osc getbinaries files:final kopano-webapp-plugin-files Debian_9.0 x86_64 -d packages
 	osc getbinaries files:final kopano-webapp-plugin-filesbackend-owncloud Debian_9.0 x86_64 -d packages
 	osc getbinaries files:final kopano-webapp-plugin-filesbackend-smb Debian_9.0 x86_64 -d packages
+	wget http://ftp.de.debian.org/debian/pool/main/p/php-smbclient/php-smbclient_0.8.0-3_amd64.deb -P packages
 
 	osc getbinaries mdm:final kopano-webapp-plugin-mdm Debian_9.0 x86_64 -d packages
 	osc getbinaries smime:final kopano-webapp-plugin-smime Debian_9.0 x86_64 -d packages
