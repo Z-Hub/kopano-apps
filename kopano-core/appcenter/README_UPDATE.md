@@ -5,7 +5,6 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 * Replace Debian 9 packages with packages specifically built for Univention 4.3
 * add IMAP service to host to route network internal smtp traffic
 * update repo definitions for Univention 4.3 repository
-* make --set primarygroup definition obsolete again
 
 ### Changes in Kopano Core 8.4.5 and Kopano4UCS 1.3.9
 
