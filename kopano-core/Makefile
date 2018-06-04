@@ -3,8 +3,8 @@ app_version=$(shell ./version.sh)
 
 ucs_version=4.3
 
-#docker_repo=fbartels
-#docker_name=univention-mattermost
+#docker_repo=kopano
+#docker_name=univention-kopano-core
 #docker_login=`cat ~/.docker-account-user`
 #docker_pwd=`cat ~/.docker-account-pwd`
 
@@ -15,18 +15,23 @@ add-version:
 	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 	#univention-appcenter-control new-version "4.2/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
-get-binaries:
+get-binaries: get-binaries-core get-binaries-kopano4ucs
+
+get-binaries-core:
 	rm -rf packages || exit 0
-	mkdir -p packages|| exit 0
+	mkdir -p packages || exit 0
+	osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
+
+get-binaries-kopano4ucs:
 	rm -rf kopano4ucs || exit 0
-	mkdir -p kopano4ucs|| exit 0
+	mkdir -p kopano4ucs || exit 0
 	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
+	rm packages/kopano4ucs*.deb || exit 0
 	cp kopano4ucs/kopano4ucs-lib_*.deb packages/
 	cp kopano4ucs/kopano4ucs-multiserver_*.deb packages/
 	cp kopano4ucs/kopano4ucs-schema_*.deb packages/
 	cp kopano4ucs/kopano4ucs-udm_*.deb packages/
 	cp kopano4ucs/kopano4ucs_*.deb packages/
-	osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
