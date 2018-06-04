@@ -1,8 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano4UCS 1.4
+### Changes in Kopano4UCS 1.4 and Kopano WebApp 3.4.15
 
+* update Kopano Core dependencies to 8.5.9. **Please update the Kopano Core app first, if you have both app running on the same server!**
 * directly depend on php7 packages to resolve issues with packages choosing php5 variants when resolving dependencies.
+* add provisions in join script to force usage of php7.
 
 ### Changes in Kopano WebApp 3.3 final (3.3.0.610) and Kopano4UCS 1.3.1  
 

@@ -19,14 +19,11 @@ get-core-dependencies:
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
 
-get-binaries:
+get-binaries: get-binaries-webapp get-binaries-files get-binaries-mdm get-binaries-smime get-binaries-kopano4ucs
+
+get-binaries-webapp:
 	rm -rf packages || exit 0
 	mkdir -p packages|| exit 0
-	rm -rf kopano4ucs || exit 0
-	mkdir -p kopano4ucs|| exit 0
-	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
-	cp kopano4ucs/kopano4ucs-lib*.deb packages/
-	cp kopano4ucs/kopano4ucs-webapp*.deb packages/
 	osc getbinaries webapp:final kopano-webapp Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-desktopnotifications Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-filepreviewer Debian_9.0 x86_64 -d packages
@@ -44,14 +41,26 @@ get-binaries:
 	osc getbinaries webapp:final kopano-webapp-plugin-spell-nl-nl Debian_9.0 x86_64 -d packages
 	osc getbinaries webapp:final kopano-webapp-plugin-spell-pl-pl Debian_9.0 x86_64 -d packages
 
+get-binaries-files:
 	osc getbinaries files:final kopano-webapp-plugin-files Debian_9.0 x86_64 -d packages
 	osc getbinaries files:final kopano-webapp-plugin-filesbackend-owncloud Debian_9.0 x86_64 -d packages
 	osc getbinaries files:final kopano-webapp-plugin-filesbackend-smb Debian_9.0 x86_64 -d packages
 	wget http://ftp.de.debian.org/debian/pool/main/p/php-smbclient/php-smbclient_0.8.0-3_amd64.deb -P packages
 
+get-binaries-mdm:
 	osc getbinaries mdm:final kopano-webapp-plugin-mdm Debian_9.0 x86_64 -d packages
+
+get-binaries-smime:
 	osc getbinaries smime:final kopano-webapp-plugin-smime Debian_9.0 x86_64 -d packages
 	osc getbinaries smime:final php-kopano-smime Debian_9.0 x86_64 -d packages
+
+get-binaries-kopano4ucs:
+	rm -rf kopano4ucs || exit 0
+	mkdir -p kopano4ucs || exit 0
+	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
+	rm packages/kopano4ucs*.deb || exit 0
+	cp kopano4ucs/kopano4ucs-lib*.deb packages/
+	cp kopano4ucs/kopano4ucs-webapp*.deb packages/
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
