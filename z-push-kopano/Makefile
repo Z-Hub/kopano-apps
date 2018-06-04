@@ -19,14 +19,20 @@ get-core-dependencies:
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
 
-get-binaries:
+get-binaries: get-binaries-z-push get-binaries-kopano4ucs
+
+get-binaries-kopano4ucs:
+	rm -rf kopano4ucs || exit 0
+	mkdir -p kopano4ucs || exit 0
+	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
+	rm packages/kopano4ucs*.deb || exit 0
+	cp kopano4ucs/kopano4ucs-z-push*.deb packages/
+
+get-binaries-z-push:
 	rm -rf packages || exit 0
 	mkdir -p packages|| exit 0
-	rm -rf kopano4ucs || exit 0
-	mkdir -p kopano4ucs|| exit 0
-	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.2 x86_64 -d kopano4ucs
-	cp kopano4ucs/kopano4ucs-z-push*.deb packages/
-	osc getbinaries z-push:final z-push Debian_9.0 x86_64 -d packages
+	osc getbinaries z-push:final z-push Univention_4.3 x86_64 -d packages
+
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
