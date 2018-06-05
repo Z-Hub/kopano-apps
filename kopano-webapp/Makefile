@@ -66,7 +66,7 @@ appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	packages/*.deb \
-	appcenter/README_UPDATE_DE README_UPDATE_EN README_EN README_DE
+	appcenter/README_UPDATE_DE appcenter/README_UPDATE_EN appcenter/README_EN appcenter/README_DE
 
 generate-docs:
 	pandoc appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE_EN
