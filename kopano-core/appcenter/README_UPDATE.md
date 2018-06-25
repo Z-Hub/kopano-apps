@@ -2,6 +2,8 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.4.5
 
+**Important:** This App update contains a security fix for kopano-server. After the update is installed, **manual user interaction may be required** if the kopano-server service is not running and users cannot connect. For more information on how to fix this issue, please read and follow the [Kopano upgrade documentation](https://kopano.com/releases/kopanocore-8-5-7/)
+
 * Replace Debian 9 packages with packages specifically built for Univention 4.3
 * add IMAP service to host to route network internal smtp traffic
 * update repo definitions for Univention 4.3 repository
