@@ -1,82 +1,82 @@
 [ARGS]
-Description = Startup argument for Kopano Konnect.
+Description = Startup argument for Kopano Konnect (defaults to local Kopano installation).
 Type = String
 InitialValue = --iss=https://@%@hostname@%@.@%@domainname@%@ --identifier-registration-conf /etc/kopano/identifier-registration.yaml kc
 Required = True
 Show = Install, Settings
 
 [LDAP_URI]
-Description = bla
+Description = LDAP_URI
 Type = String
 InitialValue = ldap://myldap.local:389
 Required = false
 Show = Install, Settings
 
 [LDAP_BINDDN]
-Description = bla
+Description = LDAP_BINDDN
 Type = String
 InitialValue = cn=admin,dc=example,dc=local
 Required = false
 Show = Install, Settings
 
 [LDAP_BINDPW]
-Description = bla
+Description = LDAP_BINDPW
 Type = String
 InitialValue = its-a-secret
 Required = false
 Show = Install, Settings
 
 [LDAP_BASEDN]
-Description = bla
+Description = LDAP_BASEDN
 Type = String
 InitialValue = dc=example,dc=local
 Required = false
 Show = Install, Settings
 
 [LDAP_SCOPE]
-Description = bla
+Description = LDAP_SCOPE
 Type = String
 InitialValue = sub
 Required = false
 Show = Install, Settings
 
 [LDAP_LOGIN_ATTRIBUTE]
-Description = bla
+Description = LDAP_LOGIN_ATTRIBUTE
 Type = String
 InitialValue = uid
 Required = false
 Show = Install, Settings
 
 [LDAP_EMAIL_ATTRIBUTE]
-Description = bla
+Description = LDAP_EMAIL_ATTRIBUTE
 Type = String
 InitialValue = mail
 Required = false
 Show = Install, Settings
 
 [LDAP_NAME_ATTRIBUTE]
-Description = bla
+Description = LDAP_NAME_ATTRIBUTE
 Type = String
 InitialValue = cn
 Required = false
 Show = Install, Settings
 
 [LDAP_UUID_ATTRIBUTE]
-Description = bla
+Description = LDAP_UUID_ATTRIBUTE
 Type = String
 InitialValue = uidNumber
 Required = false
 Show = Install, Settings
 
 [LDAP_UUID_ATTRIBUTE_TYPE]
-Description = bla
+Description = LDAP_UUID_ATTRIBUTE_TYPE
 Type = String
 InitialValue = test
 Required = false
 Show = Install, Settings
 
 [LDAP_FILTER]
-Description = bla
+Description = LDAP_FILTER
 Type = String
 InitialValue = (objectClass=organizationalPerson)
 Required = false
