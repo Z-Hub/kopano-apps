@@ -8,7 +8,7 @@ Show = Install, Settings
 [LDAP_URI]
 Description = LDAP_URI
 Type = String
-InitialValue = ldap://myldap.local:389
+InitialValue = ldap://@%@hostname@%@.@%@domainname@%@:7389
 Required = false
 Show = Install, Settings
 
@@ -29,7 +29,7 @@ Show = Install, Settings
 [LDAP_BASEDN]
 Description = LDAP_BASEDN
 Type = String
-InitialValue = dc=example,dc=local
+InitialValue = @%@ldap_base@%@
 Required = false
 Show = Install, Settings
 
@@ -71,7 +71,7 @@ Show = Install, Settings
 [LDAP_UUID_ATTRIBUTE_TYPE]
 Description = LDAP_UUID_ATTRIBUTE_TYPE
 Type = String
-InitialValue = test
+InitialValue = text
 Required = false
 Show = Install, Settings
 
