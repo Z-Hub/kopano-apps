@@ -1,0 +1,17 @@
+#!/bin/bash
+VERSION="1"
+
+. /usr/share/univention-lib/ldap.sh
+. /usr/share/univention-appcenter/joinscripthelper.sh
+
+joinscript_init
+
+eval "$(ucr shell)"
+SERVICE="Kopano-Api"
+APP="kopano-Api"
+
+ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
+
+
+joinscript_remove_script_from_status_file "$APP"
+exit 0

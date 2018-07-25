@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# get numberical user and group id of the kopano user
+if id kopano >/dev/null 2>&1; then
+	KOPANOUID=$(id -u kopano)
+	KOPANOGID=$(id -g kopano)
+else
+	KOPANOUID=$(id -u nobody)
+	KOPANOGID=$(id -g nobody)
+fi
+
+mkdir -p /etc/kopano/
+
+# create encryption key if not already present
+if [ ! -f /etc/kopano/pubs-encryption.hex ]; then
+	echo "creating new pubs encryption hex"
+	openssl rand -hex -out /etc/kopano/pubs-encryption.hex 64
+fi
+
+echo "setting process of container to the id of the kopano or nobody user"
+ucr set appcenter/apps/kopano-kapi/docker/params="--env KOPANO_KAPID_MFR_USER=$KOPANOUID"

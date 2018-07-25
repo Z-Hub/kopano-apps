@@ -1,0 +1,6 @@
+[ARGS]
+Description = Startup argument for Kopano API (defaults to local Kopano installation).
+Type = String
+InitialValue = --iss=https://@%@hostname@%@.@%@domainname@%@:8039
+Required = True
+Show = Install, Settings

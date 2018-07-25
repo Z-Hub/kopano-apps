@@ -1,0 +1,4 @@
+<h1 id="kopano-rest-api">Kopano Rest API</h1>
+<p>it is recommended to install the kopano api playground to a quick test</p>
+<p>https://stash.kopano.io/projects/KC/repos/kapi/browse/examples</p>
+<p>Call it e.g. with https://devmail.kopano.com/kapi-playground/?iss=https://devmail.kopano.com</p>
