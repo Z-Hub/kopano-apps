@@ -20,7 +20,7 @@ release-prepare: add-version
 
 release-run: run-mounted
 
-release-update: appcenter-files
+release-update: appcenter-files appcenter-files-docker
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
@@ -47,7 +47,9 @@ clean:
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	appcenter/README_EN \
-	preinst inst uinst settings
+	env preinst inst uinst settings
+
+appcenter-files-docker:
 	univention-appcenter-control set --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	--json '{"DockerImage": $(docker_name)}'
 

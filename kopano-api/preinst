@@ -20,4 +20,4 @@ if [ ! -f /etc/kopano/pubs-encryption.hex ]; then
 fi
 
 echo "setting process of container to the id of the kopano or nobody user"
-ucr set appcenter/apps/kopano-kapi/docker/params="--env KOPANO_KAPID_MFR_USER=$KOPANOUID"
+ucr set appcenter/apps/kopano-api/docker/params="--env KOPANO_KAPID_MFR_USER=$KOPANOUID"
