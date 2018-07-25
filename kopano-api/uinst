@@ -8,7 +8,7 @@ joinscript_init
 
 eval "$(ucr shell)"
 SERVICE="Kopano-Api"
-APP="kopano-Api"
+APP="kopano-api"
 
 ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
 
