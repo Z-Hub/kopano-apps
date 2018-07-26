@@ -26,6 +26,7 @@ build:
 
 run: build clean
 	sudo docker run -it --rm --name=$(app_name) \
+	--publish=8888:8888 \
 	$(docker_name)
 
 clean:
