@@ -4,16 +4,18 @@ app_version=latest
 ucs_version=4.2
 
 docker_name="kopano/univention-playground:$(app_version)"
+docker_login=`cat ~/.docker-account-user`
+docker_pwd=`cat ~/.docker-account-pwd`
 
 all: build run
 
-release: release-prepare release-update
+release: release-prepare build release-update
 
 release-prepare: add-version
 	echo "remember to update the used Docker image in the provider portal"
 	echo "e.g. $(docker_name)"
 
-release-update: appcenter-files appcenter-files-docker
+release-update: appcenter-files publish appcenter-files-docker
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
@@ -40,14 +42,14 @@ publish: repo-login publish-latest
 
 publish-latest: tag-latest
 	@echo 'publish latest to $(docker_repo)'
-	sudo docker push $(docker_repo)/$(docker_name):latest
+	sudo docker push $(docker_name)
 
 # Docker tagging
 tag: tag-latest
 
 tag-latest:
 	@echo 'create tag latest'
-	sudo docker tag $(docker_name) $(docker_repo)/$(docker_name):latest
+	sudo docker tag $(docker_name) $(docker_name)
 
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
