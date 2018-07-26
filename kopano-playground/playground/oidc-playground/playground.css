@@ -1,0 +1,34 @@
+[v-cloak] {
+	display: none;
+}
+
+table {
+	table-layout: fixed;
+}
+
+code, pre {
+	display: block;
+	word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.is-backgroundless {
+	background: transparent;
+}
+
+.jwt-dot {
+	color: black;
+}
+
+.jwt-header {
+	color: #fb015b;
+}
+
+.jwt-payload {
+	color: #d63aff;
+}
+
+.jwt-signature {
+	color: #00b9f1
+}

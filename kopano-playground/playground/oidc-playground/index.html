@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" charset="utf-8">
+<head>
+	<title>OIDC Playground</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css" integrity="sha256-spCEAaZMKebC3rE/ZTt8jITn65b0Zan45WXblWjyDyQ=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="playground.css" />
+</head>
+<body>
+<div id="app" v-cloak>
+
+<div class="modal" v-if="error !== null" v-bind:class="{ 'is-active': error !== null}">
+	<div class="modal-background"></div>
+	<div class="modal-content">
+		<div class="notification is-danger">
+			<button class="delete" v-on:click="closeErrorModal"></button>
+			<p>{{ error.error }}<span v-if="error.errorDescription"> : {{ error.errorDescription }}</span></p>
+		</div>
+	</div>
+</div>
+
+<section class="hero is-primary">
+  <div class="hero-body">
+	<div class="container">
+	  <h1 class="title">
+		OIDC Playground
+	  </h1>
+	  <h2 class="subtitle">
+		Web app to test and showcase the OpenID Connect flows
+	  </h2>
+	</div>
+  </div>
+</section>
+
+<section class="section" v-if="!started && discovery && discovery !== 'done'">
+<div class="container">
+	<h3 class="subtitle">Discovery</h3>
+	<div class="field">
+		<label class="label">OIDC Discovery .well-known URL</label>
+		<p class="control is-expanded">
+			<input class="input" type="text" v-model="discoveryEndpointURI" v-bind:disabled="discovery==='pending'">
+		</p>
+	</div>
+
+	<div class="field">
+		<p class="control">
+			<button class="button is-success" v-on:click="startDiscovery">Start discovery</button>
+		</p>
+	</div>
+</div>
+</section>
+
+<section class="section" v-if="!discovery || discovery === 'done'">
+<div class="container">
+	<h3 class="subtitle">Configuration</h3>
+	<div class="field" v-if="!started">
+		<label class="label">OIDC Authorization Endpoint URL</label>
+		<p class="control is-expanded">
+			<input class="input" type="text" v-model="authorizationEndpointURI">
+		</p>
+	</div>
+	<div class="field" v-if="code">
+		<label class="label">OIDC Token Endpoint URL</label>
+		<p class="control is-expanded">
+			<input class="input" type="text" v-model="tokenEndpointURI">
+		</p>
+	</div>
+	<div class="field" v-if="accessToken">
+		<label class="label">OIDC UserInfo Endpoint URL</label>
+		<p class="control is-expanded">
+			<input class="input" type="text" v-model="userInfoEndpointURI">
+		</p>
+	</div>
+
+	<div class="field" v-if="!started">
+		<label class="label">ClientID / Prompt / Response Type / Scopes</label>
+		<div class="field has-addons">
+			<p class="control">
+				<input class="input" type="text" v-model="clientID" placeholder="Client ID" />
+			</p>
+			<p class="control">
+				<span class="select">
+					<select v-model="prompt">
+						<option></option>
+						<option>login</option>
+						<option>consent</option>
+						<option>select_account</option>
+						<option>none</option>
+					</select>
+				</span>
+			</p>
+			<p class="control">
+				<span class="select">
+					<select v-model="responseType">
+						<option>id_token token</option>
+						<option>id_token</option>
+						<option>code id_token</option>
+						<option>code token</option>
+						<option>code id_token token</option>
+						<option>code</option>
+						<option>token</option>
+					</select>
+				</span>
+			</p>
+			<p class="control is-expanded">
+				<input class="input" type="text" v-model="scope" placeholder="scope" />
+			</p>
+			<p class="control">
+				<input class="input" type="number" min="0" v-model="maxAge" placeholder="max age (s)" />
+			</p>
+		</div>
+	</div>
+
+	<div class="field" v-if="!idToken" >
+		<p class="control">
+			<button class="button is-success" v-on:click="startOIDC">Start OIDC flow</button>
+		</p>
+	</div>
+
+</div>
+</section>
+
+<section class="section" v-if="started">
+<div class="container">
+
+	<h3 class="subtitle">Token data</h3>
+	<table class="table is-bordered is-fullwidth">
+		<tbody>
+			<tr v-if="idToken">
+				<td width="130">id_token</td>
+				<td><pre class="is-size-7 is-paddingless is-backgroundless" v-html="this.$options.filters.prettyJWT(idToken)"></pre></td>
+			</tr>
+			<tr v-if="accessToken">
+				<td width="130">access_token</td>
+				<td><pre class="is-size-7 is-paddingless is-backgroundless" v-html="this.$options.filters.prettyJWT(accessToken)"></pre></td>
+			</tr>
+			<tr v-if="code">
+				<td width="130">code</td>
+				<td><pre class="is-size-7 is-paddingless is-backgroundless">{{ code }}</pre></td>
+			</tr>
+			<tr v-if="refreshToken">
+				<td width="130">refresh_token</td>
+				<td><pre class="is-size-7 is-paddingless is-backgroundless" v-html="this.$options.filters.prettyJWT(refreshToken)"></pre></td>
+			</tr>
+			<tr v-if="expiresIn">
+				<td width="130">expires_in</td>
+				<td><span>{{ expiresIn }}</span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="field">
+		<p class="control">
+			<button v-if="code" class="button is-success" v-on:click="exchangeCode">Exchange code for tokens</button>
+			<button v-if="refreshToken" class="button" v-on:click="refresh">Refresh</button>
+		</p>
+	</div>
+
+	<div class="field" v-if="accessToken">
+		<p class="control">
+			<button class="button is-success" v-on:click="getOIDCUserInfo">Get userInfo</button>
+		</p>
+	</div>
+
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+
+	<div v-if="userInfo">
+		<h3 class="subtitle">Results</h3>
+		<table class="table is-bordered is-fullwidth">
+			<tbody>
+				<tr>
+					<td width="130">userInfo</td>
+					<td><pre class="is-size-7 is-backgroundless">{{ userInfo }}</pre></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="field">
+		<p class="control">
+			<button class="button" v-on:click="reload">Restart</button>
+			<button v-if="idToken" class="button" v-on:click="endsession(null)" v-bind:disabled="endSessionEndpointURI===''">Sign out from OP</button>
+			<button v-if="idToken" class="button" v-on:click="endsession(window.location.href)" v-bind:disabled="endSessionEndpointURI===''">Sign out from OP (redirect back)</button>
+		</p>
+	</div>
+
+</div>
+</section>
+
+</div> <!-- id=app -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.min.js" integrity="sha256-Ab5a6BPGk8Sg3mpdlsHzH6khPkniIWsvEuz8Fv/s9X8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js" integrity="sha256-OZ+Xidb5+lV/saUzcfonHJQ3koQncPy0hLjT8dROdOU=" crossorigin="anonymous"></script>
+<script src="playground.js"></script>
+</body>
+</html>

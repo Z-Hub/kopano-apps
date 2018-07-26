@@ -1,0 +1,19 @@
+#!/bin/bash
+VERSION="1"
+
+. /usr/share/univention-lib/ldap.sh
+. /usr/share/univention-appcenter/joinscripthelper.sh
+
+joinscript_init
+
+eval "$(ucr shell)"
+SERVICE="Kopano-Playground"
+APP="kopano-playground"
+
+ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
+
+rm /etc/apache2/ucs-sites.conf.d/kopano-playground.conf
+invoke-rc.d apache2 reload
+
+joinscript_remove_script_from_status_file "$APP"
+exit 0

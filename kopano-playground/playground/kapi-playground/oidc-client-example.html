@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+	<title>OIDC enabled Kopano API client</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="referrer" content="no-referrer">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.min.css" integrity="sha256-d+mgRrjtsPCjrT7ltuB1sZ2VybUn1Xgdf8piVG/Va/k=" crossorigin="anonymous" />
+	<link rel="stylesheet" href="common.css" />
+	<link rel="stylesheet" href="oidc-client-example.css" />
+</head>
+<body>
+<div id="app" v-cloak>
+
+<div class="modal" v-if="!!error" v-bind:class="{ 'is-active': !!error}">
+	<div class="modal-background"></div>
+	<div class="modal-content">
+		<div class="notification is-danger">
+			<button class="delete" v-on:click="closeErrorModal"></button>
+			<p>{{ error.code }}<span v-if="error.msg"> : {{ error.msg }}</span></p>
+		</div>
+	</div>
+</div>
+
+<section class="hero is-warning">
+  <div class="hero-body">
+	<div class="container">
+	  <h1 class="title">
+		OIDC enabled Kopano API client
+	  </h1>
+	  <h2 class="subtitle">
+		This is a simple web app to test Kopano API endpoints with OIDC authentication.
+	  </h2>
+	</div>
+  </div>
+</section>
+
+<section class="section">
+<div class="container">
+	<h3 class="subtitle">OIDC</h3>
+
+	<label class="label">Issuer Identifier / Client ID / Prompt</label>
+	<div class="field has-addons">
+		<p class="control is-expanded">
+			<input class="input" type="text" :disabled="initialized" v-model="iss" >
+		</p>
+		<p class="control">
+			<input class="input" type="text" :disabled="initialized" v-model="clientID" >
+		</p>
+		<p class="control">
+			<span class="select">
+				<select v-model="prompt" :disabled="initialized">
+					<option value="">not set</option>
+					<option>login</option>
+					<option>consent</option>
+					<option>select_account</option>
+					<option>none</option>
+				</select>
+			</span>
+		</p>
+	</div>
+
+	<div class="field">
+		<button class="button is-primary" v-on:click="initialize" v-if="!initialized" :disabled="!iss || initialized">Initialize</button>
+		<button class="button is-success" v-on:click="startAuthentication" v-if="initialized && !isLoggedIn">Sign in</button>
+		<!--<button class="button" v-on:click="getUser" v-if="initialized">Get user</button>-->
+		<button class="button is-danger" v-on:click="uninitialize" v-if="initialized && !user">Uninitialize</button>
+		<button class="button is-danger" v-on:click="removeUser" v-if="user">Clear user</button>
+		<button class="button" v-on:click="querySessionStatus" v-if="user">Query session status</button>
+		<button class="button" v-on:click="startSilentRenew" v-if="initialized && !silentRenew">Start silent renew</button>
+		<button class="button" v-on:click="stopSilentRenew" v-if="initialized && silentRenew">Stop silent renew</button>
+	</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container field is-grouped is-grouped-multiline">
+	<span class="tag is-info" v-if="initialized">initialized</span>
+	<span class="tags has-addons" v-if="user">
+		<span class="tag is-success">{{user.profile.name}}</span>
+		<span class="tag">{{expires_in}}s</span>
+	</span>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+	<h3 class="subtitle">API request generator</h3>
+	<nav class="panel">
+		<p class="panel-tabs">
+			<a v-bind:class="{ 'is-active': requestMode.default }" v-on:click="changeRequestMode('')">Base</a>
+			<a v-bind:class="{ 'is-active': requestMode.mailFolders }" v-if="requestResults.mailFolders" v-on:click="changeRequestMode('mailFolders')">mailFolders</a>
+			<!--<a v-bind:class="{ 'is-active': requestMode.calendars }" v-if="requestResults.calendars"  v-on:click="changeRequestMode('calendars')">calendars</a>
+			<a v-bind:class="{ 'is-active': requestMode.events }" v-if="requestResults.events"  v-on:click="changeRequestMode('events')">events</a>-->
+			<a v-bind:class="{ 'is-active': requestMode.messages }" v-if="requestResults.messages"  v-on:click="changeRequestMode('messages')">messages</a>
+			<!--<a v-bind:class="{ 'is-active': requestMode.contacts }" v-if="requestResults.contacts"  v-on:click="changeRequestMode('contacts')">contacts</a>-->
+		</p>
+
+		<div v-if="requestMode.default" class="panel-block is-active">
+			<div class="field has-addons">
+				<div class="control">
+					<div class="select">
+					  <select v-model="requestEndpoint" v-on:change="runRequest(false)">
+						<option value="" disabled selected hidden>Please select endpoint ...</option>
+						<option>/me</option>
+						<option>/me/mailFolders</option>
+						<option>/me/contactFolders</option>
+						<option>/me/calendar</option>
+						<option>/me/calendar/calendarView</option>
+						<option>/me/calendars</option>
+						<option>/me/messages</option>
+						<option>/me/contacts</option>
+						<option>/me/events</option>
+						<option>/users</option>
+					  </select>
+					</div>
+				</div>
+				<div class="control">
+					<button class="button is-primary" v-on:click="runRequest(false)" :disabled="requestEndpoint==''">Run Query</button>
+				</div>
+				<div class="control">
+					<button :disabled="!requestNextLink" class="button" v-on:click="runRequestNextLink">Next</button>
+				</div>
+			</div>
+		</div>
+
+		<div v-if="requestMode.mailFolders" class="panel-block is-active">
+			<div class="field has-addons">
+			  <div class="control is-expanded">
+				<div class="select is-fullwidth">
+				  <select v-model="requestEndpoint" v-on:change="runRequest(true)">
+					<option value="" disabled selected hidden>Please select endpoint ...</option>
+					<template v-for="f in requestResults.mailFolders.value">
+						<option v-bind:value="'/me/mailFolders/' + f.id">/me/mailFolders/{{f.displayName}}</option>
+						<option v-bind:value="'/me/mailFolders/' + f.id + '/messages'">/me/mailFolders/{{f.displayName}}/messages</option>
+					</template>
+				  </select>
+				</div>
+			  </div>
+			  <div class="control">
+				<button class="button is-primary" v-on:click="runRequest(true)" :disabled="requestEndpoint==''">Run Query</button>
+			  </div>
+			</div>
+		</div>
+
+		<div v-if="requestMode.messages" class="panel-block is-active">
+			<div class="field has-addons">
+			  <div class="control">
+				<div class="select">
+				  <select v-model="requestEndpoint" v-on:change="runRequest(true)">
+					<option value="" disabled selected hidden>Please select endpoint ...</option>
+					<template v-for="m in requestResults.messages.value">
+						<option v-bind:value="'/me/messages/' + m.id">/me/messages/{{m.subject}}</option>
+						<option v-if="m.hasAttachments" v-bind:value="'/me/messages/' + m.id + '/attachments'">/me/messages/{{m.subject}}/attachments</option>
+					</template>
+				  </select>
+				</div>
+			  </div>
+			  <div class="control">
+				<button class="button is-primary" v-on:click="runRequest(true)" :disabled="requestEndpoint==''">Run Query</button>
+			  </div>
+			</div>
+		</div>
+	</nav>
+
+	<article class="message"  v-bind:class="{'is-success': requestStatus.success, 'is-danger': !requestStatus.success}" v-if="requestStatus">
+	  <div class="message-body">
+	    {{requestStatus.success ? '&#10003; Success' : '&#10060; Failed'}} - Status Code {{requestStatus.code}}<span v-if="requestStatus.msg"> : {{ requestStatus.msg }}</span><strong style="padding-left:4em">{{requestStatus.duration}}ms</strong>
+	  </div>
+	</article>
+
+	<div class="tabs">
+		<ul>
+			<li v-bind:class="{ 'is-active': responseMode.default }"><a v-on:click="changeResponseMode('')">Response Preview`</a></li>
+			<li v-bind:class="{ 'is-active': responseMode.headers }"><a v-on:click="changeResponseMode('headers')">Response Headers</a></li>
+		</ul>
+	</div>
+	<div class="response" v-show="responseMode.default"><pre ref="requestResponseEditor"></pre></div>
+	<div class="response" v-show="responseMode.headers"><pre><code>{{requestResponseHeadersFormatted}}</code></pre></div>
+
+</div>
+</section>
+
+<section class="section" v-if="user">
+<div class="container">
+	<h3 class="subtitle">Create example data</h3>
+	<div class="field">
+		<button class="button" v-on:click="createTestMessage" :disabled="!requestResults.me">/me/sendMail Send 'Lorem ipsum' message to self</button>
+		<button class="button" v-on:click="createTestEvent">Create event /me/calendar/events</button>
+		<button class="button" v-on:click="createRandomContact">Create random contact /me/contacts</button>
+	</div>
+
+	<article class="message" v-bind:class="{'is-success': createStatus.success, 'is-error': !createStatus.success}" v-if="createStatus">
+	  <div class="message-body">
+		{{createStatus.success ? '&#10003; Success' : '&#10060; Failed'}} - Status Code {{createStatus.code}}<span v-if="createStatus.msg"> : {{ createStatus.msg }}</span> <strong style="padding-left:4em">{{createStatus.duration}}ms</strong>
+	  </div>
+	</article>
+</div>
+</section>
+
+<section class="section" v-if="user && webhook && webhook.id">
+<div class="container">
+	<h3 class="subtitle">Create subscription</h3>
+
+	<label class="label">Resource / Webhook topic</label>
+	<div class="field has-addons">
+		<p class="control is-expanded">
+			<input class="input" type="text" v-model="requestContext" >
+		</p>
+		<p class="control">
+			<input class="input" type="text" disabled v-model="webhook.topic" >
+		</p>
+	</div>
+
+	<div class="field">
+		<button :disabled="!requestContext" class="button" v-on:click="createSubscription">Create subscription</button>
+	</div>
+
+	<article class="message" v-bind:class="{'is-success': subscriptionStatus.success, 'is-error': !subscriptionStatus.success}" v-if="subscriptionStatus">
+	  <div class="message-body">
+		{{subscriptionStatus.success ? '&#10003; Success' : '&#10060; Failed'}} - Status Code {{subscriptionStatus.code}}<span v-if="subscriptionStatus.msg"> : {{ subscriptionStatus.msg }}</span> <strong style="padding-left:4em">{{subscriptionStatus.duration}}ms</strong>
+	  </div>
+  </article>
+</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js" integrity="sha256-Gs0UYwrz/B58FsQggzU+vvCSyG/pewemP4Lssjzv8Ho=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.3.4/vue-resource.min.js" integrity="sha256-OZ+Xidb5+lV/saUzcfonHJQ3koQncPy0hLjT8dROdOU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.4.1/oidc-client.js" integrity="sha256-Z7M/sCOR7TCNLf1N/oVFonDtCQLmFnkxtdivPNqWaGg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js" integrity="sha256-ABVkpwb9K9PxubvRrHMkk6wmWcIHUE9eBxNZLXYQ84k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" integrity="sha256-U//RSeH3TR3773Rk+1lAufJnRjEaG5LcdbvGV72kHEM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/mode-json.js" integrity="sha256-ddxpx0qTHbqhbDvRedqrlCFkFtYZWNNQq5pQu9qhnGE=" crossorigin="anonymous"></script>
+<script src="pubsjs/umd/pubs.js"></script>
+<script src="common.js"></script>
+<script src="oidc-client-example.js"></script>
+
+</div> <!-- id=app -->
+</body>
+</html>
