@@ -1,5 +1,5 @@
 app_name=kopano-playground
-app_version=latest
+app_version=$(shell ./version.sh)
 
 ucs_version=4.2
 

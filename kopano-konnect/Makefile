@@ -18,7 +18,7 @@ release-prepare: add-version
 	echo "remember to update the used Docker image in the provider portal"
 	echo "e.g. $(docker_name)"
 
-release-run: run-mounted
+release-run: run
 
 release-update: appcenter-files
 
