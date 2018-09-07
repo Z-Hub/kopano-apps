@@ -34,6 +34,7 @@ pull:
 run: pull clean
 	sudo docker run -it --rm=true --name=$(app_name) \
 	--read-only \
+	--volume /etc/kopano:/etc/kopano:ro \
 	--volume /etc/ssl/certs:/etc/ssl/certs:ro \
 	--volume /etc/kopano/konnectd-tokens-signing-key.pem:/run/secrets/konnectd_signing_private_key:ro \
 	--volume /etc/kopano/konnectd-encryption.key:/run/secrets/konnectd_encryption_secret:ro \
