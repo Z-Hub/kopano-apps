@@ -25,11 +25,11 @@ cat <<-EOF >"/etc/apache2/ucs-sites.conf.d/kopano-konnect.conf"
 #####################################################################
 
 # Kopano Konnect OIDC
-ProxyPass /.well-known/openid-configuration http://localhost:8777/.well-known/openid-configuration retry=0
 ProxyPass /konnect/v1/jwks.json http://localhost:8777/konnect/v1/jwks.json retry=0
+ProxyPass /konnect/v1/session http://localhost:8777//konnect/v1/session retry=0
+ProxyPass /konnect/v1/static http://localhost:8777/konnect/v1/static retry=0
 ProxyPass /konnect/v1/token http://localhost:8777/konnect/v1/token retry=0
 ProxyPass /konnect/v1/userinfo http://localhost:8777/konnect/v1/userinfo retry=0
-ProxyPass /konnect/v1/static http://localhost:8777/konnect/v1/static retry=0
 
 # Kopano Konnect login area
 ProxyPass /signin/ http://localhost:8777/signin/ retry=0
