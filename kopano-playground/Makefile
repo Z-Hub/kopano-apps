@@ -17,6 +17,14 @@ release-prepare: add-version
 
 release-update: appcenter-files publish appcenter-files-docker
 
+get-updated-playground:
+	rsync -avP ../../../kopano/kapi/examples/dist/kapi-playground-*/ playground/kapi-playground/ --delete
+	cd playground/kapi-playground && ln -s oidc-client-example.html index.html
+	$(eval TMP := $(shell mktemp -d))
+	wget -P $(TMP) https://stash.kopano.io/rest/api/latest/projects/~SEISENMANN/repos/oidc-playground/archive?format=zip
+	unzip -u $(TMP)/*.zip 'www/*' -d playground/oidc-playground
+	rm -rf $(TMP)
+
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
 	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
