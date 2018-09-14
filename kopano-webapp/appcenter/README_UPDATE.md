@@ -1,6 +1,11 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano4UCS 1.4.17 Kopano WebApp 3.4.19
+### Changes in Kopano4UCS 1.4.18 and Kopano WebApp 3.4.22
+
+* the app now uses the official repository for UCS 4.3
+* please have a look at the dedicated changelog for WebApp to see updates until the 3.4.22 release: https://documentation.kopano.io/kopano_changelog/webapp.html
+
+### Changes in Kopano4UCS 1.4.17 and Kopano WebApp 3.4.19
 
 * app now uses the WebApp packages compiled for Univention 4.3 (repo file will be updated once all plugins are officially released for 4.3)
 * add basic json theme with Univention branding
