@@ -14,7 +14,6 @@ Values = final, pre-final, master
 Labels = Final release, Beta/RC release, Nightly release
 InitialValue = final
 Show = Install, Settings
-InitialValue = false
 Required = False
 Scope = outside
 Group = Z-Push updates
