@@ -38,7 +38,7 @@ appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	packages/*.deb settings \
 	appcenter/README appcenter/README_DE appcenter/README_INSTALL appcenter/README_INSTALL_DE \
-	appcenter/README_UPDATE appcenter/README_APPLIANCE appcenter/README_APPLIANCE_DE
+	appcenter/README_UPDATE appcenter/README_APPLIANCE appcenter/README_APPLIANCE_DE appcenter/README_POST_INSTALL
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
@@ -48,5 +48,6 @@ generate-docs:
 	pandoc appcenter/README_APPLIANCE.md -t HTML -o appcenter/README_APPLIANCE
 	pandoc  --ascii appcenter/README_APPLIANCE_DE.md -t HTML -o appcenter/README_APPLIANCE_DE
 	pandoc appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
+	pandoc appcenter/README_POST_INSTALL.md -t HTML -o appcenter/README_POST_INSTALL
 
 # Testing
