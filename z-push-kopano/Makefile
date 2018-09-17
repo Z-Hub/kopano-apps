@@ -37,7 +37,7 @@ get-binaries-z-push:
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	packages/*.deb \
+	packages/*.deb settings \
 	appcenter/README_UPDATE_EN
 
 generate-docs:
