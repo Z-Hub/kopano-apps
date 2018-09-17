@@ -1,0 +1,20 @@
+[kopano/repo/z-push-kopano]
+Description = Update Z-Push from the official apt repositories?
+Type = Bool
+Show = Install, Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = Z-Push updates
+
+[kopano/repo/z-push-kopano-releasetype]
+Description = Release type of Z-Push that should be installed
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Install, Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = Z-Push updates
