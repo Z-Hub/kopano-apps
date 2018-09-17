@@ -1,7 +1,7 @@
 [kopano/repo/password]
 Description = Your Kopano subscription key used to access the Kopano apt repositories
 Type = String
-Show = Install, Settings
+Show = Settings
 Required = False
 Scope = outside
 Group = Kopano Subscription
@@ -9,7 +9,7 @@ Group = Kopano Subscription
 [kopano/repo/kopano-core]
 Description = Update Kopano Groupware Core from the Kopano apt repositories? (subscription required)
 Type = Bool
-Show = Install, Settings
+Show = Settings
 InitialValue = false
 Required = False
 Scope = outside

@@ -1,7 +1,7 @@
 [kopano/repo/z-push-kopano]
 Description = Update Z-Push from the official apt repositories?
 Type = Bool
-Show = Install, Settings
+Show = Settings
 InitialValue = false
 Required = False
 Scope = outside
@@ -13,7 +13,7 @@ Type = List
 Values = final, pre-final, master
 Labels = Final release, Beta/RC release, Nightly release
 InitialValue = final
-Show = Install, Settings
+Show = Settings
 Required = False
 Scope = outside
 Group = Z-Push updates
