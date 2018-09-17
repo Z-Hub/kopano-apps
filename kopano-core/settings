@@ -14,15 +14,3 @@ InitialValue = false
 Required = False
 Scope = outside
 Group = Kopano updates
-
-[kopano/repo/kopano-core-releasetype]
-Description = Release type of Kopano Groupware Core that should be installed (subscription required)
-Type = List
-Values = final, pre-final, master
-Labels = Final release, Beta/RC release, Nightly release
-InitialValue = final
-Show = Install, Settings
-InitialValue = false
-Required = False
-Scope = outside
-Group = Kopano updates
