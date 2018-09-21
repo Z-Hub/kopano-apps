@@ -3,4 +3,4 @@ changes.
 
 This version now installs the GAB-Sync script required for the Kopano OL Extension by default, please refer to [the documention](https://wiki.z-hub.io/x/z4Aa) for configuration instructions.
 
-It is now possible to update Z-Push directly from the Kopano repository. This can be done from the `Settings` option in the App Center. See https://wiki.z-hub.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server for more details.
+It is now possible to update Z-Push directly from the Kopano repository. This can be done from the `App Settings` option in the App Center. See https://wiki.z-hub.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server for more details.
