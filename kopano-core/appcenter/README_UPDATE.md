@@ -2,7 +2,7 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.4.18
 
-* it is now possible to manage the Kopano apt repository through the `Settings` option in the App Center.
+* it is now possible to manage the Kopano apt repository through the `App Settings` option in the App Center.
 
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.4.5
 
