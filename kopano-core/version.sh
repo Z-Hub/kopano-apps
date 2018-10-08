@@ -1,2 +1,2 @@
 version=$(dpkg-deb -f packages/kopano-server-packages_*.deb version)
-echo ${version%-*}-1
+echo ${version%-*}-2

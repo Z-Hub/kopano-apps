@@ -17,6 +17,9 @@ add-version:
 
 get-binaries: get-binaries-core get-binaries-kopano4ucs
 
+# 8.7 needs two new dependencies:
+# https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/libhx28_3.22-1+b2_amd64.deb
+# https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/python3-bsddb3_6.1.0-1+b2_amd64.deb
 get-binaries-core:
 	rm -rf packages || exit 0
 	mkdir -p packages || exit 0

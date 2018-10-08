@@ -1,5 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.0
+
+* the integration has been updated to support the upcoming Kopano Groupware Core 8.7 release
+* fix language selection for store creation
+
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.4.18
 
 * it is now possible to manage the Kopano apt repository through the `App Settings` option in the App Center.
