@@ -41,5 +41,7 @@ generate-docs:
 	pandoc appcenter/README_POST_INSTALL.md -t HTML -o appcenter/README_POST_INSTALL
 	pandoc --ascii appcenter/README_POST_INSTALL.md -t HTML -o appcenter/README_POST_INSTALL_DE
 	pandoc appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
+	pandoc appcenter/Long_Description.md -t HTML -o appcenter/Long_Description
+	pandoc  --ascii appcenter/Long_Description_DE.md -t HTML -o appcenter/Long_Description_DE
 
 # Testing
