@@ -1,4 +1,4 @@
-app_name=kopano-core
+app_name=kopano
 app_version=$(shell ./version.sh)
 
 ucs_version=4.3

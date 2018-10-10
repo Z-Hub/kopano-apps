@@ -1,10 +1,13 @@
-## Kopano
+## Kopano - Future Teamwork
 
 Kopano is more than just a groupware. Its basic functions are expanded with new components that complement your everyday business communication in a natural way.
 
 ### What do you get with this app?
 
-This app is just a simple way to automatically install the other Kopan apps, such as [Kopano Core](#module=appcenter:appcenter:0:id:kopano-core), [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano)!
+This app is just a simple way to automatically install the the most used Kopano apps in one go. This app installs [Kopano Core](#module=appcenter:appcenter:0:id:kopano-core), [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano).
+
+If you want to spread out your installation to multiple hosts, then you can just skip the installation of this app and install [Kopano Core](#module=appcenter:appcenter:0:id:kopano-core), [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano) individually.
+
 
 ### Why is Kopano your new Communication & Sharing solution?
 
