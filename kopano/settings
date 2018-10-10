@@ -14,3 +14,104 @@ InitialValue = false
 Required = False
 Scope = outside
 Group = Kopano updates
+
+[kopano/repo/kopano-webapp]
+Description = Update Kopano WebApp from the Kopano apt repositories? (subscription required)
+Type = Bool
+Show = Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-webapp-releasetype]
+Description = Release type of Kopano WebApp that should be installed (subscription required)
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Settings
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-files]
+Description = Update Kopano Files from the Kopano apt repositories? (subscription required)
+Type = Bool
+Show = Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-files-releasetype]
+Description = Release type of Kopano Files that should be installed (subscription required)
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Settings
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-mdm]
+Description = Update  Kopano WebApp MDM plugin from the Kopano apt repositories? (subscription required)
+Type = Bool
+Show = Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-mdm-releasetype]
+Description = Release type of  Kopano WebApp MDM plugin that should be installed (subscription required)
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Settings
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-smime]
+Description = Update Kopano WebApp S/Mime plugin from the Kopano apt repositories? (subscription required)
+Type = Bool
+Show = Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/kopano-smime-releasetype]
+Description = Release type of Kopano WebApp S/Mime plugin that should be installed (subscription required)
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Settings
+Required = False
+Scope = outside
+Group = WebApp updates
+
+[kopano/repo/z-push-kopano]
+Description = Update Z-Push from the official apt repositories?
+Type = Bool
+Show = Settings
+InitialValue = false
+Required = False
+Scope = outside
+Group = Z-Push updates
+
+[kopano/repo/z-push-kopano-releasetype]
+Description = Release type of Z-Push that should be installed
+Type = List
+Values = final, pre-final, master
+Labels = Final release, Beta/RC release, Nightly release
+InitialValue = final
+Show = Settings
+Required = False
+Scope = outside
+Group = Z-Push updates
+

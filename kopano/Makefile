@@ -18,7 +18,7 @@ add-version:
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	packages/*.deb settings \
+	preinst settings \
 	appcenter/README appcenter/README_DE appcenter/README_INSTALL appcenter/README_INSTALL_DE \
 	appcenter/README_UPDATE appcenter/README_APPLIANCE appcenter/README_APPLIANCE_DE appcenter/README_POST_INSTALL
 
