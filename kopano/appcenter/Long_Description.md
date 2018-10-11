@@ -8,6 +8,14 @@ This app is just a simple way to automatically install the the most used Kopano 
 
 If you want to spread out your installation to multiple hosts, then you can just skip the installation of this app and install [Kopano Core](#module=appcenter:appcenter:0:id:kopano-core), [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano) individually.
 
+#### Which Edition of Kopano do the apps provide?
+
+Kopano is evolving very fast and delivers updates on a regular basis. While owners of a valid subscription receive these update via our repositories, users of the free Univention app are bound to the packages included in the app. We do our best effort to update the app once every 6 to 9 months.
+
+In addition to this owners of a valid subscriptions are able to get in direct contact with our [support](https://kopano.com/support-info/).
+
+Do you like Kopano? By buying a subscription you do not just benefit from updates and support. You are also supporting us to work on cool new features and ideas. Clicking the little "buy Kopano"-button helps the projects to grow!
+
 
 ### Why is Kopano your new Communication & Sharing solution?
 
