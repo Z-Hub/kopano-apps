@@ -6,7 +6,9 @@ Z-Push is an open source application that brings your groupware data to ActiveSy
 
 This app contains Z-Push for Kopano. Everything is completely preconfigured for Univention Corporate Server (UCS). After installation, only an ActiveSync / "Exchange" account has to be created on the device and the personal access data and the address of the UCS server must be entered.
 
-To use the app, you also need the [Kopano Core app](#module=appcenter:appcenter:0:id:kopano-core).
+To use the app, you also need the [Kopano Core app](#module=appcenter:appcenter:0:id:kopano-core) to be installed on the same system.
+
+In case you have all the Kopano apps running on one Univention system, we also recommend to install the new [Kopano](#module=appcenter:appcenter:0:id:kopano) Meta application, as this will automatically pull in new App additions to the Kopano platform.
 
 Note: To display the global address book (users, groups, and contacts on the UCS server) in the Kopano OL Extension, the GAB sync script must still be configured. Please refer to the documentation for the necessary steps!
 

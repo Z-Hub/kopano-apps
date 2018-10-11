@@ -4,9 +4,11 @@ Kopano is more than just a groupware. Its basic functions are expanded with new 
 
 ### What do you get with this app?
 
-This is the basic app of the Kopano Sharing & Communication software. It includes the core components, such as the database, backup and management tools, as well as the necessary components for full integration into the Univention Corporate Server user management (UCS) and mail delivery. Users and resources are managed centrally in the UCS management system.
+This is the base app of the Kopano Sharing & Communication software. It includes the core components, such as the database, backup and management tools, as well as the necessary components for full integration into the Univention Corporate Server user management (UCS) and mail delivery. Users and resources are managed centrally in the UCS management system.
 
-Please also install the [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano)!
+In case you have all the Kopano apps running on one Univention system, we also recommend to install the new [Kopano](#module=appcenter:appcenter:0:id:kopano) Meta application, as this will automatically pull in new App additions to the Kopano platform.
+
+If you want to install Kopano on multiple Univention system, then please remember to install other application such as the [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano) as well.
 
 ### Why is Kopano your new Communication & Sharing solution?
 
