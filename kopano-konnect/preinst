@@ -70,9 +70,10 @@ fi
 
 kopanoversion=$(dpkg-query --showformat='${Version}' --show kopano-server)
 
-# starting with the Kopano 8.7 release (but already available in previous nightly builds that are tagged 8.6.81) Kopano Konnect does not rely on the unix socket anymore to establish an authenticated connection. Instead Kopano Groupware Core is configured to make handle SSO requests from Konnect
+# starting with the Kopano 8.7 release (but already available in previous nightly builds that are tagged 8.6.81) Kopano Konnect does not rely on the unix socket anymore to establish an authenticated connection. Instead Kopano Groupware Core is configured to make handle SSO requests from Konnect.
+# Change is needed since Konnect 0.12.0
 if $(dpkg --compare-versions $kopanoversion "gt" "8.6.81"); then
-        echo "Installation with Kopano Groupware Core 8.7 detected"
+	echo "Installation with Kopano Groupware Core 8.7 detected"
 	echo "setting process of container to read-only"
 	ucr set \
 		appcenter/apps/kopano-konnect/docker/params="--read-only" \
@@ -80,7 +81,7 @@ if $(dpkg --compare-versions $kopanoversion "gt" "8.6.81"); then
 		kopano/cfg/server/kcoidc_issuer_identifier="https://${hostname}.${domainname}"
 	systemctl restart kopano-server
 else
-        echo "Previous version to Kopano Groupware Core 8.7 detected"
+	echo "Previous version to Kopano Groupware Core 8.7 detected"
 	echo "setting process of container to the id of the kopano or nobody user"
-	ucr set appcenter/apps/kopano-konnect/docker/params="--read-only --user=$KOPANOUID:$KOPANOGID"
+	ucr set appcenter/apps/kopano-konnect/docker/params="--read-only --user=$KOPANOUID:$KOPANOGID --env KOPANO_SERVER_USERNAME='SYSTEM'"
 fi
