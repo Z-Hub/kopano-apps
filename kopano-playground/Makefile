@@ -9,7 +9,7 @@ docker_pwd=`cat ~/.docker-account-pwd`
 
 all: build run
 
-release: release-prepare build release-update
+release: release-prepare build publish release-update
 
 release-prepare: add-version
 	echo "remember to update the used Docker image in the provider portal"
