@@ -6,9 +6,7 @@ Kopano is more than just a groupware. Its basic functions are expanded with new 
 
 This app contains the Kopano WebApp, which allows users to easily manage their daily communication and organization tasks, from e-mail, calendar entry, file management, and video calling. The WebApp can be extended with plugins and can be used with different, also customizable themes.
 
-To install Kopano WebApp, the [Kopano Core app](#module=appcenter:appcenter:0:id:kopano-core) must already be installed on one or more servers. The Kopano WebApp does not necessarily have to be installed on the same machine. It can also be installed multiple times for load distribution or optimized data communication on several servers. This app is also needed if the Kopano DeskApp is to be used.
-
-In case you have all the Kopano apps running on one Univention system, we also recommend to install the new [Kopano](#module=appcenter:appcenter:0:id:kopano) Meta application, as this will automatically pull in new App additions to the Kopano platform.
+To install Kopano WebApp, the [Kopano Core app](#module=appcenter:appcenter:0:id:kopano-core) must already be installed on one or more servers. The Kopano WebApp does not necessarily have to be installed on the same machine. It can also be installed at the same time for load distribution or optimized data communication on several servers. This app is also needed if the Kopano DeskApp is to be used.
 
 ### Why is Kopano your new Communication & Sharing solution?
 
