@@ -3,7 +3,8 @@ app_version=$(shell ./version.sh)
 
 ucs_version=4.2
 
-docker_name="kopano/kapid:$(app_version)"
+#docker_name="kopano/kapid:$(app_version)"
+docker_name="kopano/kopano_rest-api"
 
 hostname=$(shell hostname -f)
 PUID=$(shell id -u kopano)
@@ -38,9 +39,7 @@ run: pull clean
 	--env KOPANO_KAPID_MFR_USER=$(shell id -u kopano) \
 	--env-file ./env \
 	--publish 127.0.0.1:8039:8039 \
-	$(docker_name) \
-	serve \
-	--iss=https://$(hostname)
+	$(docker_name)
 
 clean:
 	sudo docker rm $(app_name) || true
