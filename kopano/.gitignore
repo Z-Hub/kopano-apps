@@ -1,8 +1,0 @@
-kopano4ucs/*
-kopano-core-dependencies/*
-packages/_buildenv
-packages/*
-appcenter/*
-!appcenter/*.md
-!appcenter/*.png
-!appcenter/*.jpg
