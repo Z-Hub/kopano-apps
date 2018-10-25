@@ -5,6 +5,11 @@ update-core-binaries:
 
 update-appcenter: update-appcenter-core update-appcenter-webapp update-appcenter-z-push
 
+update-docs:
+	cd kopano-core && make generate-docs
+	cd kopano-webapp && make generate-docs
+	cd kopano-webmeetings && make generate-docs
+
 update-appcenter-core:
 	cd kopano-core && make appcenter-files
 

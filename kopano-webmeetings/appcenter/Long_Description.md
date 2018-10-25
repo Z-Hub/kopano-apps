@@ -8,6 +8,14 @@ This app contains the Kopano Web Meetings. In the simplest way and without havin
 
 An installed [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) is required for Web meetings. To be able to communicate outside your network or with non-Kopano users, you need a TURN service. To access Kopano's TURN service, you can [here](https://portal.kopano.com/content/turn-server-access-request) .
 
+#### Which Edition of Kopano do the apps provide?
+
+Kopano is evolving very fast and delivers updates on a regular basis. While owners of a valid subscription receive these updates via our repositories, users of the Univention app are bound to the packages included in the app (the free app is otherwise not limited in the amount of users or features available). We do our best to update our apps once every 6 to 9 months.
+
+In addition to this owners of a valid subscriptions are able to get in direct contact with our [support](https://kopano.com/support-info/).
+
+Do you like Kopano? By buying a subscription you do not just benefit from updates and support. You are also supporting us to work on cool new features and ideas. Clicking the little "buy Kopano"-button helps the projects to grow!
+
 ### Why is Kopano your new Communication & Sharing solution?
 
 *   ... because you're using a sleek, platform-independent [DeskApp](https://kopano.com/products/deskapp/?lang=en) from Windows, Mac and Linux platforms, Desktops to access your data.

@@ -8,6 +8,14 @@ This is the base app of the Kopano Sharing & Communication software. It includes
 
 Please also install the [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webapp) and [Z-Push for Kopano](#module=appcenter:appcenter:0:id:z-push-kopano)!
 
+#### Which Edition of Kopano do the apps provide?
+
+Kopano is evolving very fast and delivers updates on a regular basis. While owners of a valid subscription receive these updates via our repositories, users of the Univention app are bound to the packages included in the app (the free app is otherwise not limited in the amount of users or features available). We do our best to update our apps once every 6 to 9 months.
+
+In addition to this owners of a valid subscriptions are able to get in direct contact with our [support](https://kopano.com/support-info/).
+
+Do you like Kopano? By buying a subscription you do not just benefit from updates and support. You are also supporting us to work on cool new features and ideas. Clicking the little "buy Kopano"-button helps the projects to grow!
+
 ### Why is Kopano your new Communication & Sharing solution?
 
 *   ... because you access your data with a lean, platform-independent [DeskApp](https://kopano.com/products/deskapp/?lang=en) from Windows, Mac and Linux desktops.
