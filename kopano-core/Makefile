@@ -33,8 +33,8 @@ get-binaries-kopano4ucs:
 	cp kopano4ucs/kopano4ucs-udm_*.deb packages/
 	cp kopano4ucs/kopano4ucs_*.deb packages/
 	# the following wget lines can be removed once https://forge.univention.org/bugzilla/show_bug.cgi?id=47933 is resolved
-	wget https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/libhx28_3.22-1+b2_amd64.deb -P packages/
-	wget https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/python3-bsddb3_6.1.0-1+b2_amd64.deb -P packages/
+	wget -nc https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/libhx28_3.22-1+b2_amd64.deb -P packages/
+	wget -nc https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/python3-bsddb3_6.1.0-1+b2_amd64.deb -P packages/
 
 appcenter-files: generate-docs
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi

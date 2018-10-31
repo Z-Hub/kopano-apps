@@ -1,13 +1,11 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.4
-
-* fix kopano-server not listening on port 236
-
-### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.3
+### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.5
 
 * the integration has been updated to support the upcoming Kopano Groupware Core 8.7 release
+  * **IMPORTANT:** After updating to 8.7.x through [the Kopano apt repository](https://wiki.z-hub.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server) you will find that ´kopano-gateway´ and ´kopano-ical´ will refuse to start because of an incompatible configuration. Please execute the script `/usr/share/kopano4ucs/kopano4ucs-update-settings870.sh´ to update your configuration files. This will be done later on automatically when the Kopano Core app natively provides this release. 
 * fix language selection for store creation
+* fix kopano-server not listening on port 236
 
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.4.18
 
