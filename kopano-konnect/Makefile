@@ -52,16 +52,16 @@ clean:
 
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	appcenter/README_EN \
+	appcenter/README \
 	env preinst inst uinst settings
 	univention-appcenter-control set --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	--json '{"DockerImage": $(docker_name)}'
 
 generate-docs:
-	pandoc appcenter/README_EN.md -t HTML -o appcenter/README_EN
+	pandoc appcenter/README.md -t HTML -o appcenter/README
 	#pandoc  --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
-	#pandoc  appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
-	#pandoc  --ascii README.md -t HTML -o README.html
+	pandoc appcenter/Long_Description.md -t HTML -o appcenter/Long_Description
+	pandoc  --ascii appcenter/Long_Description_DE.md -t HTML -o appcenter/Long_Description_DE
 
 # Testing
 test-clean:
