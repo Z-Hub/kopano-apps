@@ -1,8 +1,9 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano Core 8.6.8 and Kopano4UCS 1.5.5
+### Changes in Kopano Core 8.6.8 and Kopano4UCS 1.5.11
 
 * Updates Kopano to 8.6.8
+* Update integration to use `kopano-cli` instead of `kopano-admin` in the background. This comes with a small UX change for setting the handling of conflicting or recurring meeting requests. Settings will be migrated.
 
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.5
 
