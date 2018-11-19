@@ -1,6 +1,6 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano4UCS 1.4.18 and Kopano WebApp 3.4.22
+### Changes in Kopano4UCS 1.5.13 and Kopano WebApp 3.4.22
 
 * it is now possible to manage the Kopano apt repository through the `App Settings` option in the App Center.
 * the app now uses the official repository for UCS 4.3
