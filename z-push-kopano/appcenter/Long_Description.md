@@ -12,9 +12,9 @@ Note: To display the global address book (users, groups, and contacts on the UCS
 
 ### Why is Kopano your new Communication & Sharing solution?
 
-*   ... because you access your data with a lean, platform-independent [DeskApp](https://kopano.com/products/deskapp/?lang=en) from Windows, Mac and Linux desktops .
-*   ... because you can use a compatible WebApp with almost all browsers that the DeskApp looks similar to.
-*   ... because you are using [Outlook from Version](https://kopano.com/products/kopano-outlook-extension/) to connect devices such as smartphones, tablets or even Windows devices via Z- Push (Open Source ActiveSync).
+*   ... because you access your data with a lean, platform-independent DeskApp from Windows, Mac as well as Linux desktops.
+*   ... because you can use a WebApp with almost all desktop browsers, which looks just like the DeskApp.
+*   ... because you are using devices such as smartphones, tablets or even Windows devices with [Outlook (starting with version 2013)](https://kopano.com/kopano-outlook-extension-available-final/) to connect via Z-Push (Open Source ActiveSync).
 *   ... because there are many other reasons. Try it out!
 
 ### Whether we made Kopano for you?
