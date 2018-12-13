@@ -14,7 +14,7 @@ Hinweis: Um das Globale Adressbuch (Benutzer, Gruppen und Kontakte auf dem UCS-S
 
 ### Wieso Kopano Ihre neue Communication- & Sharing-Lösung ist?
 
-*   … weil Sie mit einer schlanken, plattformunabhängigen [DeskApp](https://kopano.com/produkte/deskapp/?lang=de) von Windows-, Mac- und Linux-Desktops auf Ihre Daten zugreifen.
+*   … weil Sie mit einer schlanken, plattformunabhängigen DeskApp von Windows-, Mac- und Linux-Desktops auf Ihre Daten zugreifen.
 *   … weil Sie eine kompatible WebApp mit fast allen Browsern verwenden können, die der DeskApp zum Verwechseln ähnlich sieht.
 *   … weil Sie Endgeräte wie Smartphones, Tablets oder auch Windows-Geräte mit [Outlook ab Version 2013](https://kopano.com/produkte/kopano-outlook-extension-koe/?lang=de) via Z-Push (Open Source ActiveSync) überraschend einfach anbinden können.
 *   … weil es noch viele weitere Gründe gibt. Probieren Sie es aus!
