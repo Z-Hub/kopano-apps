@@ -1,2 +1,0 @@
-- [ ] Replace instances of Debian_9.0 with Univention_4.3 once a proper build target exists in OBS
-    - [ ] also replace files in core-dependencies with proper 4.3 builds

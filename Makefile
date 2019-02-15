@@ -9,6 +9,7 @@ update-docs:
 	cd kopano-core && make generate-docs
 	cd kopano-webapp && make generate-docs
 	cd kopano-webmeetings && make generate-docs
+	cd z-push-kopano && make generate-docs
 
 update-appcenter-core:
 	cd kopano-core && make appcenter-files
