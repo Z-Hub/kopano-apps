@@ -4,7 +4,7 @@ Please take care of the following advices after the installation of Kopano Web M
 
 By default the Web Meetings WebApp plugin is not activated for all users. Every user can configure it by himself in the WebApp settings. However you can change this by setting:
 
-*   `Kopano-meetings/plugin/enable='True'`
+*   `kopano-meetings/plugin/enable='True'`
 
 In the current configuration there is no turnserver configured, so Web Meetings will only work between users within networks, where direct connections are allowed.
 
