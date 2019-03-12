@@ -1,7 +1,7 @@
 app_name=kopano-webapp
 app_version=$(shell ./version.sh)
 
-ucs_version=4.3
+ucs_version=4.4
 
 #docker_repo=fbartels
 #docker_name=univention-mattermost
