@@ -1,9 +1,9 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano Core 8.7.0 and Kopano4UCS 1.5.27
+### Changes in Kopano Core 8.7.1 and Kopano4UCS 1.5.33
 
-* Updates Kopano to [8.7.0](https://forum.kopano.io/topic/2110/kopano-groupware-core-8-7-final-available).
-* Updates integration package for 8.7.0
+* Updates Kopano to [8.7.1](https://forum.kopano.io/topic/2110/kopano-groupware-core-8-7-final-available).
+* Updates integration package for 8.7.x
 
 ### Changes in Kopano Core 8.6.8 and Kopano4UCS 1.5.13
 

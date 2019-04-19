@@ -20,8 +20,8 @@ get-binaries: get-binaries-core get-binaries-kopano4ucs
 get-binaries-core:
 	rm -rf packages || exit 0
 	mkdir -p packages || exit 0
-	#osc getbinaries core:pre-final:dist a_aggregates Univention_4.3 x86_64 -d packages
-	osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
+	osc getbinaries core:pre-final:dist a_aggregates Univention_4.3 x86_64 -d packages
+	#osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
 
 get-binaries-kopano4ucs:
 	rm -rf kopano4ucs || exit 0
