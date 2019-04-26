@@ -24,7 +24,7 @@ get-binaries: get-binaries-z-push get-binaries-kopano4ucs
 get-binaries-kopano4ucs:
 	rm -rf kopano4ucs || exit 0
 	mkdir -p kopano4ucs || exit 0
-	osc getbinaries kopano4ucs kopano4ucs-release Univention_4.3 x86_64 -d kopano4ucs
+	osc getbinaries kopano4ucs kopano4ucs Univention_4.4 x86_64 -d kopano4ucs
 	rm packages/kopano4ucs*.deb || exit 0
 	cp kopano4ucs/kopano4ucs-z-push*.deb packages/
 
