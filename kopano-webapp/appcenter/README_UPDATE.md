@@ -1,5 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.5.33 and Kopano WebApp 3.5.5
+
+* update integration package for UCS 4.4
+* please have a look at the dedicated changelog for WebApp to see updates until the 3.5.5 release: [https://documentation.kopano.io/kopano_changelog/webapp.html](https://documentation.kopano.io/kopano_changelog/webapp.html)
+
 ### Changes in Kopano4UCS 1.5.27 and Kopano WebApp 3.5.2
 
 * Small tweaks to the Univention theme
