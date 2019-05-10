@@ -1,4 +1,4 @@
-app_name=meet
+app_name=kopano-meet
 app_version=$(shell ./version.sh)
 
 ucs_version=4.3
