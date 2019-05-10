@@ -2,12 +2,13 @@
 
 App is still a work in progress
 
-Step 1:
+Milestone 1:
 - get app running with Kopano
 - settings dialogue for turn server stuff
+- figure out where to upload release containers (for the moment this is using nightly builds)
 
-Step 2:
+Milestone 2:
 - have the same app also running without Kopano (will likely require changes in the docker containers at https://github.com/zokradonh/kopano-docker/)
 
-Step 3:
+Milestone 3:
 - get app description ready and add some pictures
