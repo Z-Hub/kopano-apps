@@ -25,13 +25,16 @@ clean:
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	appcenter/README \
-	env preinst inst uinst settings
+	env compose preinst inst uinst settings
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
 	#pandoc  --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
-	pandoc appcenter/Long_Description.md -t HTML -o appcenter/Long_Description
-	pandoc  --ascii appcenter/Long_Description_DE.md -t HTML -o appcenter/Long_Description_DE
+	#pandoc appcenter/Long_Description.md -t HTML -o appcenter/Long_Description
+	#pandoc  --ascii appcenter/Long_Description_DE.md -t HTML -o appcenter/Long_Description_DE
+
+run:
+	@docker-compose -f compose ps
 
 # Testing
 test-clean:
