@@ -24,35 +24,16 @@ get-binaries: get-binaries-webapp get-binaries-files get-binaries-mdm get-binari
 get-binaries-webapp:
 	rm -rf packages || exit 0
 	mkdir -p packages|| exit 0
-	osc getbinaries webapp:final kopano-webapp Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-desktopnotifications Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-filepreviewer Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-intranet Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-mattermost Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-at Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-ch Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-de-de Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-gb Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-en-us Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-es-es Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-fr-fr Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-it-it Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-nl-nl Univention_4.3 x86_64 -d packages
-	osc getbinaries webapp:final kopano-webapp-plugin-spell-pl-pl Univention_4.3 x86_64 -d packages
-
+	osc getbinaries webapp:final Univention_4.3 x86_64 -d packages
 get-binaries-files:
-	osc getbinaries files:final kopano-webapp-plugin-files Univention_4.3 x86_64 -d packages
-	osc getbinaries files:final kopano-webapp-plugin-filesbackend-owncloud Univention_4.3 x86_64 -d packages
-	osc getbinaries files:final kopano-webapp-plugin-filesbackend-smb Univention_4.3 x86_64 -d packages
+	osc getbinaries files:final Univention_4.3 x86_64 -d packages
 	wget http://ftp.de.debian.org/debian/pool/main/p/php-smbclient/php-smbclient_0.8.0-3_amd64.deb -P packages
 
 get-binaries-mdm:
-	osc getbinaries mdm:final kopano-webapp-plugin-mdm Univention_4.3 x86_64 -d packages
+	osc getbinaries mdm:final Univention_4.3 x86_64 -d packages
 
 get-binaries-smime:
-	osc getbinaries smime:final kopano-webapp-plugin-smime Univention_4.3 x86_64 -d packages
-	osc getbinaries smime:final php-kopano-smime Univention_4.3 x86_64 -d packages
+	osc getbinaries smime:final Univention_4.3 x86_64 -d packages
 
 get-binaries-kopano4ucs:
 	rm -rf kopano4ucs || exit 0

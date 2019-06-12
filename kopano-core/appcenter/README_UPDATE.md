@@ -1,5 +1,11 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.6.0
+
+* Thanks to the contributions of [linudata GmbH](https://www.linudata.de/) it is now possible separately install Kopano4UCS and Kopano.
+  * this functionality has no direct impact on the Kopano4UCS app itself, but can be used when managing a non-App Center installation.
+  * check the [Kopano4UCS repository](https://stash.z-hub.io/projects/K4U/repos/kopano4ucs/browse/docs/just-integration.md) for further information. 
+
 ### Changes in Kopano Core 8.7.1 and Kopano4UCS 1.5.33
 
 * Updates Kopano to [8.7.1](https://forum.kopano.io/topic/2110/kopano-groupware-core-8-7-final-available).
