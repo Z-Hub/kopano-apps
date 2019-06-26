@@ -55,7 +55,6 @@ services:
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
       - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
       - KCCONF_KAPID_INSECURE=yes
-      - KONNECTURL=https://ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
     networks:
       - kopano-net
       - web-net
@@ -77,7 +76,6 @@ services:
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
-     - KONNECTURL=https://ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
      - INSECURE=yes
      - oidc_issuer_identifier=https://ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
     volumes:
