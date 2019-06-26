@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: zokradonh/kopano_web:latest
+    image: fbartels/kopano_web:latest
     container_name: web
     restart: always
     ports:
@@ -20,7 +20,7 @@ services:
      - SETUID
 
   kopano_ssl:
-    image: zokradonh/kopano_ssl:latest
+    image: fbartels/kopano_ssl:latest
     container_name: kopano_ssl
     environment:
       - FQDN=ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
@@ -29,7 +29,7 @@ services:
       - /etc/kopano/ssl/:/kopano/ssl
 
   kopano_grapi:
-    image: zokradonh/kopano_core:latest
+    image: fbartels/kopano_core:latest
     container_name: kopano_grapi
     volumes:
       - /run/kopano:/run/kopano
@@ -40,7 +40,7 @@ services:
       - kopano-net
 
   kopano_kapi:
-    image: zokradonh/kopano_core:latest
+    image: fbartels/kopano_core:latest
     container_name: kopano_kapi
     depends_on:
       - kopano_grapi
@@ -58,7 +58,7 @@ services:
       - web-net
 
   kopano_konnect:
-    image: zokradonh/kopano_konnect:latest
+    image: fbartels/kopano_konnect:latest
     container_name: kopano_konnect
     command: wrapper.sh
     volumes:
@@ -70,7 +70,7 @@ services:
      - web-net
 
   kopano_kwmserver:
-    image: zokradonh/kopano_kwmserver:latest
+    image: fbartels/kopano_kwmserver:latest
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
@@ -82,7 +82,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: zokradonh/kopano_meet:0.20.0_0
+    image: fbartels/kopano_meet:0.20.0_0
     container_name: kopano_meet
     environment:
      - SERVICE_TO_START=meet
