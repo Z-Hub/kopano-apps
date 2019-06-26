@@ -59,18 +59,6 @@ services:
       - kopano-net
       - web-net
 
-  kopano_konnect:
-    image: fbartels/kopano_konnect:latest
-    container_name: kopano_konnect
-    command: wrapper.sh
-    volumes:
-      - /etc/kopano/ssl:/kopano/ssl
-      - /run/kopano:/run/kopano
-    environment:
-     - FQDN=ec2-18-202-30-87.eu-west-1.compute.amazonaws.com
-    networks:
-     - web-net
-
   kopano_kwmserver:
     image: fbartels/kopano_kwmserver:latest
     container_name: kopano_kwmserver
@@ -91,7 +79,6 @@ services:
      - KCCONF_KWEBD_TLS=no
     depends_on:
      - kopano_kapi
-     - kopano_konnect
      - kopano_kwmserver
      - web
     networks:
