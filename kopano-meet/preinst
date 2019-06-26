@@ -6,3 +6,17 @@ eval "$(ucr shell)"
 mkdir -p /etc/kopano/
 
 #touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
+
+
+# apache2 conf
+cat << EOF >/etc/apache2/conf-available/kopano-meet.conf
+ProxyPass /meet http://localhost:2015/meet retry=0
+ProxyPassReverse /meet http://localhost:2015/meet
+ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
+ProxyPassReverse /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/
+ProxyPass /api/gc/v1/ http://localhost:2015/ retry=0
+ProxyPassReverse /api/gc/v1/ http://localhost:2015/
+EOF
+
+ln -sf /etc/apache2/conf-available/kopano-meet.conf /etc/apache2/ucs-sites.conf.d/kopano-meet.conf
+service apache2 reload
