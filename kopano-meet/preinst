@@ -5,4 +5,4 @@ eval "$(ucr shell)"
 
 mkdir -p /etc/kopano/
 
-touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
+#touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
