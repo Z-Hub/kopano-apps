@@ -7,6 +7,32 @@ mkdir -p /etc/kopano/
 
 #touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 
+udm oidc/rpservice create --set name=kopano-meet \
+ --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
+ --set clientid=kpop-https://ucs-9575.kopano.intranet/meet/ \
+ --set clientsecret=doesnotmatterbutisstillrequiredhere \
+ --set trusted=yes \
+ --set applicationtype=web \
+ --set redirectURI=https://ucs-9575.kopano.intranet/meet/
+
+systemctl restart docker-app-openid-connect-provider.service
+
+# TODO additional values
+# https://github.com/zokradonh/kopano-docker/blob/master/konnect/wrapper.sh#L10-L12
+#   trusted_scopes:
+#  - konnect/guestok
+#  - kopano/kwm
+#  jwks:
+#    keys:
+#    - kty: EC
+#      use: sig
+#      crv: P-256
+#      d: zWnC2bQZj9M4css6WaRMJo7hoW2YD_EOL2AMXP_tGtY
+#      kid: meet-kwmserver
+#      x: dtL-FsbVY2n9MjjuyUIjhtZ5RsKawBfn3zNioC3YKMk
+#      y: IdNl3nU3q1H857pbEO99MOBAbeEEucT2muwS9KpJPTY
+#  request_object_signing_alg: ES256
+
 
 # apache2 conf
 cat << EOF >/etc/apache2/conf-available/kopano-meet.conf
@@ -19,4 +45,7 @@ ProxyPassReverse /api/gc/v1/ http://localhost:2015/
 EOF
 
 ln -sf /etc/apache2/conf-available/kopano-meet.conf /etc/apache2/ucs-sites.conf.d/kopano-meet.conf
-service apache2 reload
+
+ucr set apache2/force_https=yes \
+	apache2/hsts=yes
+service apache2 restart
