@@ -1,0 +1,15 @@
+#!/bin/bash
+
+update_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    else
+        sed -i "/$varname/c $varname=$varvalue" ./.env
+    fi
+}
+
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+touch .env
+update_env_file COMPOSE_PROJECT_NAME kopano-meet
