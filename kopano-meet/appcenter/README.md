@@ -3,7 +3,7 @@
 App is still a work in progress
 
 ## Current state:
-- app uses code from https://stash.z-hub.io/projects/K4U/repos/kopano-apps/pull-requests/2/overview and https://github.com/zokradonh/kopano-docker/pull/195
+- app uses code from https://stash.z-hub.io/projects/K4U/repos/kopano-apps/pull-requests/2/overview and https://github.com/zokradonh/kopano-docker/pull/217
 - values for hostnames are currently hardcoded
 - app uses the "OpenID Connect Provider" app from the Univention Appcenter (its not desired to have multiple OpenID providers in the Appcenter)
 - Meet is available on the UCS system on /meet
