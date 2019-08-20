@@ -89,12 +89,12 @@ make ARGS="\
 ## Planning
 
 Milestone 1:
+- app should use the docker containers from https://github.com/zokradonh/kopano-docker/ (may need modifications there)
 - get app running with Kopano
 - settings dialogue for turn server stuff
-- figure out where to upload release containers (for the moment this is using nightly builds)
 
 Milestone 2:
-- have the same app also running without Kopano (will likely require changes in the docker containers at https://github.com/zokradonh/kopano-docker/)
+- figure out where to upload release containers (for the moment this is using nightly builds
 
 Milestone 3:
 - get app description ready and add some pictures
