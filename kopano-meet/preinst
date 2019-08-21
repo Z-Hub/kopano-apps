@@ -36,6 +36,8 @@ systemctl restart docker-app-openid-connect-provider.service
 
 # apache2 conf
 cat << EOF >/etc/apache2/conf-available/kopano-meet.conf
+Header unset X-Frame-Options
+Header unset Content-Security-Policy
 ProxyPass /meet http://localhost:2015/meet retry=0
 ProxyPassReverse /meet http://localhost:2015/meet
 ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
