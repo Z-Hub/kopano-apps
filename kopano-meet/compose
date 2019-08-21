@@ -9,7 +9,7 @@ services:
       - "2015:2015"
     environment:
       - EMAIL=off
-      - FQDN=ucs-9575.kopano.intranet
+      - FQDN=@%@hostname@%@.@%@domainname@%@
     command: wrapper.sh
     cap_drop:
      - ALL
@@ -25,7 +25,7 @@ services:
     image: fbartels/kopano_ssl:latest
     container_name: kopano_ssl
     environment:
-      - FQDN=ucs-9575.kopano.intranet
+      - FQDN=@%@hostname@%@.@%@domainname@%@
       - PKI_COUNTRY=DE
     volumes:
       - /etc/kopano/ssl/:/kopano/ssl
@@ -53,7 +53,7 @@ services:
       - SERVICE_TO_START=kapid
       - TZ=Europe/Berlin
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
-      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://ucs-sso.kopano.intranet
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@ucs/server/sso/fqdn@%@
       - KCCONF_KAPID_INSECURE=yes
     networks:
       - kopano-net
@@ -65,7 +65,7 @@ services:
     command: wrapper.sh
     environment:
      - INSECURE=yes
-     - oidc_issuer_identifier=https://ucs-sso.kopano.intranet
+     - oidc_issuer_identifier=https://@%@ucs/server/sso/fqdn@%@
     volumes:
       - /etc/kopano/ssl:/kopano/ssl
     networks:
@@ -77,7 +77,7 @@ services:
     environment:
      - SERVICE_TO_START=meet
      - KCCONF_KWEBD_TLS=no
-     - KCCONF_MEET_oidc_iss=https://ucs-sso.kopano.intranet
+     - KCCONF_MEET_oidc_iss=https://@%@ucs/server/sso/fqdn@%@
      - KCCONF_MEET_guests_enabled=true
      - KCCONF_MEET_disableFullGAB=false
     depends_on:
