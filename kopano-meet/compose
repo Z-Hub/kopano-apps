@@ -3,7 +3,7 @@ version: "2.0"
 services:
   web:
     image: fbartels/kopano_web:latest
-    container_name: web
+    container_name: kopano_web
     restart: always
     ports:
       - "2015:2015"
