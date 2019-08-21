@@ -5,4 +5,9 @@ curl -s https://appcenter-test.software-univention.de/meta-inf/4.3/kopano-meet/k
 
 univention-app dev-setup-local-appcenter
 univention-app dev-populate-appcenter --new \
-	--ini kopano-meet.ini
+	--ini kopano-meet.ini \
+	--settings ../settings \
+	--preinst ../preinst \
+	--join ../inst \
+	--compose ../compose \
+	--unjoin ../uinst
