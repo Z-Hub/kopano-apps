@@ -7,13 +7,14 @@ mkdir -p /etc/kopano/
 
 #touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 
+fqdn="$hostname.$domainname"
 udm oidc/rpservice create --set name=kopano-meet \
  --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
- --set clientid=kpop-https://ucs-9575.kopano.intranet/meet/ \
+ --set clientid=kpop-https://$fqdn/meet/ \
  --set clientsecret=doesnotmatterbutisstillrequiredhere \
  --set trusted=yes \
  --set applicationtype=web \
- --set redirectURI=https://ucs-9575.kopano.intranet/meet/
+ --set redirectURI=https://$fqdn/meet/
 
 systemctl restart docker-app-openid-connect-provider.service
 
