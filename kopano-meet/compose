@@ -39,6 +39,11 @@ services:
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
       - ADDITIONAL_KOPANO_PACKAGES=python3-grapi.backend.ldap
+      - KCCONF_GRAPI_BACKEND=ldap
+      - KCCONF_GRAPI_LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
+      - KCCONF_GRAPI_LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
+      - KCCONF_GRAPI_LDAP_BINDPW_FILE=/etc/machine.secret
+      - KCCONF_GRAPI_LDAP_BASEDN=@%@ldap/base@%@
     networks:
       - kopano-net
 
