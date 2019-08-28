@@ -59,4 +59,5 @@ ln -sf /etc/apache2/conf-available/kopano-meet.conf /etc/apache2/ucs-sites.conf.
 
 ucr set apache2/force_https=yes \
 	apache2/hsts=yes
+a2enmod proxy_wstunnel
 service apache2 restart
