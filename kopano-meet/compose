@@ -35,6 +35,7 @@ services:
     container_name: kopano_grapi
     volumes:
       - /run/kopano:/run/kopano
+      - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
