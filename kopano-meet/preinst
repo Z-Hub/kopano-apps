@@ -45,6 +45,8 @@ ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano
 ProxyPassReverse /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/
 ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
 ProxyPassReverse /api/gc/v1/ http://localhost:2015/api/gc/v1/
+ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
+ProxyPassReverse /api/kvs/v1/ http://localhost:2015/api/kvs/v1/
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
