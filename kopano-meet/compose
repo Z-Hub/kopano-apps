@@ -38,6 +38,7 @@ services:
     environment:
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
+      - ADDITIONAL_KOPANO_PACKAGES=python3-grapi.backend.ldap
     networks:
       - kopano-net
 
