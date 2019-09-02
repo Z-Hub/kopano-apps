@@ -1,0 +1,10 @@
+--- docker-entrypoint-univention.sh	2019-09-01 07:41:46.956000000 +0200
++++ docker-entrypoint-univention.sh-mod	2019-09-01 07:48:03.944000000 +0200
+@@ -54,6 +54,7 @@
+ 	set -- "$@" --allow-dynamic-client-registration
+ fi
+ 
++set -- "$@" --identifier-scopes-conf="$identifier_scopes_conf"
+ 
+ set -- "$@" --iss="$oidc_issuer_identifier"
+ 
