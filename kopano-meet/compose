@@ -79,7 +79,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:0.22.1_0
+    image: fbartels/kopano_meet:0.23.0
     container_name: kopano_meet
     environment:
      - SERVICE_TO_START=meet
