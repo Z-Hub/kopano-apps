@@ -28,7 +28,7 @@ services:
       - FQDN=@%@hostname@%@.@%@domainname@%@
       - PKI_COUNTRY=DE
     volumes:
-      - /etc/kopano/ssl/:/kopano/ssl
+      - /etc/kopano/docker/:/kopano/ssl
 
   kopano_grapi:
     image: fbartels/kopano_core:latest
