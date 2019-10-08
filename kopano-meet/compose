@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:latest
+    image: kopano/kopano_web:latest
     container_name: kopano_web
     restart: always
     ports:
@@ -22,7 +22,7 @@ services:
      - web-net
 
   kopano_ssl:
-    image: fbartels/kopano_ssl:latest
+    image: kopano/kopano_ssl:latest
     container_name: kopano_ssl
     environment:
       - FQDN=@%@hostname@%@.@%@domainname@%@
@@ -31,7 +31,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_grapi:
-    image: fbartels/kopano_core:latest
+    image: kopano/kopano_core:latest
     container_name: kopano_grapi
     volumes:
       - /run/kopano:/run/kopano
@@ -49,7 +49,7 @@ services:
       - kopano-net
 
   kopano_kapi:
-    image: fbartels/kopano_core:latest
+    image: kopano/kopano_core:latest
     container_name: kopano_kapi
     depends_on:
       - kopano_grapi
@@ -67,19 +67,21 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:latest
+    image: kopano/kopano_kwmserver:latest
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
      - INSECURE=yes
      - oidc_issuer_identifier=https://@%@ucs/server/sso/fqdn@%@
+     - enable_guest_api=yes
+     - public_guest_access_regexp=^group/public/.*
     volumes:
       - /etc/kopano/ssl:/kopano/ssl
     networks:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:0.23.0_0
+    image: kopano/kopano_meet:1.0.0_0
     container_name: kopano_meet
     environment:
      - SERVICE_TO_START=meet
