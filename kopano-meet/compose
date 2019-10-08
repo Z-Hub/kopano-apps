@@ -1,15 +1,15 @@
-version: "3.5"
+version: "2.0"
 
 services:
   web:
-    image: kopano/kopano_web:0.6.1
-    container_name: web
+    image: kopano/kopano_web:latest
+    container_name: kopano_web
     restart: always
     ports:
       - "2015:2015"
     environment:
-      - EMAIL=${EMAIL:-off}
-      - FQDN=${FQDN?err}
+      - EMAIL=off
+      - FQDN=@%@hostname@%@.@%@domainname@%@
     command: wrapper.sh
     cap_drop:
      - ALL
@@ -18,35 +18,38 @@ services:
      - CHOWN
      - SETGID
      - SETUID
-    volumes:
-      - web:/.kweb
     networks:
-      web-net:
-        aliases:
-         - ${FQDNCLEANED?err}
+     - web-net
 
   kopano_ssl:
-    image: kopano/kopano_ssl:1.0
+    image: kopano/kopano_ssl:latest
     container_name: kopano_ssl
     environment:
-      - FQDN=${FQDN}
-      - PKI_COUNTRY=NL
+      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - PKI_COUNTRY=DE
     volumes:
-      - /etc/kopano/ssl/:/kopano/ssl
+      - /etc/kopano/docker/:/kopano/ssl
 
   kopano_grapi:
-    image: kopano/kopano_core:8.7.80.936
+    image: kopano/kopano_core:latest
     container_name: kopano_grapi
     volumes:
       - /run/kopano:/run/kopano
+      - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
       - SERVICE_TO_START=grapi
-      - TZ=${TZ}
+      - TZ=Europe/Berlin
+      - ADDITIONAL_KOPANO_PACKAGES=python3-grapi.backend.ldap
+      - GRAPI_BACKEND=ldap
+      - KCCONF_GRAPI_LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
+      - KCCONF_GRAPI_LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
+      - KCCONF_GRAPI_LDAP_BINDPW_FILE=/etc/machine.secret
+      - KCCONF_GRAPI_LDAP_BASEDN=@%@ldap/base@%@
     networks:
       - kopano-net
 
   kopano_kapi:
-    image: kopano/kopano_core:8.7.80.936
+    image: kopano/kopano_core:latest
     container_name: kopano_kapi
     depends_on:
       - kopano_grapi
@@ -54,56 +57,45 @@ services:
       - /etc/kopano/ssl:/kopano/ssl
       - /run/kopano:/run/kopano
     environment:
-      - SERVICE_TO_START=kapid
-      - TZ=${TZ}
+      - SERVICE_TO_START=kapi
+      - TZ=Europe/Berlin
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
-      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN}
-      - KCCONF_KAPID_INSECURE=${INSECURE}
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@ucs/server/sso/fqdn@%@
+      - KCCONF_KAPID_INSECURE=yes
     networks:
       - kopano-net
       - web-net
 
-  kopano_konnect:
-    image: kopano/kopano_konnect:0.23.3
-    container_name: kopano_konnect
-    command: wrapper.sh
-    volumes:
-      - /etc/kopano/ssl:/kopano/ssl
-      - /run/kopano:/run/kopano
-    environment:
-     - FQDN=${FQDN}
-    networks:
-     - web-net
-
   kopano_kwmserver:
-    image: kopano/kopano_kwmserver:8.7.80.936
+    image: kopano/kopano_kwmserver:latest
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
-     - INSECURE=${INSECURE}
-     - oidc_issuer_identifier=https://${FQDN}
+     - INSECURE=yes
+     - oidc_issuer_identifier=https://@%@ucs/server/sso/fqdn@%@
+     - enable_guest_api=yes
+     - public_guest_access_regexp=^group/public/.*
     volumes:
       - /etc/kopano/ssl:/kopano/ssl
     networks:
      - web-net
 
   kopano_meet:
-    image: kopano/kopano_meet:0.19.1_0
+    image: kopano/kopano_meet:1.0.0_0
     container_name: kopano_meet
     environment:
      - SERVICE_TO_START=meet
      - KCCONF_KWEBD_TLS=no
+     - KCCONF_MEET_oidc_iss=https://@%@ucs/server/sso/fqdn@%@
+     - KCCONF_MEET_guests_enabled=true
+     - KCCONF_MEET_disableFullGAB=false
+     - KCCONF_MEET_useIdentifiedUser=true
     depends_on:
      - kopano_kapi
-     - kopano_konnect
      - kopano_kwmserver
      - web
     networks:
      - web-net
-
-volumes:
-  web:
-  kopanossl:
 
 networks:
   web-net:
