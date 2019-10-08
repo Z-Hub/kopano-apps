@@ -3,13 +3,11 @@
 App is still a work in progress
 
 ## Current state:
-- app uses code from https://stash.z-hub.io/projects/K4U/repos/kopano-apps/pull-requests/2/overview and https://github.com/zokradonh/kopano-docker/pull/217
-- values for hostnames are currently hardcoded
 - app uses the "OpenID Connect Provider" app from the Univention Appcenter (its not desired to have multiple OpenID providers in the Appcenter)
+  - for functionality we require https://github.com/univention/openid-connect-provider/pull/1 to be merged
 - Meet is available on the UCS system on /meet
 - Meet will redirect to the login on the ucs-sso subdomain
-- Login in Meet will fail because of missing scope in the openid token
-  - Solution: use identifier_scopes_conf = /etc/kopano/konnectd-identifier-scopes.yaml to define required scopes (example https://github.com/zokradonh/kopano-docker/blob/b52db5505761d097c09795a79444e011120a6f2a/konnect/konnectd-identifier-scopes.yaml
+
 
 ```
 # This file contains additional scopes for Konnect. All of the scopes listed
@@ -29,35 +27,6 @@ scopes:
   kopano/pubs:
     description: "Access Kopano Pub/Sub"
 ```
-- Once login is resolved, Grapi needs to be configured for the LDAP backend
-```
-#!/bin/sh
-
-set -ex
-
-KC_BASE=/home/ubuntu/kc-dev/kopanocore
-
-export prometheus_multiproc_dir=/tmp/mfr-prometheus-ldap
-mkdir -p $prometheus_multiproc_dir
-
-export LDAP_URI="ldap://10.98.91.1:8389"
-export LDAP_BINDDN="cn=admin,dc=kopano-dev,dc=local"
-export LDAP_BINDPW="kopano-dev"
-export LDAP_BASEDN="dc=kopano-dev,dc=local"
-#export LDAP_LOGIN_ATTRIBUTE="uid"
-#export LDAP_UUID_ATTRIBUTE="uidNumber"
-#export LDAP_FILTER="(objectClass=inetOrgPerson)"
-
-
-mkdir -p /tmp/kopano-rest
-make ARGS="\
-        --socket-path=/srv/shared/kc-dev-1/kopano-rest-mfr-ldap \
-        --pid-file=/tmp/kopano-rest/kopano-rest-mfr-ldap.pid \
-        --insecure \
-        --backends=ldap \
-        -w 4 $@" start-mfr
-```
-
 
 ## Open, but not immediate problems:
 
