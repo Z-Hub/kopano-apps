@@ -1,4 +1,4 @@
-## Kopano Core  
+## Kopano Core
 
 Kopano is more than just a groupware. Its basic functions are expanded with new components that complement your everyday business communication in a natural way.
 
