@@ -20,7 +20,7 @@ None! Kopano Meet is a standalone application so if you like it, just use it.
 
 * The Meet app in the Univention App Center offers the same functionalities as provided by the official [free, unsupported Meet package](https://meet-app.io/#pricing).
 * If you're interested in using the Kopano TURN services (recommended), please [request access here](https://meet-app.io/free-unsupported-community-package).
-* Want to upgrade to Meet Starter or Enterprise? Just follow [these instructions](https://).
+* Want to upgrade to Meet Starter or Enterprise? Just buy [the desired package](https://meet-app.io/#pricing) and follow our upgrade instructions.
 
 ### More Kopano products
 
