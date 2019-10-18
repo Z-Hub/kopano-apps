@@ -30,6 +30,34 @@ services:
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
 
+  kopano_konnect:
+    image: kopano/kopano_konnect:latest
+    depends_on:
+      - kopano_ssl
+      - web
+    volumes:
+      - /etc/kopano/ssl:/kopano/ssl
+    environment:
+      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - allow_client_guests=yes
+      - allow_dynamic_client_registration=yes
+      - uri-base-path=kopano/
+      - KONNECT_BACKEND=ldap
+      - LDAP_URI=${LDAP_SERVER}
+      - LDAP_BINDDN=${LDAP_BIND_DN}
+      - LDAP_BINDPW=${LDAP_BIND_PW}
+      - LDAP_BASEDN=${LDAP_SEARCH_BASE}
+      - LDAP_SCOPE=sub
+      - LDAP_LOGIN_ATTRIBUTE=uid
+      - LDAP_EMAIL_ATTRIBUTE=mail
+      - LDAP_NAME_ATTRIBUTE=cn
+      - LDAP_UUID_ATTRIBUTE=uidNumber
+      - LDAP_UUID_ATTRIBUTE_TYPE=text
+      - LDAP_FILTER=(objectClass=organizationalPerson)
+    networks:
+      - kopano-net
+      - web-net
+
   kopano_grapi:
     image: kopano/kopano_core:latest
     container_name: kopano_grapi
