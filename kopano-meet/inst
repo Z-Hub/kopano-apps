@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 VERSION=1
 
 . /usr/share/univention-join/joinscripthelper.lib
