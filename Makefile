@@ -1,3 +1,6 @@
+all:
+	echo
+
 update-core-binaries:
 	rm -rf kopano-core-dependencies || exit 0
 	mkdir -p kopano-core-dependencies || exit 0

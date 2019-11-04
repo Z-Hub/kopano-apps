@@ -1,0 +1,20 @@
+#!/bin/bash
+VERSION="1"
+
+. /usr/share/univention-lib/ldap.sh
+. /usr/share/univention-appcenter/joinscripthelper.sh
+
+joinscript_init
+
+eval "$(ucr shell)"
+SERVICE="Kopano-Meet"
+APP="kopano-meet"
+
+ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
+
+rm /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
+rm /etc/apache2/ucs-sites.conf.d/kopano-meet.conf
+invoke-rc.d apache2 reload
+
+joinscript_remove_script_from_status_file "$APP"
+exit 0

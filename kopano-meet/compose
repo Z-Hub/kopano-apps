@@ -36,7 +36,7 @@ services:
       - kopano_ssl
       - web
     volumes:
-      - /etc/kopano/ssl:/kopano/ssl
+      - /etc/kopano/docker/:/kopano/ssl
     environment:
       - FQDN=@%@hostname@%@.@%@domainname@%@
       - ecparam=/kopano/ssl/ecparam.pem
