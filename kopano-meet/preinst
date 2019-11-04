@@ -25,13 +25,9 @@ cat << EOF >/etc/apache2/conf-available/kopano-meet.conf
 Header unset X-Frame-Options
 Header unset Content-Security-Policy
 ProxyPass /meet http://localhost:2015/meet retry=0
-ProxyPassReverse /meet http://localhost:2015/meet
 ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
-ProxyPassReverse /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/
 ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
-ProxyPassReverse /api/gc/v1/ http://localhost:2015/api/gc/v1/
 ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
-ProxyPassReverse /api/kvs/v1/ http://localhost:2015/api/kvs/v1/
 ProxyPass /kopanoid http://localhost:2015/kopanoid retry=0
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
