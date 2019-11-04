@@ -11,6 +11,7 @@ SERVICE="Kopano-Meet"
 APP="kopano-meet"
 
 ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
+udm oidc/rpservice remove --dn cn=kopano-meet,cn=oidc,cn=univention,$(ucr get ldap/base)
 
 rm /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 rm /etc/apache2/ucs-sites.conf.d/kopano-meet.conf
