@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -eu
 VERSION=1
 eval "$(ucr shell)"
 
