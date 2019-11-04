@@ -44,7 +44,7 @@ services:
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
       - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
-      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - FQDN=@%@hostname@%@.@%@domainname@%@/kopanoid
       - ecparam=/kopano/ssl/ecparam.pem
       - eckey=/kopano/ssl/meet-kwmserver.pem
       - signing_private_key=/kopano/ssl/konnectd-tokens-signing-key.pem
@@ -103,7 +103,7 @@ services:
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
-      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=http://kopano_konnect/kopanoid
       - KCCONF_KAPID_INSECURE=yes
     networks:
       - kopano-net
@@ -115,7 +115,8 @@ services:
     command: wrapper.sh
     environment:
      - INSECURE=yes
-     - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+     #- oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+     - oidc_issuer_identifier=http://kopano_konnect/kopanoid
      - enable_guest_api=yes
      - public_guest_access_regexp=^group/public/.*
     volumes:
