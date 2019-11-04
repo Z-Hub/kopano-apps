@@ -39,6 +39,7 @@ services:
       - web
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
+      - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
       - FQDN=@%@hostname@%@.@%@domainname@%@
       - ecparam=/kopano/ssl/ecparam.pem
@@ -49,7 +50,7 @@ services:
       - identifier_scopes_conf=/etc/kopano/konnectd-identifier-scopes.yaml
       - allow_client_guests=yes
       - allow_dynamic_client_registration=yes
-      - uri_base_path=kopanoid/
+      - uri_base_path=/kopanoid
       - KONNECT_BACKEND=ldap
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
       - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
@@ -90,7 +91,7 @@ services:
     depends_on:
       - kopano_grapi
     volumes:
-      - /etc/kopano/ssl:/kopano/ssl
+      - /etc/kopano/docker/:/kopano/ssl
       - /run/kopano:/run/kopano
     environment:
       - SERVICE_TO_START=kapi
@@ -112,7 +113,7 @@ services:
      - enable_guest_api=yes
      - public_guest_access_regexp=^group/public/.*
     volumes:
-      - /etc/kopano/ssl:/kopano/ssl
+      - /etc/kopano/docker/:/kopano/ssl
     networks:
      - web-net
 
