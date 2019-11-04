@@ -10,6 +10,7 @@ services:
     environment:
       - EMAIL=off
       - FQDN=@%@hostname@%@.@%@domainname@%@
+      - DEFAULTREDIRECT=/meet
     command: wrapper.sh
     cap_drop:
      - ALL
