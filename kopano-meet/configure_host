@@ -1,0 +1,8 @@
+#!/bin/bash
+
+eval "$(ucr shell)"
+
+# updates the .env file
+# ask if running with self signed (untrusted) certificates
+
+# issue docker-compose up -d
