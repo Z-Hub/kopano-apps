@@ -32,6 +32,7 @@ services:
 
   kopano_konnect:
     image: fbartels/kopano_konnect:latest
+    container_name: kopano_konnect
     depends_on:
       - kopano_ssl
       - web
@@ -47,7 +48,7 @@ services:
       - identifier_scopes_conf=/etc/kopano/konnectd-identifier-scopes.yaml
       - allow_client_guests=yes
       - allow_dynamic_client_registration=yes
-      - uri-base-path=kopanoid/
+      - uri_base_path=kopanoid/
       - KONNECT_BACKEND=ldap
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
       - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
