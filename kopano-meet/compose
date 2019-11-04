@@ -19,6 +19,8 @@ services:
      - CHOWN
      - SETGID
      - SETUID
+    volumes:
+     - /etc/ssl/certs:/etc/ssl/certs:ro
     networks:
      - web-net
 
@@ -40,6 +42,7 @@ services:
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
       - FQDN=@%@hostname@%@.@%@domainname@%@
       - ecparam=/kopano/ssl/ecparam.pem
@@ -73,6 +76,7 @@ services:
     volumes:
       - /run/kopano:/run/kopano
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
@@ -93,6 +97,7 @@ services:
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
       - /run/kopano:/run/kopano
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
@@ -114,6 +119,7 @@ services:
      - public_guest_access_regexp=^group/public/.*
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
+      - /etc/ssl/certs:/etc/ssl/certs:ro
     networks:
      - web-net
 
@@ -127,6 +133,8 @@ services:
      - KCCONF_MEET_guests_enabled=true
      - KCCONF_MEET_disableFullGAB=false
      - KCCONF_MEET_useIdentifiedUser=true
+    volumes:
+     - /etc/ssl/certs:/etc/ssl/certs:ro
     depends_on:
      - kopano_kapi
      - kopano_kwmserver
