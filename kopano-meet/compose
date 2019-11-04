@@ -43,10 +43,10 @@ services:
       - allow_dynamic_client_registration=yes
       - uri-base-path=kopanoid/
       - KONNECT_BACKEND=ldap
-      - LDAP_URI=${LDAP_SERVER}
-      - LDAP_BINDDN=${LDAP_BIND_DN}
-      - LDAP_BINDPW=${LDAP_BIND_PW}
-      - LDAP_BASEDN=${LDAP_SEARCH_BASE}
+      - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
+      - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
+      - LDAP_BINDPW_FILE=/etc/machine.secret
+      - LDAP_BASEDN==@%@ldap/base@%@
       - LDAP_SCOPE=sub
       - LDAP_LOGIN_ATTRIBUTE=uid
       - LDAP_EMAIL_ATTRIBUTE=mail
