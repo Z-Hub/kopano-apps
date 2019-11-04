@@ -1,2 +1,3 @@
 #!/bin/bash
-grep kopano/kopano_meet: compose | cut -d: -f3
+#grep kopano/kopano_meet: compose | cut -d: -f3
+grep fbartels/kopano_meet: compose | cut -d: -f3

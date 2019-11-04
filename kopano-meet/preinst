@@ -7,34 +7,18 @@ mkdir -p /etc/kopano/
 
 #touch /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 
+# TODO generate clientsecret and pass it into container
 fqdn="$hostname.$domainname"
 udm oidc/rpservice create --ignore_exists \
  --set name=kopano-meet \
  --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
- --set clientid=kpop-https://$fqdn/meet/ \
+ --set clientid=kopanoid \
  --set clientsecret=doesnotmatterbutisstillrequiredhere \
  --set trusted=yes \
  --set applicationtype=web \
- --set redirectURI=https://$fqdn/meet/
+ --set redirectURI=https://$fqdn/kopanoid/
 
 systemctl restart docker-app-openid-connect-provider.service
-
-# TODO additional values
-# https://github.com/zokradonh/kopano-docker/blob/master/konnect/wrapper.sh#L10-L12
-#   trusted_scopes:
-#  - konnect/guestok
-#  - kopano/kwm
-#  jwks:
-#    keys:
-#    - kty: EC
-#      use: sig
-#      crv: P-256
-#      d: zWnC2bQZj9M4css6WaRMJo7hoW2YD_EOL2AMXP_tGtY
-#      kid: meet-kwmserver
-#      x: dtL-FsbVY2n9MjjuyUIjhtZ5RsKawBfn3zNioC3YKMk
-#      y: IdNl3nU3q1H857pbEO99MOBAbeEEucT2muwS9KpJPTY
-#  request_object_signing_alg: ES256
-
 
 # apache2 conf
 cat << EOF >/etc/apache2/conf-available/kopano-meet.conf
@@ -48,6 +32,7 @@ ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
 ProxyPassReverse /api/gc/v1/ http://localhost:2015/api/gc/v1/
 ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
 ProxyPassReverse /api/kvs/v1/ http://localhost:2015/api/kvs/v1/
+ProxyPass /kopanoid http://localhost:2015/kopanoid retry=0
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
