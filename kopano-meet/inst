@@ -1,5 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 VERSION=1
+eval "$(ucr shell)"
+
+random_string() {
+        LC_CTYPE=C tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c32
+}
+
 update_env_file () {
     varname="$1"
     varvalue="$2"
@@ -10,8 +17,31 @@ update_env_file () {
     fi
 }
 
+add_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    fi
+}
+
+# register Konnect at the Univention OpenID Provider
+clientsecret=$(random_string)
+fqdn="$hostname.$domainname"
+udm oidc/rpservice create --ignore_exists \
+ --set name=kopano-meet \
+ --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
+ --set clientid=kopanoid \
+ --set clientsecret=$clientsecret \
+ --set trusted=yes \
+ --set applicationtype=web \
+ --set redirectURI=https://$fqdn/kopanoid/
+
+systemctl restart docker-app-openid-connect-provider.service
+
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env
+add_env_file clientsecret $clientsecret
 update_env_file COMPOSE_PROJECT_NAME kopano-meet
 
 joinscript_save_current_version
