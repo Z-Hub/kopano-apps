@@ -17,5 +17,3 @@ touch .env
 
 # ask if running with self signed (untrusted) certificates
 update_env_file INSECURE $(ucr get kopano/docker/INSECURE)
-
-docker-compose up -d
