@@ -23,6 +23,7 @@ update_env_file () {
     fi
 }
 
+# just add setting if it does not yet exist
 add_env_file () {
     varname="$1"
     varvalue="$2"
@@ -43,12 +44,17 @@ udm oidc/rpservice create --ignore_exists \
  --set applicationtype=web \
  --set redirectURI=https://$fqdn/kopanoid/
 
+# restart openid provider for registration to take effect
 systemctl restart docker-app-openid-connect-provider.service
 
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env
+
 add_env_file clientsecret $clientsecret
 update_env_file COMPOSE_PROJECT_NAME kopano-meet
+
+# restart containers for changes to take effect
+docker-compose up -d
 
 joinscript_save_current_version
 exit 0
