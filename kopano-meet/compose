@@ -55,7 +55,7 @@ services:
       - allow_dynamic_client_registration=yes
       - uri_base_path=/kopanoid
       - KONNECT_BACKEND=ldap
-      - INSECURE=yes
+      - insecure=yes
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
       - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
       - LDAP_BINDPW_FILE=/etc/machine.secret
