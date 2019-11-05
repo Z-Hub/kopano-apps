@@ -2,7 +2,19 @@
 
 eval "$(ucr shell)"
 
-# updates the .env file
-# ask if running with self signed (untrusted) certificates
+update_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    else
+        sed -i "/$varname/c $varname=$varvalue" ./.env
+    fi
+}
 
-# issue docker-compose up -d
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+
+# ask if running with self signed (untrusted) certificates
+update_env_file INSECURE $(ucr get kopano/docker/INSECURE)
+
+docker-compose up -d

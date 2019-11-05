@@ -55,7 +55,7 @@ services:
       - allow_dynamic_client_registration=yes
       - uri_base_path=/kopanoid
       - KONNECT_BACKEND=ldap
-      - insecure=yes
+      - insecure=${INSECURE}
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
       - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
       - LDAP_BINDPW_FILE=/etc/machine.secret
@@ -104,7 +104,7 @@ services:
       - TZ=Europe/Berlin
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
       - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@hostname@%@.@%@domainname@%@/kopanoid
-      - KCCONF_KAPID_INSECURE=yes
+      - KCCONF_KAPID_INSECURE=${INSECURE}
     networks:
       - kopano-net
       - web-net
@@ -114,7 +114,7 @@ services:
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
-     - INSECURE=yes
+     - INSECURE=${INSECURE}
      - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
      - enable_guest_api=yes
      - public_guest_access_regexp=^group/public/.*

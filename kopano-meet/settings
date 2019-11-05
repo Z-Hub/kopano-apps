@@ -1,0 +1,8 @@
+[kopano/docker/INSECURE]
+Description = Run in 'insecure' mode. This is required running with untrusted ssl certificates.
+Type = List
+Values = no, yes
+Labels = No, Yes
+InitialValue = no
+Scope = outside
+Show = Install, Settings
