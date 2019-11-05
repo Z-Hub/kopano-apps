@@ -3,7 +3,32 @@
 set -euo pipefail
 eval "$(ucr shell)"
 
+update_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    else
+        sed -i "/$varname/c $varname=$varvalue" ./.env
+    fi
+}
+
+# just add setting if it does not yet exist
+add_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    fi
+}
+
 mkdir -p /etc/kopano/
+
+# predefine variables for setting them
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+touch .env
+update_env_file COMPOSE_PROJECT_NAME kopano-meet
+add_env_file INSECURE no
 
 # apache2 conf
 cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf

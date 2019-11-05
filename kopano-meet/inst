@@ -51,7 +51,6 @@ cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env
 
 add_env_file clientsecret $clientsecret
-update_env_file COMPOSE_PROJECT_NAME kopano-meet
 
 # restart containers for changes to take effect
 docker-compose up -d

@@ -1,4 +1,5 @@
 [kopano/docker/INSECURE]
+Group = General
 Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates.
 Type = List
 Values = no, yes
@@ -8,3 +9,18 @@ Scope = outside
 Show = Install, Settings
 
 # TURN server credentials etc
+[kopano/docker/TURN_USER]
+Group = Turn Services
+Description = Username for the Kopano Turn Services as supplied via email.
+Type = String
+InitialValue = ''
+Scope = outside
+Show = Install, Settings
+
+[kopano/docker/TURN_PASSWORD]
+Group = Turn Services
+Description = Password for the Kopano Turn Services as supplied via email.
+Type = Password
+InitialValue = ''
+Scope = outside
+Show = Install, Settings

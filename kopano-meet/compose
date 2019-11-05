@@ -59,7 +59,7 @@ services:
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
       - LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
       - LDAP_BINDPW_FILE=/etc/machine.secret
-      - LDAP_BASEDN==@%@ldap/base@%@
+      - LDAP_BASEDN=@%@ldap/base@%@
       - LDAP_SCOPE=sub
       - LDAP_LOGIN_ATTRIBUTE=uid
       - LDAP_EMAIL_ATTRIBUTE=mail
@@ -118,6 +118,8 @@ services:
      - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
      - enable_guest_api=yes
      - public_guest_access_regexp=^group/public/.*
+     - turn_service_credentials_user=${TURN_USER}
+     - turn_service_credentials_password=${TURN_PASSWORD}
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
       - /etc/ssl/certs:/etc/ssl/certs:ro
