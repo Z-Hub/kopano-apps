@@ -13,7 +13,7 @@ Show = Install, Settings
 Group = Turn Services
 Description = Username for the Kopano Turn Services as supplied via email.
 Type = String
-InitialValue = ''
+InitialValue =
 Scope = outside
 Show = Install, Settings
 
@@ -21,6 +21,6 @@ Show = Install, Settings
 Group = Turn Services
 Description = Password for the Kopano Turn Services as supplied via email.
 Type = Password
-InitialValue = ''
+InitialValue =
 Scope = outside
 Show = Install, Settings
