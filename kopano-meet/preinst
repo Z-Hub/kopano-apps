@@ -43,7 +43,7 @@ ProxyPass /kopanoid/ http://localhost:2015/kopanoid/ retry=0
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/$1 [P,L]
+RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
 ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
 EOF
 
