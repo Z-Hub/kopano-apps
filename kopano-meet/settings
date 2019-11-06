@@ -1,3 +1,12 @@
+[kopano/docker/KCCONF_MEET_GRID_WEBAPP]
+Description = Show Kopano WebApp in the Application Grid
+Type = List
+Values = no, yes
+Labels = No, Yes
+InitialValue = no
+Scope = outside
+Show = Install, Settings
+
 [kopano/docker/INSECURE]
 Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates.
 Type = List
