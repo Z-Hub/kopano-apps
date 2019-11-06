@@ -22,7 +22,7 @@ update_env_file TURN_USER $(ucr get kopano/docker/TURN_USER)
 update_env_file TURN_PASSWORD $(ucr get kopano/docker/TURN_PASSWORD)
 
 update_env_file MEET_GUEST $(ucr get kopano/docker/MEET_GUEST)
-update_env_file kopano/docker/MEET_GUEST_REGEXP $(ucr get kopano/docker/kopano/docker/MEET_GUEST_REGEXP)
+update_env_file MEET_GUEST_REGEXP $(ucr get kopano/docker/MEET_GUEST_REGEXP)
 
 if [ "$1" = "settings" ]; then
     docker-compose up -d
