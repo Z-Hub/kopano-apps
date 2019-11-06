@@ -136,6 +136,7 @@ services:
      - KCCONF_MEET_guests_enabled=true
      - KCCONF_MEET_disableFullGAB=false
      - KCCONF_MEET_useIdentifiedUser=true
+     - GRID_WEBAPP=${GRID_WEBAPP}
     volumes:
      - /etc/ssl/certs:/etc/ssl/certs:ro
     depends_on:
