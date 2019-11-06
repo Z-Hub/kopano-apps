@@ -116,8 +116,8 @@ services:
     environment:
      - INSECURE=${INSECURE}
      - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
-     - enable_guest_api=yes
-     - public_guest_access_regexp=^group/public/.*
+     - enable_guest_api=${MEET_GUEST}
+     - public_guest_access_regexp=${MEET_GUEST_REGEXP}
      - turn_service_credentials_user=${TURN_USER}
      - turn_service_credentials_password=${TURN_PASSWORD}
     volumes:

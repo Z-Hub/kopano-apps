@@ -8,6 +8,25 @@ InitialValue = no
 Scope = outside
 Show = Install, Settings
 
+# guest user settings
+[kopano/docker/MEET_GUEST]
+Group = Guest access
+Description = Allow guests to join Meetings
+Type = List
+Values = no, yes
+Labels = No, Yes
+InitialValue = no
+Scope = outside
+Show = Install, Settings
+
+[kopano/docker/MEET_GUEST_REGEXP]
+Group = Guest access
+Description = Regular expression specifying which groups can be accessed by guests
+Type = String
+InitialValue = ^group/public/.*
+Scope = outside
+Show = Install, Settings
+
 # TURN server credentials etc
 [kopano/docker/TURN_USER]
 Group = Turn Services
