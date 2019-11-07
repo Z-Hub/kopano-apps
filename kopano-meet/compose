@@ -67,6 +67,9 @@ services:
       - LDAP_UUID_ATTRIBUTE=uidNumber
       - LDAP_UUID_ATTRIBUTE_TYPE=text
       - LDAP_FILTER=(objectClass=organizationalPerson)
+      - external_oidc_provider=yes
+      - external_oidc_url=https://@%@ucs/server/sso/fqdn@%@
+      - external_oidc_clientsecret=${clientsecret}
     networks:
       - kopano-net
       - web-net

@@ -38,11 +38,11 @@ fqdn="$hostname.$domainname"
 udm oidc/rpservice create --ignore_exists \
  --set name=kopano-meet \
  --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
- --set clientid=kopanoid \
+ --set clientid=kopano-meet \
  --set clientsecret=$clientsecret \
  --set trusted=yes \
  --set applicationtype=web \
- --set redirectURI=https://$fqdn/kopanoid/
+ --set redirectURI=https://$fqdn/kopanoid/signin/v1/identifier/oauth2/cb
 
 # restart openid provider for registration to take effect
 systemctl restart docker-app-openid-connect-provider.service
