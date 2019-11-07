@@ -1,4 +1,4 @@
-[kopano/docker/KCCONF_MEET_GRID_WEBAPP]
+[kopano/docker/GRID_WEBAPP]
 Description = Show Kopano WebApp in the Application Grid
 Type = List
 Values = no, yes
