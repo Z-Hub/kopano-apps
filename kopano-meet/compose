@@ -68,6 +68,7 @@ services:
       - LDAP_FILTER=(objectClass=organizationalPerson)
       - external_oidc_provider=yes
       - external_oidc_url=https://@%@ucs/server/sso/fqdn@%@
+      - external_oidc_name=ucs-konnect
       - external_oidc_clientsecret=${clientsecret}
     networks:
       - kopano-net
