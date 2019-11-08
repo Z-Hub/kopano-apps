@@ -44,7 +44,7 @@ services:
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
       - /etc/ssl/certs:/etc/ssl/certs:ro
     environment:
-      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - FQDN=@%@hostname@%@.@%@domainname@%@/kopanoid
       - ecparam=/kopano/ssl/ecparam.pem
       - eckey=/kopano/ssl/meet-kwmserver.pem
       - signing_private_key=/kopano/ssl/konnectd-tokens-signing-key.pem
@@ -53,7 +53,6 @@ services:
       - identifier_scopes_conf=/etc/kopano/konnectd-identifier-scopes.yaml
       - allow_client_guests=yes
       - allow_dynamic_client_registration=yes
-      - uri_base_path=/kopanoid
       - KONNECT_BACKEND=ldap
       - insecure=${INSECURE}
       - LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@

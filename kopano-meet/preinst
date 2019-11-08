@@ -38,8 +38,7 @@ ProxyPass /meet http://localhost:2015/meet retry=0
 ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
 ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
 ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
-ProxyPass /kopanoid/.well-known/openid-configuration http://localhost:2015/.well-known/openid-configuration retry=0
-ProxyPass /kopanoid/ http://localhost:2015/kopanoid/ retry=0
+ProxyPass /kopanoid/ http://localhost:2015/ retry=0
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
