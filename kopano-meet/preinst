@@ -31,18 +31,19 @@ update_env_file COMPOSE_PROJECT_NAME kopano-meet
 add_env_file INSECURE no
 
 # apache2 conf
-cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
+cat << 'EOF' >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
 Header unset X-Frame-Options
 Header unset Content-Security-Policy
 ProxyPass /meet http://localhost:2015/meet retry=0
 ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
 ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
 ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
-ProxyPass /kopanoid/ http://localhost:2015/ retry=0
+ProxyPass /kopanoid/.well-known/openid-configuration http://localhost:2015/.well-known/openid-configuration retry=0
+ProxyPass /kopanoid/ http://localhost:2015/kopanoid/ retry=0
 RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
+RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/$1 [P,L]
 ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
 EOF
 

@@ -70,6 +70,7 @@ services:
       - external_oidc_url=https://@%@ucs/server/sso/fqdn@%@
       - external_oidc_name=ucs-konnect
       - external_oidc_clientsecret=${clientsecret}
+      - uri_base_path=/kopanoid
     networks:
       - kopano-net
       - web-net
