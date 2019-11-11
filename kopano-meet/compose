@@ -131,7 +131,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:1.1.1_0
+    image: fbartels/kopano_meet:1.1.2_0
     container_name: kopano_meet
     environment:
      - GRID_WEBAPP=${GRID_WEBAPP}

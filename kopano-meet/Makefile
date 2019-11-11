@@ -24,11 +24,12 @@ clean:
 
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	appcenter/README \
+	appcenter/README appcenter/README_UPDATE \
 	env compose configure_host preinst inst uinst settings
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
+	pandoc appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
 	#pandoc  --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
 	pandoc appcenter/Full_Description.md -t HTML -o appcenter/Full_Description
 	#pandoc  --ascii appcenter/Long_Description_DE.md -t HTML -o appcenter/Long_Description_DE
