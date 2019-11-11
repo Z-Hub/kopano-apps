@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:latest
+    image: fbartels/kopano_web:0.8.3
     container_name: kopano_web
     restart: always
     ports:
@@ -25,7 +25,7 @@ services:
      - web-net
 
   kopano_ssl:
-    image: fbartels/kopano_ssl:latest
+    image: fbartels/kopano_ssl:1.2.0
     container_name: kopano_ssl
     environment:
       - FQDN=@%@hostname@%@.@%@domainname@%@
@@ -34,7 +34,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:latest
+    image: fbartels/kopano_konnect:0.26.0
     container_name: kopano_konnect
     depends_on:
       - kopano_ssl
@@ -76,7 +76,7 @@ services:
       - web-net
 
   kopano_grapi:
-    image: fbartels/kopano_core:latest
+    image: fbartels/kopano_core:8.7.85.0.f3999a9
     container_name: kopano_grapi
     volumes:
       - /etc/ssl/certs:/etc/ssl/certs:ro
@@ -94,7 +94,7 @@ services:
       - kopano-net
 
   kopano_kapi:
-    image: fbartels/kopano_core:latest
+    image: fbartels/kopano_core:8.7.85.0.f3999a9
     container_name: kopano_kapi
     depends_on:
       - kopano_grapi
@@ -113,7 +113,7 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:latest
+    image: fbartels/kopano_kwmserver:1.0.0
     container_name: kopano_kwmserver
     command: wrapper.sh
     environment:
