@@ -3,3 +3,4 @@
 ## later
 
 - make it possible to also use the app with the Kopano backend
+- add configuration of an own turn server to the univention settings page
