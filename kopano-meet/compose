@@ -81,6 +81,7 @@ services:
     volumes:
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
+      - /var/lib/kopano-grapi:/var/lib/kopano-grapi
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
       - GRAPI_BACKEND=ldap
