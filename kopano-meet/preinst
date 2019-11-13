@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
 eval "$(ucr shell)"
 
 update_env_file () {
