@@ -1,5 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.6.2
+
+* Remove explicit dependency of kopano-contacts, as its now obsolete in Kopano Groupware Core 8.7.7
+* Remove explicit generation of locales as setting the ucr already takes care of it
+
 ### Changes in Kopano4UCS 1.6.0
 
 * Thanks to the contributions of [linudata GmbH](https://www.linudata.de/) it is now possible separately install Kopano4UCS and Kopano.

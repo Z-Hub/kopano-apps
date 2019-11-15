@@ -12,8 +12,8 @@ all: get-binaries add-version appcenter-files
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
-	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
-	#univention-appcenter-control new-version "4.3/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	#univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	univention-appcenter-control new-version "4.3/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 get-binaries: get-binaries-core get-binaries-kopano4ucs
 
