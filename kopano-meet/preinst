@@ -21,7 +21,8 @@ add_env_file () {
     fi
 }
 
-mkdir -p /etc/kopano/
+# precreate directories
+mkdir -p /etc/kopano/ /var/lib/univention-appcenter/apps/kopano-meet/compose
 
 # predefine variables for setting them
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
