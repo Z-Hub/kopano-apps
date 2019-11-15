@@ -1,5 +1,7 @@
 # Todos and ideas for later versions
 
+- add start unless stopped to the compose file (only web starts after reboot?)
+
 ## later
 
 - make it possible to also use the app with the Kopano backend

@@ -44,12 +44,11 @@ RewriteEngine On
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/$1 [P,L]
+# Meet and PWAs only work on https
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
 EOF
-
-# Meet and PWAs only work on https
-ucr set apache2/force_https=yes \
-	apache2/hsts=yes
 
 a2enmod proxy_wstunnel
 
