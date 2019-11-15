@@ -36,6 +36,7 @@ services:
   kopano_konnect:
     image: fbartels/kopano_konnect:0.26.0
     container_name: kopano_konnect
+    restart: always
     depends_on:
       - kopano_ssl
       - web
@@ -78,6 +79,7 @@ services:
   kopano_grapi:
     image: fbartels/kopano_core:8.7.85.0.f3999a9
     container_name: kopano_grapi
+    restart: always
     volumes:
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
@@ -97,6 +99,7 @@ services:
   kopano_kapi:
     image: fbartels/kopano_core:8.7.85.0.f3999a9
     container_name: kopano_kapi
+    restart: always
     depends_on:
       - kopano_grapi
     volumes:
@@ -116,6 +119,7 @@ services:
   kopano_kwmserver:
     image: fbartels/kopano_kwmserver:1.0.0
     container_name: kopano_kwmserver
+    restart: always
     command: wrapper.sh
     environment:
      - enable_guest_api=${MEET_GUEST}
@@ -133,6 +137,7 @@ services:
   kopano_meet:
     image: fbartels/kopano_meet:1.1.2_0
     container_name: kopano_meet
+    restart: always
     environment:
      - GRID_WEBAPP=${GRID_WEBAPP}
      - KCCONF_KWEBD_TLS=no
