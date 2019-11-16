@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -e
+set -x
+
+eval "$(ucr shell)"
+
+GOSS_VERSION=0.3.7
+DOCKERIZE_VERSION=0.11.0
+
+if ! command -v goss > /dev/null; then
+	curl -L https://github.com/aelsabbahy/goss/releases/download/v$GOSS_VERSION/goss-linux-amd64 -o /usr/local/bin/goss
+	chmod +rx /usr/local/bin/goss
+	goss --version
+fi
+
+if ! command -v dockerize > /dev/null; then
+	curl -sfL "https://github.com/powerman/dockerize/releases/download/v$DOCKERIZE_VERSION/dockerize-$(uname -s)-$(uname -m)" \
+	| install /dev/stdin /usr/local/bin/dockerize
+	dockerize --version
+fi
+
+# access Meet on the proper domain
+dockerize -wait https://$hostname.$domainname/meet
+# access Meet config document
+dockerize -wait https://$hostname.$domainname/api/config/v1/kopano/meet/config.json
+# accessing Meet via http should give a 302 redirect
+dockerize -wait http://localhost/meet/ -wait-http-skip-redirect -wait-http-status-code 302
+# accessing Meet on another domain should give a 302 redirect (skip tls since localhost is not in the cert)
+dockerize -skip-tls-verify -wait https://localhost/meet/ -wait-http-skip-redirect -wait-http-status-code 302
+# accessing Meet on another domain should give a 302 redirect
+dockerize -wait https://$hostname/meet/ -wait-http-skip-redirect -wait-http-status-code 302
+# access openid-config document
+dockerize -wait https://$hostname.$domainname/kopanoid/.well-known/openid-configuration
+# access jwk document
+dockerize -wait https://$hostname.$domainname/kopanoid/konnect/v1/jwks.json

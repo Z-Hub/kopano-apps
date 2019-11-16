@@ -25,7 +25,7 @@ clean:
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
 	appcenter/README appcenter/README_DE appcenter/README_UPDATE \
-	env compose configure_host preinst inst uinst settings
+	env compose configure_host preinst inst uinst settings test
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
