@@ -47,6 +47,7 @@ RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} meet
 RewriteRule ^(.*)$ https://$hostname.$domainname/meet/\$1 [R,L]
 # We need to access Meet through the proper domain
+RewriteCond %{REQUEST_URI} meet
 RewriteCond %{HTTP_HOST} !^ucs-6370.kopano.intranet$ [NC]
 RewriteRule ^(.*)$ https://ucs-6370.kopano.intranet/meet/\$1 [R,L]
 # Upgrade Websocket connections
