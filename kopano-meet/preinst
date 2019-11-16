@@ -56,11 +56,9 @@ RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
 ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
 
-
-
 EOF
 
-a2enmod proxy_wstunnel
+a2enmod proxy_wstunnel rewrite
 
 # activate apache settings and meet config for apache
-systemctl restart apache2
+invoke-rc.d apache2 reload
