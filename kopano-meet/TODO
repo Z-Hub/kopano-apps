@@ -1,8 +1,8 @@
 # Todos and ideas for later versions
 
-- add start unless stopped to the compose file (only web starts after reboot?)
 
 ## later
 
 - make it possible to also use the app with the Kopano backend
 - add configuration of an own turn server to the univention settings page
+- make it possible to use a differing domain name

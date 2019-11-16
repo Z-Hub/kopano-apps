@@ -46,11 +46,17 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} meet
 RewriteRule ^(.*)$ https://$hostname.$domainname/meet/\$1 [R,L]
+# We need to access Meet through the proper domain
+RewriteCond %{HTTP_HOST} !^ucs-6370.kopano.intranet$ [NC]
+RewriteRule ^(.*)$ https://ucs-6370.kopano.intranet/meet/\$1 [R,L]
 # Upgrade Websocket connections
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
 RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
 ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
+
+
+
 EOF
 
 a2enmod proxy_wstunnel
