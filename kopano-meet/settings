@@ -8,7 +8,7 @@ Scope = outside
 Show = Install, Settings
 
 [kopano/docker/INSECURE]
-Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates.
+Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates
 Type = List
 Values = no, yes
 Labels = No, Yes
