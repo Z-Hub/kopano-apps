@@ -38,7 +38,7 @@ Show = Install, Settings
 # TURN server credentials etc
 [kopano/docker/TURN_USER]
 Group = Turn Services (optional)
-Description = Username for the Kopano Turn Services as supplied via email.
+Description = Username for the Kopano Turn Services as supplied via email
 Type = String
 InitialValue =
 Scope = outside
@@ -46,7 +46,7 @@ Show = Install, Settings
 
 [kopano/docker/TURN_PASSWORD]
 Group = Turn Services (optional)
-Description = Password for the Kopano Turn Services as supplied via email.
+Description = Password for the Kopano Turn Services as supplied via email
 Type = Password
 InitialValue =
 Scope = outside
