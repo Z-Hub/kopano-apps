@@ -1,0 +1,26 @@
+version: "2.0"
+
+services:
+  web:
+    environment:
+      - FQDN=@%@hostname@%@.@%@domainname@%@
+
+  kopano_ssl:
+    environment:
+      - FQDN=@%@hostname@%@.@%@domainname@%@
+
+  kopano_konnect:
+    environment:
+      - FQDN=@%@hostname@%@.@%@domainname@%@/kopanoid
+
+  kopano_kapi:
+    environment:
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+
+  kopano_kwmserver:
+    environment:
+     - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+
+  kopano_meet:
+    environment:
+     - KCCONF_MEET_oidc_iss=https://@%@hostname@%@.@%@domainname@%@/kopanoid
