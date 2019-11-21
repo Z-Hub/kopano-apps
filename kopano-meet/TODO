@@ -1,8 +1,19 @@
 # Todos and ideas for later versions
 
 
+## Needs investigation
+
+- Join script expects the OpenID app to run on the local system.
+  - How to register in the join script, when openid is running somewhere else?
+
+## Needed improvements in Konnect and/or Meet
+
+- logging out out Meet logs the user directly back in
+  - Meet needs to gain the possibillity to logout directly at the external provider
+
 ## later
 
 - make it possible to also use the app with the Kopano backend
 - add configuration of an own turn server to the univention settings page
 - make it possible to use a differing domain name
+
