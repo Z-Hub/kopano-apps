@@ -122,7 +122,7 @@ services:
     restart: always
     command: wrapper.sh
     environment:
-     - enable_guest_api=${MEET_GUEST}
+     - enable_guest_api=${MEET_GUEST_ALLOW}
      - INSECURE=${INSECURE}
      - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
      - public_guest_access_regexp=${MEET_GUEST_REGEXP}

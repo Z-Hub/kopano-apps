@@ -17,7 +17,7 @@ Scope = outside
 Show = Install, Settings
 
 # guest user settings
-[kopano/docker/MEET_GUEST]
+[kopano/docker/MEET_GUEST_ALLOW]
 Group = Guest access
 Description = Allow guests to join Meetings
 Type = List
