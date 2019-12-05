@@ -139,6 +139,7 @@ services:
     container_name: kopano_meet
     restart: always
     environment:
+     - GRID_KONNECT=no
      - GRID_WEBAPP=${GRID_WEBAPP}
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
