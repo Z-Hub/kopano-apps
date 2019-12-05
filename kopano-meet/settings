@@ -5,7 +5,7 @@ Values = no, yes
 Labels = No, Yes
 InitialValue = no
 Scope = outside
-Show = Install, Settings
+Show = Settings
 
 [kopano/docker/INSECURE]
 Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates
@@ -14,7 +14,7 @@ Values = no, yes
 Labels = No, Yes
 InitialValue = no
 Scope = outside
-Show = Install, Settings
+Show = Settings
 
 # guest user settings
 [kopano/docker/MEET_GUEST_ALLOW]
@@ -42,7 +42,7 @@ Description = Username for the Kopano Turn Services as supplied via email
 Type = String
 InitialValue =
 Scope = outside
-Show = Install, Settings
+Show = Settings
 
 [kopano/docker/TURN_PASSWORD]
 Group = Turn Services (optional)
@@ -50,4 +50,4 @@ Description = Password for the Kopano Turn Services as supplied via email
 Type = Password
 InitialValue =
 Scope = outside
-Show = Install, Settings
+Show = Settings
