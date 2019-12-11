@@ -15,6 +15,9 @@ update_env_file () {
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env
 
+# ensure read permissions for konnect container
+chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
+
 # ask if running with self signed (untrusted) certificates
 update_env_file INSECURE $(ucr get kopano/docker/INSECURE)
 

@@ -24,6 +24,9 @@ add_env_file () {
 # precreate directories
 mkdir -p /etc/kopano/ /var/lib/univention-appcenter/apps/kopano-meet/compose
 
+# ensure read permissions for konnect container
+chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
+
 # predefine variables for setting them
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env

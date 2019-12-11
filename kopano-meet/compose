@@ -20,7 +20,9 @@ services:
      - SETGID
      - SETUID
     volumes:
+     - /etc/machine-id:/etc/machine-id
      - /etc/ssl/certs:/etc/ssl/certs:ro
+     - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
     networks:
      - web-net
 
@@ -34,7 +36,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.26.0
+    image: fbartels/kopano_konnect:0.28.0
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -42,11 +44,12 @@ services:
       - web
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
+      - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
-      - allow_client_guests=yes
-      - allow_dynamic_client_registration=yes
+      - allow_client_guests=${MEET_GUEST_ALLOW}
       - eckey=/kopano/ssl/meet-kwmserver.pem
       - ecparam=/kopano/ssl/ecparam.pem
       - encryption_secret_key=/kopano/ssl/konnectd-encryption.key
@@ -81,8 +84,10 @@ services:
     container_name: kopano_grapi
     restart: always
     volumes:
+      - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
       - /var/lib/kopano-grapi:/var/lib/kopano-grapi
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
@@ -104,8 +109,10 @@ services:
       - kopano_grapi
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
+      - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
     environment:
       - KCCONF_KAPID_INSECURE=${INSECURE}
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
@@ -130,12 +137,14 @@ services:
      - turn_service_credentials_user=${TURN_USER}
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
+      - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
     networks:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:1.1.2_0
+    image: fbartels/kopano_meet:1.2.1_0
     container_name: kopano_meet
     restart: always
     environment:
@@ -143,12 +152,14 @@ services:
      - GRID_WEBAPP=${GRID_WEBAPP}
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
-     - KCCONF_MEET_guests_enabled=true
+     - KCCONF_MEET_guests_enabled=${MEET_GUEST_ALLOW}
      - KCCONF_MEET_oidc_iss=https://@%@hostname@%@.@%@domainname@%@/kopanoid
      - KCCONF_MEET_useIdentifiedUser=true
      - SERVICE_TO_START=meet
     volumes:
+     - /etc/machine-id:/etc/machine-id
      - /etc/ssl/certs:/etc/ssl/certs:ro
+     - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
     depends_on:
      - kopano_kapi
      - kopano_kwmserver
