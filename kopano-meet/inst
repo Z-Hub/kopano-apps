@@ -35,7 +35,7 @@ add_env_file () {
 # register Konnect at the Univention OpenID Provider
 clientsecret=$(random_string)
 fqdn="$hostname.$domainname"
-udm oidc/rpservice create --ignore_exists \
+udm oidc/rpservice create "$@" --ignore_exists \
  --set name=kopano-meet \
  --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
  --set clientid=kopano-meet \
@@ -43,9 +43,6 @@ udm oidc/rpservice create --ignore_exists \
  --set trusted=yes \
  --set applicationtype=web \
  --set redirectURI=https://$fqdn/kopanoid/signin/v1/identifier/oauth2/cb
-
-# restart openid provider for registration to take effect
-systemctl restart docker-app-openid-connect-provider.service
 
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose
 touch .env
