@@ -152,7 +152,7 @@ services:
      - GRID_WEBAPP=${GRID_WEBAPP}
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
-     - KCCONF_MEET_guests_enabled=${MEET_GUEST_ALLOW}
+     - KCCONF_MEET_guests_enabled=${MEET_GUEST_BOOLALLOW}
      - KCCONF_MEET_oidc_iss=https://@%@hostname@%@.@%@domainname@%@/kopanoid
      - KCCONF_MEET_useIdentifiedUser=true
      - SERVICE_TO_START=meet

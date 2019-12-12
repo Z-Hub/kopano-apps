@@ -27,6 +27,13 @@ update_env_file TURN_USER $(ucr get kopano/docker/TURN_USER)
 update_env_file TURN_PASSWORD $(ucr get kopano/docker/TURN_PASSWORD)
 
 update_env_file MEET_GUEST_ALLOW $(ucr get kopano/docker/MEET_GUEST_ALLOW)
+
+if [ $(ucr get kopano/docker/MEET_GUEST_ALLOW) = "yes" ]; then
+	update_env_file MEET_GUEST_BOOLALLOW true
+else
+	update_env_file MEET_GUEST_BOOLALLOW false
+fi
+
 update_env_file MEET_GUEST_REGEXP $(ucr get kopano/docker/MEET_GUEST_REGEXP)
 
 if [ "$1" = "settings" ]; then
