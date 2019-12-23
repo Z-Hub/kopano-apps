@@ -30,9 +30,9 @@ get-binaries-kopano4ucs:
 	rm packages/kopano4ucs*.deb || exit 0
 	cp kopano4ucs/kopano4ucs-app_*.deb packages/
 	cp kopano4ucs/kopano4ucs-lib_*.deb packages/
-	cp kopano4ucs/kopano4ucs-multiserver_*.deb packages/
-	cp kopano4ucs/kopano4ucs-schema_*.deb packages/
-	cp kopano4ucs/kopano4ucs-udm_*.deb packages/
+	cp kopano4ucs/kopano4ucs-multiserver*.deb packages/
+	cp kopano4ucs/kopano4ucs-schema*.deb packages/
+	cp kopano4ucs/kopano4ucs-udm*.deb packages/
 	cp kopano4ucs/kopano4ucs_*.deb packages/
 	# the following wget lines can be removed once https://forge.univention.org/bugzilla/show_bug.cgi?id=47933 is resolved
 	wget -nc https://updates.software-univention.de/4.3/unmaintained/4.3-0/amd64/libhx28_3.22-1+b2_amd64.deb -P packages/
