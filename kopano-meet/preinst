@@ -48,11 +48,11 @@ RewriteEngine On
 # Meet and PWAs only work on https
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} meet
-RewriteRule ^(.*)$ https://$hostname.$domainname/meet/\$1 [R,L]
+RewriteRule ^(.*)$ https://$hostname.$domainname/meet/ [R,L]
 # We need to access Meet through the proper domain
 RewriteCond %{REQUEST_URI} meet
 RewriteCond %{HTTP_HOST} !^$hostname.$domainname$ [NC]
-RewriteRule ^(.*)$ https://$hostname.$domainname/meet/\$1 [R,L]
+RewriteRule ^(.*)$ https://$hostname.$domainname/meet/ [R,L]
 # Upgrade Websocket connections
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
