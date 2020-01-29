@@ -1,0 +1,78 @@
+#!/usr/bin/python2.7
+# -*- coding: utf-8 -*-
+
+
+from univention.testing.selenium import UMCSeleniumTest
+from univention.config_registry import ConfigRegistry
+from xvfbwrapper import Xvfb
+from argparse import ArgumentParser
+import univention.testing.udm as udm_test
+
+import os
+import string
+import random
+
+os.environ['UCSTEST_SELENIUM'] = 'local'
+os.environ['UCSTEST_SELENIUM_BROWSER'] = 'chrome'
+os.environ['PATH'] += ':/usr/lib/chromium-browser'
+os.environ['LC_ALL'] = 'C'
+
+
+def webapp_login(ucr, username, password, ignore_firstrunwizard=False, login_denied=False):
+    hostname = '%s.%s' % (ucr.get('hostname'), ucr.get('domainname'))
+    with Xvfb():
+        with UMCSeleniumTest() as s:
+            # login
+            s.driver.get('https://%s//webapp' % hostname)
+            s.wait_for_text('Welcome')
+            s.enter_input('username', username)
+            s.enter_input('password', password)
+            s.driver.find_element_by_id('submitbutton').submit()
+            # login denied
+            if login_denied:
+                s.wait_for_text('Logon failed')
+                return
+            # first run wizard
+            try:
+                s.wait_for_text('Welcome to Kopano WebApp')
+                continue_btn = s.driver.find_element_by_xpath('//button[text()="Continue"]')
+                s.driver.execute_script('arguments[0].click()', continue_btn)
+            except Exception as exc:
+                if not ignore_firstrunwizard:
+                    raise(exc)
+            # logout
+            s.wait_for_text('Logout')
+            s.click_text('Logout')
+            s.wait_for_text('Welcome')
+
+
+def main():
+    ucr = ConfigRegistry()
+    ucr.load()
+    usage = '%(prog)s'
+    description = '%(prog)s kopano-webapp App test script'
+    parser = ArgumentParser(usage=usage, description=description)
+    parser.add_argument('--binddn', help='LDAP binddn')
+    parser.add_argument('--bindpwdfile', help='LDAP binddn password file')
+    args = parser.parse_args()
+    args = args
+    # check kopano webapp user
+    with udm_test.UCSTestUDM() as udm:
+        em1 = '{}@{}'.format(string.join(random.sample(string.lowercase, 10), ''), ucr['domainname'])
+        user1_dn, user1 = udm.create_user(set={'kopano-role': 'user', 'password': 'univention', 'mailPrimaryAddress': em1})
+        user2_dn, user2 = udm.create_user(password='univention')
+        em3 = '{}@{}'.format(string.join(random.sample(string.lowercase, 10), ''), ucr['domainname'])
+        user3_dn, user3 = udm.create_user(set={'kopano-role': 'user', 'password': 'univention', 'mailPrimaryAddress': em3})
+        # login OK
+        webapp_login(ucr, user1, 'univention')
+        webapp_login(ucr, user3, 'univention')
+        # login non kopano user denied
+        webapp_login(ucr, user2, 'univention', login_denied=True)
+        # password change
+        udm.modify_object('users/user', dn=user3_dn, password='univention.99')
+        webapp_login(ucr, user3, 'univention', login_denied=True)
+        webapp_login(ucr, user3, 'univention.99', ignore_firstrunwizard=True)
+
+
+if __name__ == '__main__':
+    main()
