@@ -7,6 +7,20 @@ InitialValue = no
 Scope = outside
 Show = Settings
 
+[kopano/docker/FQDN_MEET]
+Description = FQDN from which Meet should be accessible (without https:// or /meet). Needs Join script to be re-run.
+Type = String
+InitialValue = @%@hostname@%@.@%@domainname@%@
+Scope = outside
+Show = Settings
+
+[kopano/docker/FQDN_SSO]
+Description = FQDN where the OpenID Provider App is running (without https:// or /some/path)
+Type = String
+InitialValue = @%@ucs/server/sso/fqdn@%@
+Scope = outside
+Show = Settings
+
 [kopano/docker/INSECURE]
 Description = Run in 'insecure' mode. This is required when running with untrusted ssl certificates
 Type = List

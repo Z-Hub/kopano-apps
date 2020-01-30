@@ -2,6 +2,10 @@
 
 eval "$(ucr shell)"
 
+# set default values for hostname and domainname in case they are not specified (they always are)
+hostname=${hostname:-hostname}
+domainname=${domainname:-domainname}
+
 update_env_file () {
     varname="$1"
     varvalue="$2"
@@ -28,40 +32,10 @@ mkdir -p /etc/kopano/ /var/lib/univention-appcenter/apps/kopano-meet/compose
 chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
 
 # predefine variables for setting them
-cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose || exit
 touch .env
 update_env_file COMPOSE_PROJECT_NAME kopano-meet
 add_env_file INSECURE no
-
-# apache2 conf
-cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
-Header unset X-Frame-Options
-Header unset Content-Security-Policy
-ProxyPass /meet http://localhost:2015/meet retry=0
-ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
-ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
-ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
-ProxyPass /kopanoid/.well-known/openid-configuration http://localhost:2015/.well-known/openid-configuration retry=0
-ProxyPass /kopanoid/ http://localhost:2015/kopanoid/ retry=0
-
-RewriteEngine On
-# Meet and PWAs only work on https
-RewriteCond %{HTTPS} off
-RewriteCond %{REQUEST_URI} meet
-RewriteRule ^(.*)$ https://$hostname.$domainname/meet/ [R,L]
-# We need to access Meet through the proper domain
-RewriteCond %{REQUEST_URI} meet
-RewriteCond %{HTTP_HOST} !^$hostname.$domainname$ [NC]
-RewriteRule ^(.*)$ https://$hostname.$domainname/meet/ [R,L]
-# Upgrade Websocket connections
-RewriteCond %{HTTP:Connection} Upgrade [NC]
-RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
-ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
-
-EOF
-
-a2enmod proxy_wstunnel rewrite
-
-# activate apache settings and meet config for apache
-invoke-rc.d apache2 reload
+# hostname and domainname are variables specified by ucr shell
+add_env_file FQDN_MEET "$hostname.$domainname"
+add_env_file FQDN_SSO "$(ucr get ucs/server/sso/fqdn)"

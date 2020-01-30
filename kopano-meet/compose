@@ -10,7 +10,7 @@ services:
     environment:
       - DEFAULTREDIRECT=/meet
       - EMAIL=off
-      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - FQDN=${FQDN_MEET}
     command: wrapper.sh
     cap_drop:
      - ALL
@@ -30,7 +30,7 @@ services:
     image: fbartels/kopano_ssl:1.2.0
     container_name: kopano_ssl
     environment:
-      - FQDN=@%@hostname@%@.@%@domainname@%@
+      - FQDN=${FQDN_MEET}
       - PKI_COUNTRY=DE
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
@@ -56,8 +56,8 @@ services:
       - external_oidc_clientsecret=${clientsecret}
       - external_oidc_name=ucs-konnect
       - external_oidc_provider=yes
-      - external_oidc_url=https://@%@ucs/server/sso/fqdn@%@
-      - FQDN=@%@hostname@%@.@%@domainname@%@/kopanoid
+      - external_oidc_url=https://${FQDN_SSO}
+      - FQDN=${FQDN_MEET}/kopanoid
       - identifier_registration_conf=/kopano/ssl/konnectd-identifier-registration.yaml
       - identifier_scopes_conf=/etc/kopano/konnectd-identifier-scopes.yaml
       - insecure=${INSECURE}
@@ -116,7 +116,7 @@ services:
     environment:
       - KCCONF_KAPID_INSECURE=${INSECURE}
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
-      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN_MEET}/kopanoid
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
     networks:
@@ -131,7 +131,7 @@ services:
     environment:
      - enable_guest_api=${MEET_GUEST_ALLOW}
      - INSECURE=${INSECURE}
-     - oidc_issuer_identifier=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+     - oidc_issuer_identifier=https://${FQDN_MEET}/kopanoid
      - public_guest_access_regexp=${MEET_GUEST_REGEXP}
      - turn_service_credentials_password=${TURN_PASSWORD}
      - turn_service_credentials_user=${TURN_USER}
@@ -153,7 +153,7 @@ services:
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
      - KCCONF_MEET_guests_enabled=${MEET_GUEST_BOOLALLOW}
-     - KCCONF_MEET_oidc_iss=https://@%@hostname@%@.@%@domainname@%@/kopanoid
+     - KCCONF_MEET_oidc_iss=https://${FQDN_MEET}/kopanoid
      - KCCONF_MEET_useIdentifiedUser=true
      - SERVICE_TO_START=meet
     volumes:

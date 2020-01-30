@@ -12,30 +12,85 @@ update_env_file () {
     fi
 }
 
-cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose || exit
 touch .env
 
-# ensure read permissions for konnect container
-chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
+if [ -e /var/lib/univention-appcenter/apps/kopano-meet/machine.secret ]; then
+    echo "ensuring read permissions for konnect container"
+    chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
+fi
 
 # ask if running with self signed (untrusted) certificates
-update_env_file INSECURE $(ucr get kopano/docker/INSECURE)
-
-update_env_file GRID_WEBAPP $(ucr get kopano/docker/GRID_WEBAPP)
-
-update_env_file TURN_USER $(ucr get kopano/docker/TURN_USER)
-update_env_file TURN_PASSWORD $(ucr get kopano/docker/TURN_PASSWORD)
-
-update_env_file MEET_GUEST_ALLOW $(ucr get kopano/docker/MEET_GUEST_ALLOW)
-
-if [ $(ucr get kopano/docker/MEET_GUEST_ALLOW) = "yes" ]; then
+update_env_file INSECURE "$(ucr get kopano/docker/INSECURE)"
+# show Kopano WebApp in app grid
+update_env_file GRID_WEBAPP "$(ucr get kopano/docker/GRID_WEBAPP)"
+# turn server credentials
+update_env_file TURN_USER "$(ucr get kopano/docker/TURN_USER)"
+update_env_file TURN_PASSWORD "$(ucr get kopano/docker/TURN_PASSWORD)"
+# allow guests to enter designated rooms
+update_env_file MEET_GUEST_ALLOW "$(ucr get kopano/docker/MEET_GUEST_ALLOW)"
+if [ "$(ucr get kopano/docker/MEET_GUEST_ALLOW)" = "yes" ]; then
 	update_env_file MEET_GUEST_BOOLALLOW true
 else
 	update_env_file MEET_GUEST_BOOLALLOW false
 fi
+update_env_file MEET_GUEST_REGEXP "$(ucr get kopano/docker/MEET_GUEST_REGEXP)"
+# hostname from which meet can be accessed
+update_env_file FQDN_MEET "$(ucr get kopano/docker/FQDN_MEET)"
+# hostname for external auth
+update_env_file FQDN_SSO "$(ucr get kopano/docker/FQDN_SSO)"
 
-update_env_file MEET_GUEST_REGEXP $(ucr get kopano/docker/MEET_GUEST_REGEXP)
+# source .env to have access to previously set hostname
+# shellcheck disable=SC1091
+source /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
+
+# apache2 conf
+cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
+Header unset X-Frame-Options
+Header unset Content-Security-Policy
+ProxyPass /meet http://localhost:2015/meet retry=0
+ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
+ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
+ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
+ProxyPass /kopanoid/.well-known/openid-configuration http://localhost:2015/.well-known/openid-configuration retry=0
+ProxyPass /kopanoid/ http://localhost:2015/kopanoid/ retry=0
+
+RewriteEngine On
+# Meet and PWAs only work on https
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} ^/meet$ [OR]
+RewriteCond %{REQUEST_URI} ^/meet/
+RewriteRule ^(.*)$ https://$FQDN_MEET/meet/ [R,L]
+# We need to access Meet through the proper domain
+RewriteCond %{REQUEST_URI} ^/meet$ [OR]
+RewriteCond %{REQUEST_URI} ^/meet/
+RewriteCond %{HTTP_HOST} !^$FQDN_MEET$ [NC]
+RewriteRule ^(.*)$ https://$FQDN_MEET/meet/ [R,L]
+# Upgrade Websocket connections
+RewriteCond %{HTTP:Connection} Upgrade [NC]
+RewriteCond %{HTTP:Upgrade} websocket [NC]
+RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
+
+ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
+
+EOF
+
+a2enmod proxy_wstunnel rewrite
+
+# activate apache settings and meet config for apache
+invoke-rc.d apache2 reload
 
 if [ "$1" = "settings" ]; then
     docker-compose up -d
+    ucsrole=$(ucr get server/role)
+    case $ucsrole in
+        domaincontroller_master|domaincontroller_backup)
+            # we can only automatically run the join script on a master or backup
+            univention-run-join-scripts --force --run-scripts 50kopano-meet.inst
+            ;;
+        *)
+            # for other roles we need to resort to resetting the join status for Meet
+            sed -i "/^kopano-meet v/d" /var/univention-join/status
+            ;;
+    esac
 fi

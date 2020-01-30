@@ -1,7 +1,10 @@
 #!/bin/bash
+# shellcheck disable=SC2034
 VERSION="1"
 
+# shellcheck disable=SC1091
 . /usr/share/univention-lib/ldap.sh
+# shellcheck disable=SC1091
 . /usr/share/univention-appcenter/joinscripthelper.sh
 
 joinscript_init
@@ -11,7 +14,7 @@ SERVICE="Kopano-Meet"
 APP="kopano-meet"
 
 ucs_removeServiceFromLocalhost "${SERVICE}" "$@"
-udm oidc/rpservice remove --dn cn=kopano-meet,cn=oidc,cn=univention,$(ucr get ldap/base)
+udm oidc/rpservice remove "$@" --dn cn=kopano-meet,cn=oidc,cn=univention,"$(ucr get ldap/base)"
 
 rm /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 rm /etc/apache2/ucs-sites.conf.d/kopano-meet.conf

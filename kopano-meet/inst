@@ -1,16 +1,29 @@
 #!/bin/bash
-VERSION=1
+# shellcheck disable=SC2034
+VERSION=2
 
+# shellcheck disable=SC1091
 . /usr/share/univention-join/joinscripthelper.lib
+# shellcheck disable=SC1091
 . /usr/share/univention-appcenter/joinscripthelper.sh
+# shellcheck disable=SC1091
 . /usr/share/univention-lib/ldap.sh
+# shellcheck disable=SC1091
 . /usr/share/univention-lib/base.sh
 
 joinscript_init
 eval "$(ucr shell)"
 
+# set default values for hostname and domainname in case they are not specified (they always are)
+hostname=${hostname:-hostname}
+domainname=${domainname:-domainname}
+
+# source .env to have access to previously set client secret
+# shellcheck disable=SC1091
+source /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
+
 random_string() {
-        LC_CTYPE=C tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c32
+    LC_CTYPE=C tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c32
 }
 
 update_env_file () {
@@ -32,22 +45,28 @@ add_env_file () {
     fi
 }
 
-# register Konnect at the Univention OpenID Provider
-clientsecret=$(random_string)
-fqdn="$hostname.$domainname"
-udm oidc/rpservice create "$@" --ignore_exists \
- --set name=kopano-meet \
- --position=cn=oidc,cn=univention,$(ucr get ldap/base) \
- --set clientid=kopano-meet \
- --set clientsecret=$clientsecret \
- --set trusted=yes \
- --set applicationtype=web \
- --set redirectURI=https://$fqdn/kopanoid/signin/v1/identifier/oauth2/cb
-
-cd /var/lib/univention-appcenter/apps/kopano-meet/compose
+cd /var/lib/univention-appcenter/apps/kopano-meet/compose || exit
 touch .env
 
-add_env_file clientsecret $clientsecret
+# register Konnect at the Univention OpenID Provider
+clientsecret=${clientsecret:-"$(random_string)"}
+add_env_file clientsecret "$clientsecret"
+FQDN_MEET=${FQDN_MEET:-"$hostname.$domainname"}
+add_env_file FQDN_MEET "$FQDN_MEET"
+
+# remove oidc registration so that it can be readded with potentially a new fqdn
+# will print a "E: object not found" to the log if entry is not there
+udm oidc/rpservice remove "$@" --dn cn=kopano-meet,cn=oidc,cn=univention,"$(ucr get ldap/base)" || true
+
+# add oidc registration. ucs will take care of restarting the app
+udm oidc/rpservice create "$@" --ignore_exists \
+ --set name=kopano-meet \
+ --position=cn=oidc,cn=univention,"$(ucr get ldap/base)" \
+ --set clientid=kopano-meet \
+ --set clientsecret="$clientsecret" \
+ --set trusted=yes \
+ --set applicationtype=web \
+ --set redirectURI="https://$FQDN_MEET/kopanoid/signin/v1/identifier/oauth2/cb"
 
 # restart containers for changes to take effect
 docker-compose up -d
