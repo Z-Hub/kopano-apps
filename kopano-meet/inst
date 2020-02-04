@@ -1,6 +1,6 @@
 #!/bin/bash
 # shellcheck disable=SC2034
-VERSION=2
+VERSION=3
 
 # shellcheck disable=SC1091
 . /usr/share/univention-join/joinscripthelper.lib
@@ -66,7 +66,7 @@ udm oidc/rpservice create "$@" --ignore_exists \
  --set clientsecret="$clientsecret" \
  --set trusted=yes \
  --set applicationtype=web \
- --set redirectURI="https://$FQDN_MEET/kopanoid/signin/v1/identifier/oauth2/cb"
+ --set redirectURI="https://$FQDN_MEET/meetid/signin/v1/identifier/oauth2/cb"
 
 # restart containers for changes to take effect
 docker-compose up -d

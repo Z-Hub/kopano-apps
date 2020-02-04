@@ -1,5 +1,9 @@
 ## Univention app for Kopano Meet
 
+### 1.2.1-3
+
+- (internal change) the bundled Kopano Konnect is now reachable at `/meetid` instead of `/kopanoid`
+
 ### 1.2.1-2
 
 - Make it possible to run Kopano Meet with a custom domain name

@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:0.8.3
+    image: fbartels/kopano_web:0.8.3@sha256:c127e68a0ef4c8af85df2085113ac7a2c1c8171e179eb173626e6ed15fab3c12
     container_name: kopano_web
     restart: always
     ports:
@@ -11,14 +11,8 @@ services:
       - DEFAULTREDIRECT=/meet
       - EMAIL=off
       - FQDN=${FQDN_MEET}
+      - KONNECTPATH=meetid
     command: wrapper.sh
-    cap_drop:
-     - ALL
-    cap_add:
-     - CHOWN
-     - NET_BIND_SERVICE
-     - SETGID
-     - SETUID
     volumes:
      - /etc/machine-id:/etc/machine-id
      - /etc/ssl/certs:/etc/ssl/certs:ro
@@ -36,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.28.0
+    image: fbartels/kopano_konnect:0.28.1
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -57,7 +51,7 @@ services:
       - external_oidc_name=ucs-konnect
       - external_oidc_provider=yes
       - external_oidc_url=https://${FQDN_SSO}
-      - FQDN=${FQDN_MEET}/kopanoid
+      - FQDN=${FQDN_MEET}/meetid
       - identifier_registration_conf=/kopano/ssl/konnectd-identifier-registration.yaml
       - identifier_scopes_conf=/etc/kopano/konnectd-identifier-scopes.yaml
       - insecure=${INSECURE}
@@ -74,7 +68,7 @@ services:
       - LDAP_UUID_ATTRIBUTE_TYPE=text
       - LDAP_UUID_ATTRIBUTE=uidNumber
       - signing_private_key=/kopano/ssl/konnectd-tokens-signing-key.pem
-      - uri_base_path=/kopanoid
+      - uri_base_path=/meetid
     networks:
       - kopano-net
       - web-net
@@ -116,7 +110,7 @@ services:
     environment:
       - KCCONF_KAPID_INSECURE=${INSECURE}
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
-      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN_MEET}/kopanoid
+      - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN_MEET}/meetid
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
     networks:
@@ -131,7 +125,7 @@ services:
     environment:
      - enable_guest_api=${MEET_GUEST_ALLOW}
      - INSECURE=${INSECURE}
-     - oidc_issuer_identifier=https://${FQDN_MEET}/kopanoid
+     - oidc_issuer_identifier=https://${FQDN_MEET}/meetid
      - public_guest_access_regexp=${MEET_GUEST_REGEXP}
      - turn_service_credentials_password=${TURN_PASSWORD}
      - turn_service_credentials_user=${TURN_USER}
@@ -153,7 +147,7 @@ services:
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
      - KCCONF_MEET_guests_enabled=${MEET_GUEST_BOOLALLOW}
-     - KCCONF_MEET_oidc_iss=https://${FQDN_MEET}/kopanoid
+     - KCCONF_MEET_oidc_iss=https://${FQDN_MEET}/meetid
      - KCCONF_MEET_useIdentifiedUser=true
      - SERVICE_TO_START=meet
     volumes:

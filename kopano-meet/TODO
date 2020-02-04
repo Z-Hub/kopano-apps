@@ -16,5 +16,5 @@
   - [*] content from override file
   - [*] https://stash.z-hub.io/projects/K4U/repos/kopano-apps/browse/kopano-meet/preinst#48-52
   - [*] registration at external oidc needs to match new domain name
-- [ ] change the url of the bundled konnect from /kopanoid to /meetid
+- [*] change the url of the bundled konnect from /kopanoid to /meetid
   - requires changes to kopano_web for proxying -> https://github.com/zokradonh/kopano-docker/pull/320

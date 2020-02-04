@@ -28,9 +28,9 @@ dockerize -skip-tls-verify -wait https://localhost/meet/ -wait-http-skip-redirec
 # accessing Meet on another domain should give a 302 redirect
 dockerize -skip-tls-verify -wait "https://$hostname/meet/" -wait-http-skip-redirect -wait-http-status-code 302
 # access openid-config document
-dockerize -wait "https://$fqdn/kopanoid/.well-known/openid-configuration"
+dockerize -wait "https://$fqdn/meetid/.well-known/openid-configuration"
 # access jwk document
-dockerize -wait "https://$fqdn/kopanoid/konnect/v1/jwks.json"
+dockerize -wait "https://$fqdn/meetid/konnect/v1/jwks.json"
 # access to rest api
 dockerize -wait "https://$fqdn/api/gc/v1/" -wait-http-status-code 403
 dockerize -wait "https://$fqdn/api/kvs/v1/kv/user/kopano-meet-recents" -wait-http-status-code 403
