@@ -31,6 +31,15 @@ mkdir -p /etc/kopano/ /var/lib/univention-appcenter/apps/kopano-meet/compose
 # ensure read permissions for konnect container
 chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
 
+# set default values for ucr variables
+ucr set \
+	kopano/docker/INSECURE?'no' \
+	kopano/docker/GRID_WEBAPP?'no' \
+	kopano/docker/MEET_GUEST_ALLOW?'no' \
+	kopano/docker/MEET_GUEST_REGEXP?'^group/public/.*' \
+	kopano/docker/FQDN_MEET?"$hostname.$domainname" \
+	kopano/docker/FQDN_SSO?"$(ucr get ucs/server/sso/fqdn)"
+
 # predefine variables for setting them
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose || exit
 touch .env

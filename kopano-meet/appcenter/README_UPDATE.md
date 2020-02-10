@@ -3,6 +3,7 @@
 ### 1.2.1-3
 
 - (internal change) the bundled Kopano Konnect is now reachable at `/meetid` instead of `/kopanoid`
+- predefine variables in preinst script instead of letting the settings dialogue do this
 
 ### 1.2.1-2
 
