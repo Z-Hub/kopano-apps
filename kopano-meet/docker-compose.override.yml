@@ -3,5 +3,5 @@ version: "2.0"
 services:
   kopano_konnect:
     environment:
-      - LOG_LEVEL=debug
+      - log_level=debug
       - DEBUG=true
