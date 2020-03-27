@@ -33,12 +33,17 @@ chmod go+r /var/lib/univention-appcenter/apps/kopano-meet/machine.secret
 
 # set default values for ucr variables
 ucr set \
-	kopano/docker/INSECURE?'no' \
-	kopano/docker/GRID_WEBAPP?'no' \
-	kopano/docker/MEET_GUEST_ALLOW?'no' \
-	kopano/docker/MEET_GUEST_REGEXP?'^group/public/.*' \
-	kopano/docker/FQDN_MEET?"$hostname.$domainname" \
-	kopano/docker/FQDN_SSO?"$(ucr get ucs/server/sso/fqdn)"
+    kopano/docker/FQDN_MEET?"$hostname.$domainname" \
+    kopano/docker/FQDN_SSO?"$(ucr get ucs/server/sso/fqdn)" \
+    kopano/docker/GRID_WEBAPP?'no' \
+    kopano/docker/INSECURE?'no' \
+    kopano/docker/MEET_GUEST_ALLOW?'no' \
+    kopano/docker/MEET_GUEST_REGEXP?'^group/public/.*' \
+    kopano/docker/TURN_PASSWORD?'OT1O0BK3' \
+    kopano/docker/TURN_USER?'KST0300-8YUG3GPVX' \
+    kopano/docker/TURN_SERVER_SHARED_SECRET?'' \
+    kopano/docker/TURN_SERVICE_URL?'https://ucs-turn.kopano.com/turnserverauth/' \
+    kopano/docker/TURN_URIS?''
 
 # predefine variables for setting them
 cd /var/lib/univention-appcenter/apps/kopano-meet/compose || exit

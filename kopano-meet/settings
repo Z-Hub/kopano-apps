@@ -51,17 +51,42 @@ Show = Install, Settings
 
 # TURN server credentials etc
 [kopano/docker/TURN_USER]
-Group = Turn Services (optional)
+Group = Turn Services (recommended)
 Description = Username for the Kopano Turn Services as supplied via email
+Type = String
+InitialValue = KST0300-8YUG3GPVX
+Scope = outside
+Show = Settings
+
+[kopano/docker/TURN_PASSWORD]
+Group = Turn Services (recommended)
+Description = Password for the Kopano Turn Services as supplied via email
+Type = Password
+InitialValue = OT1O0BK3
+Scope = outside
+Show = Settings
+
+[kopano/docker/TURN_SERVICE_URL]
+Group = Turn Services (recommended)
+Description = URL auf the Turn Auth Service (used for TURN provided by Kopano)
+Type = String
+InitialValue = https://ucs-turn.kopano.com/turnserverauth/
+Scope = outside
+Show = Settings
+
+# Own Turn Service
+[kopano/docker/TURN_URIS]
+Group = Own Turn Server
+Description = Space separated list of TURN server uris to be sent to clients. Only needed if Kopano Turn service should not be used.
 Type = String
 InitialValue =
 Scope = outside
 Show = Settings
 
-[kopano/docker/TURN_PASSWORD]
-Group = Turn Services (optional)
-Description = Password for the Kopano Turn Services as supplied via email
-Type = Password
+[kopano/docker/TURN_SERVER_SHARED_SECRET]
+Group = Own Turn Server
+Description = Shared secret to be used to create TURN server user credentials. When set, kwmserverd creates user credentials for TURN.
+Type = String
 InitialValue =
 Scope = outside
 Show = Settings

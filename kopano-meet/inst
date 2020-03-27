@@ -1,6 +1,6 @@
 #!/bin/bash
 # shellcheck disable=SC2034
-VERSION=3
+VERSION=4
 
 # shellcheck disable=SC1091
 . /usr/share/univention-join/joinscripthelper.lib

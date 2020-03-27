@@ -1,6 +1,6 @@
-# Willkommen in Ihrer neuen Kopano Meet App!
+# Willkommen auf Ihrer neuen Kopano Meet Appliance!
 
-Meet ist das Videomeeting-System von Kopano. Verglichen mit anderen bekannten Plattformen für Videokonferenzen betreiben Sie Ihr neues System selbst. Dies erlaubt Ihnen, in höchstem Grade digital souverän zu sein. Gleichzeitig müssen Sie sich aber auch selbst um die Infrastruktur darum herum kümmern. Kopano Meet nutzt zum Beispiel die [OpenID Connect Provider-App](#module=appcenter:appcenter:0:id:openid-connect-provider), um UCS-Benutzern die Anmeldung bei Meet zu ermöglichen.
+Meet ist das Videomeeting-System von Kopano. Verglichen mit anderen bekannten Plattformen für Videokonferenzen betreiben Sie Ihr neues System selbst. Dies erlaubt Ihnen, in höchstem Grade digital souverän zu sein. Gleichzeitig müssen Sie sich aber auch selbst um die Infrastruktur darum herum kümmern.
 
 ### Bitte lesen Sie diesen Text sorgfältig durch. Ihre Meet-App läuft nicht in jeder Umgebung sofort und automatisch!
 

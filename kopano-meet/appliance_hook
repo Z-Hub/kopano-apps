@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# shellcheck disable=SC1091
+. /usr/share/univention-lib/base.sh
+
+eval "$(ucr shell)"
+
+# set default values for hostname and domainname in case they are not specified (they always are)
+hostname=${hostname:-hostname}
+domainname=${domainname:-domainname}
+
+# configure openid connect provider to be reachable from the main domain
+ln -s /etc/apache2/conf-available/openid-connect-provider.conf /etc/apache2/conf-enabled/
+systemctl reload apache2
+
+# update configuration for new address of openid provider
+ucr set \
+    kopano/docker/FQDN_SSO="$hostname.$domainname" \
+    oidc/konnectd/issuer_identifier="https://$hostname.$domainname"
+
+# apply changes to apps
+univention-app configure openid-connect-provider
+univention-app configure kopano-meet
+
+exit 0

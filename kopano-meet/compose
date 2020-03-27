@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:0.8.3@sha256:c127e68a0ef4c8af85df2085113ac7a2c1c8171e179eb173626e6ed15fab3c12
+    image: fbartels/kopano_web:0.9.1
     container_name: kopano_web
     restart: always
     ports:
@@ -30,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.28.1
+    image: fbartels/kopano_konnect:0.30.0
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -90,6 +90,7 @@ services:
       - KCCONF_GRAPI_LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
       - KCCONF_GRAPI_LDAP_BINDPW_FILE=/etc/machine.secret
       - KCCONF_GRAPI_LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
+      #- LDAP_FILTER=(objectClass=organizationalPerson) # TODO identify attribute to filter on to avoid join users showing up in the gab
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
     networks:
@@ -118,7 +119,7 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:1.0.0
+    image: fbartels/kopano_kwmserver:1.1.1
     container_name: kopano_kwmserver
     restart: always
     command: wrapper.sh
@@ -127,8 +128,12 @@ services:
      - INSECURE=${INSECURE}
      - oidc_issuer_identifier=https://${FQDN_MEET}/meetid
      - public_guest_access_regexp=${MEET_GUEST_REGEXP}
+     - registration_conf=/kopano/ssl/konnectd-identifier-registration.yaml
      - turn_service_credentials_password=${TURN_PASSWORD}
      - turn_service_credentials_user=${TURN_USER}
+     - turn_service_url=${TURN_SERVICE_URL}
+     - turn_uris=${TURN_URIS}
+     - turn_server_shared_secret=${TURN_SERVER_SHARED_SECRET}
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
       - /etc/machine-id:/etc/machine-id
@@ -138,7 +143,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:1.2.1_0
+    image: fbartels/kopano_meet:2.1.0_0
     container_name: kopano_meet
     restart: always
     environment:

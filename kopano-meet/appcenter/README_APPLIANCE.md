@@ -1,6 +1,6 @@
-# Welcome to the Kopano Meet app for UCS!
+# Welcome to your new Kopano Meet Appliance!
 
-Meet is the videomeeting system by Kopano. Compared to other known platforms for videomeetings you are running you new system on premise. This allows you to be digital sovereign at the highest degree. But at the same time it requires you to take care on infrastructure requirements. For example Kopano Meet makes use of the [OpenID Connect Provider app](#module=appcenter:appcenter:0:id:openid-connect-provider) to allow UCS users to login to Meet.
+Meet is the videomeeting system by Kopano. Compared to other known platforms for videomeetings you are running you new system on premise. This allows you to be digital sovereign at the highest degree. But at the same time it requires you to take care on infrastructure requirements.
 
 ### Please carefully read this text. Your Meet-appliance will not run out of the box in every environment!
 
@@ -20,4 +20,4 @@ To use a different FQDN than the default one of this UCS installation please cha
 
 *Have fun!*
 
-PS: If you have further questions, have a look at the [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano Forum](https://forum.kopano.io/). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html).
+PS: If you have further questions, have a look at the [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano Forum](https://forum.kopano.io/). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html).

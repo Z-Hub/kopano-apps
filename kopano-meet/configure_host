@@ -27,6 +27,10 @@ update_env_file GRID_WEBAPP "$(ucr get kopano/docker/GRID_WEBAPP)"
 # turn server credentials
 update_env_file TURN_USER "$(ucr get kopano/docker/TURN_USER)"
 update_env_file TURN_PASSWORD "$(ucr get kopano/docker/TURN_PASSWORD)"
+update_env_file TURN_SERVICE_URL "$(ucr get kopano/docker/TURN_SERVICE_URL)"
+# set when using an own turn service
+update_env_file TURN_URIS "$(ucr get kopano/docker/TURN_URIS)"
+update_env_file TURN_SERVER_SHARED_SECRET "$(ucr get kopano/docker/TURN_SERVER_SHARED_SECRET)"
 # allow guests to enter designated rooms
 update_env_file MEET_GUEST_ALLOW "$(ucr get kopano/docker/MEET_GUEST_ALLOW)"
 if [ "$(ucr get kopano/docker/MEET_GUEST_ALLOW)" = "yes" ]; then
