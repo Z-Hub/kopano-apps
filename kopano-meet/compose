@@ -30,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.30.0
+    image: fbartels/kopano_konnect:0.30.0@sha256:53cc8b3f369e4a64104ecb4b1a39168693bc127a2fbb7200ae3f6ad8b6af3c10
     container_name: kopano_konnect
     restart: always
     depends_on:

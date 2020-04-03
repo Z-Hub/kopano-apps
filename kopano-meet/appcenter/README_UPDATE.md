@@ -1,5 +1,9 @@
 ## Univention app for Kopano Meet
 
+### 2.1.0-2
+
+- Fixes a bug in the Konnect Container where upon changing the FQDN the old value would persist in the identifier registration.
+
 ### 2.1.0-1
 
 With this update the app will auto configure a free TURN server offered by Kopano. This free service is shared between all Meet-instances and there is no guarantee on availability. For your production setup an own TURN service or at least a paid service with guaranteed availability is highly recommended.

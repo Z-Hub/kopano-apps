@@ -50,6 +50,8 @@ source /var/lib/univention-appcenter/apps/kopano-meet/compose/.env
 
 # apache2 conf
 cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
+# Auto generated config. Please do not make changes as they will be overwritten!
+# Please check https://stash.z-hub.io/projects/K4U/repos/kopano-apps/browse/kopano-meet for instructions how to put an additional proxy in front of Meet.
 Header unset X-Frame-Options
 Header unset Content-Security-Policy
 ProxyPass /meet http://localhost:2015/meet retry=0
