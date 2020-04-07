@@ -1,5 +1,9 @@
 ## Univention app for Kopano Meet
 
+### 2.1.0-3
+
+- Fixes a mountpoint in kapi to retain call and group history over updates
+
 ### 2.1.0-2
 
 - Fixes a bug in the Konnect Container where upon changing the FQDN the old value would persist in the identifier registration.

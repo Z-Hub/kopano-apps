@@ -16,7 +16,7 @@ services:
     volumes:
      - /etc/machine-id:/etc/machine-id
      - /etc/ssl/certs:/etc/ssl/certs:ro
-     - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+     - /etc/machine-id:/var/lib/dbus/machine-id
     networks:
      - web-net
 
@@ -40,7 +40,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
       - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
-      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - /etc/machine-id:/var/lib/dbus/machine-id
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
       - allow_client_guests=${MEET_GUEST_ALLOW}
@@ -81,7 +81,7 @@ services:
       - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
-      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - /etc/machine-id:/var/lib/dbus/machine-id
       - /var/lib/kopano-grapi:/var/lib/kopano-grapi
       - /var/lib/univention-appcenter/apps/kopano-meet/machine.secret:/etc/machine.secret
     environment:
@@ -107,7 +107,8 @@ services:
       - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
       - /run/kopano:/run/kopano
-      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - /etc/machine-id:/var/lib/dbus/machine-id
+      - /var/lib/kopano/kapi-kvs/:/kopano/data/kapi-kvs/
     environment:
       - KCCONF_KAPID_INSECURE=${INSECURE}
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
@@ -138,7 +139,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
       - /etc/machine-id:/etc/machine-id
       - /etc/ssl/certs:/etc/ssl/certs:ro
-      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+      - /etc/machine-id:/var/lib/dbus/machine-id
     networks:
      - web-net
 
@@ -158,7 +159,7 @@ services:
     volumes:
      - /etc/machine-id:/etc/machine-id
      - /etc/ssl/certs:/etc/ssl/certs:ro
-     - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id
+     - /etc/machine-id:/var/lib/dbus/machine-id
     depends_on:
      - kopano_kapi
      - kopano_kwmserver
