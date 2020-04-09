@@ -113,6 +113,7 @@ services:
       - KCCONF_KAPID_INSECURE=${INSECURE}
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
       - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN_MEET}/meetid
+      - KCCONF_KAPID_PLUGIN_KVS_DB_DATASOURCE=/kopano/data/kapi-kvs/kvs.db
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
     networks:
