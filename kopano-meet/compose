@@ -90,6 +90,7 @@ services:
       - KCCONF_GRAPI_LDAP_BINDDN=@%@appcenter/apps/kopano-meet/hostdn@%@
       - KCCONF_GRAPI_LDAP_BINDPW_FILE=/etc/machine.secret
       - KCCONF_GRAPI_LDAP_URI=ldap://@%@ldap/server/name@%@:@%@ldap/server/port@%@
+      - KCCONF_GRAPI_PERSISTENCY_PATH=/var/lib/kopano-grapi
       #- LDAP_FILTER=(objectClass=organizationalPerson) # TODO identify attribute to filter on to avoid join users showing up in the gab
       - SERVICE_TO_START=grapi
       - TZ=Europe/Berlin
@@ -110,9 +111,12 @@ services:
       - /etc/machine-id:/var/lib/dbus/machine-id
       - /var/lib/kopano/kapi-kvs/:/kopano/data/kapi-kvs/
     environment:
+      - DEFAULT_PLUGIN_PUBS_SECRET_KEY_FILE=/kopano/ssl/kapid-pubs-secret.key
       - KCCONF_KAPID_INSECURE=${INSECURE}
+      - KCCONF_KAPID_LISTEN=0.0.0.0:8039
       - KCCONF_KAPID_LOG_LEVEL=DEBUG
       - KCCONF_KAPID_OIDC_ISSUER_IDENTIFIER=https://${FQDN_MEET}/meetid
+      - KCCONF_KAPID_PLUGIN_GRAPI_SOCKET_PATH=/var/run/kopano/grapi
       - KCCONF_KAPID_PLUGIN_KVS_DB_DATASOURCE=/kopano/data/kapi-kvs/kvs.db
       - SERVICE_TO_START=kapi
       - TZ=Europe/Berlin
