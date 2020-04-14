@@ -54,12 +54,12 @@ cat << EOF >/etc/apache2/ucs-sites.conf.d/kopano-meet.conf
 # Please check https://stash.z-hub.io/projects/K4U/repos/kopano-apps/browse/kopano-meet for instructions how to put an additional proxy in front of Meet.
 Header unset X-Frame-Options
 Header unset Content-Security-Policy
-ProxyPass /meet http://localhost:2015/meet retry=0
-ProxyPass /api/config/v1/kopano/meet/ http://localhost:2015/api/config/v1/kopano/meet/ retry=0
-ProxyPass /api/gc/v1/ http://localhost:2015/api/gc/v1/ retry=0
-ProxyPass /api/kvs/v1/ http://localhost:2015/api/kvs/v1/ retry=0
-ProxyPass /meetid/.well-known/openid-configuration http://localhost:2015/.well-known/openid-configuration retry=0
-ProxyPass /meetid/ http://localhost:2015/meetid/ retry=0
+ProxyPass /meet http://127.0.0.1:2015/meet retry=0
+ProxyPass /api/config/v1/kopano/meet/ http://127.0.0.1:2015/api/config/v1/kopano/meet/ retry=0
+ProxyPass /api/gc/v1/ http://127.0.0.1:2015/api/gc/v1/ retry=0
+ProxyPass /api/kvs/v1/ http://127.0.0.1:2015/api/kvs/v1/ retry=0
+ProxyPass /meetid/.well-known/openid-configuration http://127.0.0.1:2015/.well-known/openid-configuration retry=0
+ProxyPass /meetid/ http://127.0.0.1:2015/meetid/ retry=0
 
 RewriteEngine On
 # Meet and PWAs only work on https
@@ -75,9 +75,9 @@ RewriteRule ^(.*)$ https://$FQDN_MEET/meet/ [R,L]
 # Upgrade Websocket connections
 RewriteCond %{HTTP:Connection} Upgrade [NC]
 RewriteCond %{HTTP:Upgrade} websocket [NC]
-RewriteRule /api/kwm/v2/(.*) ws://localhost:2015/api/kwm/v2/\$1 [P,L]
+RewriteRule /api/kwm/v2/(.*) ws://127.0.0.1:2015/api/kwm/v2/\$1 [P,L]
 
-ProxyPass /api/kwm/v2/ http://localhost:2015/api/kwm/v2/ retry=0
+ProxyPass /api/kwm/v2/ http://127.0.0.1:2015/api/kwm/v2/ retry=0
 
 EOF
 
