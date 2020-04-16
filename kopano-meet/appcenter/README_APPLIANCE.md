@@ -16,8 +16,6 @@ Connections are established between devices directly. To allow connections betwe
 
 To use a different FQDN than the default one of this UCS installation please change this value in the `APP SETTINGS` in the UCS App Center. On systems *other than a Master or Backup Domaincontroller the Join script needs to be rerun manually afterwards* (there will be a reminder for this in the UCS UI). If logging in should be done on a domain other than the "ucs-sso" this needs to be configured in the app settings of the OpenID Provider app as well. For this app appliance the OpenID Provider has been configured to use the same FQDN as Meet itself.
 
-**Please note:** Clicking on "Sign out" in Meet will currently sign users directly back in. This is due to the fact that Meet currently does not sign out users at the Univention OpenID provider app. This will be added in a future version.
-
 *Have fun!*
 
 PS: If you have further questions, have a look at the [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano Forum](https://forum.kopano.io/). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html).

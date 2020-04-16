@@ -3,6 +3,8 @@
 ### 2.1.0-3
 
 - Fixes a mountpoint in kapi to retain call and group history over updates
+- Update Kopano Konnect to 0.33.0
+  - This adds the ability for users to sign out of the Univention OpenID Provider when logging out of Kopano Meet
 
 ### 2.1.0-2
 

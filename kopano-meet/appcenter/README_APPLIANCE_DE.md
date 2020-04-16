@@ -16,8 +16,6 @@ Die Webmeeting-Verbindungen werden direkt zwischen den Geräten hergestellt. Um 
 
 Um einen anderen FQDN als den Standard-FQDN dieser UCS-Installation zu verwenden, ändern Sie bitte diesen Wert in den `APP SETTINGS` im UCS App Center. Auf anderen Systemen als einem Master- oder Backup-Domänencontroller muss das Join-Skript anschließend manuell erneut ausgeführt werden (es wird eine Erinnerung dafür in der UCS-Benutzeroberfläche angezeigt). Wenn die Anmeldung auf einer anderen Domäne als dem ucs-sso erfolgen soll, muss dies ebenfalls in den App-Einstellungen der OpenID-Provider-App konfiguriert werden. Für diese Appliance wurde der OpenID-Provider so konfiguriert, dass er denselben FQDN wie Meet selbst verwendet.
 
-**Bitte beachten Sie:** Wenn Sie in Meet auf "Abmelden" klicken, werden Benutzer derzeit nicht direkt wieder angemeldet. Dies ist darauf zurückzuführen, dass Meet derzeit keine Benutzer bei der Univention OpenID-Provider-Anwendung abmeldet. Dies wird in einer zukünftigen Version hinzugefügt werden.
-
 *Und jetzt viel Spaß beim Videomeeten!*
 
 PS: Wenn Sie weitere Fragen haben, schauen Sie sich das [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) oder das [Kopano Forum](https://forum.kopano.io/) an.
