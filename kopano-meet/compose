@@ -47,6 +47,7 @@ services:
       - eckey=/kopano/ssl/meet-kwmserver.pem
       - ecparam=/kopano/ssl/ecparam.pem
       - encryption_secret_key=/kopano/ssl/konnectd-encryption.key
+      - external_oidc_clientid=kopano-meet
       - external_oidc_clientsecret=${clientsecret}
       - external_oidc_name=ucs-konnect
       - external_oidc_provider=yes
