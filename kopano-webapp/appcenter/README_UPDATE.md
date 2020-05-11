@@ -2,7 +2,8 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 
 ### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14
 
-* update WebApp packages to add support for signing in via OpenID Connect (blog post will follow)
+* update WebApp packages to add support for signing in via OpenID Connect
+* Please check the [ucs-oidc-webapp](https://github.com/Kopano-dev/ucs-oidc-webapp) project for instructions on setting up OIDC login with Kopano WebApp
 * please have a look at the dedicated changelog for WebApp to see updates until the 3.5.14 release: [https://documentation.kopano.io/kopano_changelog/webapp.html](https://documentation.kopano.io/kopano_changelog/webapp.html)
 
 ### Changes in Kopano4UCS 1.5.33 and Kopano WebApp 3.5.5
