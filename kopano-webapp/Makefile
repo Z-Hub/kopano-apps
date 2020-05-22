@@ -19,7 +19,8 @@ get-core-dependencies:
 		cp kopano-core-dependencies/$$pkg*.deb packages ; \
 	done
 
-get-binaries: get-binaries-webapp get-binaries-files get-binaries-mdm get-binaries-smime get-binaries-kopano4ucs
+# get-binaries-files does not reliably give the actual final version
+get-binaries: get-binaries-webapp get-binaries-mdm get-binaries-smime get-binaries-kopano4ucs
 
 get-binaries-webapp:
 	rm -rf packages || exit 0
