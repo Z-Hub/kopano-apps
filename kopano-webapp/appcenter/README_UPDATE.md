@@ -1,5 +1,11 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14-1
+
+* replaces beta packages of Kopano Files with the last version that was released as final
+* In case you are experiencing high Apache load or WebApp displaying "an unexpected error" upon login after the previous update please run the following command after updating to this version:
+* ``univention-install kopano-webapp-plugin-files=2.1.5.305+101.2 kopano-webapp-plugin-filesbackend-owncloud=2.1.0.87+42.5 kopano-webapp-plugin-filesbackend-smb=2.1.0.50+31.5``
+
 ### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14
 
 * update WebApp packages to add support for signing in via OpenID Connect
