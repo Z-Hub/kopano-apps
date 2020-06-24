@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:0.9.1
+    image: fbartels/kopano_web:0.9.1@sha256:a49789cc5b657313dd95010c4da4a17a52b61f1310b6b47d7b3bce0a4847bcd0
     container_name: kopano_web
     restart: always
     ports:
@@ -21,7 +21,7 @@ services:
      - web-net
 
   kopano_ssl:
-    image: fbartels/kopano_ssl:1.2.0
+    image: fbartels/kopano_ssl:1.2.0@sha256:79a7c8a36ce1eb9bf336fbe9a654607c240bd64981150e01ff50d12ab0a80d44
     container_name: kopano_ssl
     environment:
       - FQDN=${FQDN_MEET}
@@ -30,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.33.0@sha256:80f589da3a90a2bb0d869c5c462799a411250a1ee20362d26975eaed901531f1
+    image: fbartels/kopano_konnect:0.33.4@sha256:11f33abf403ff7c575bbd658edc8ae1a32b53de58a232e3477fa2b207ed4d418
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -75,7 +75,7 @@ services:
       - web-net
 
   kopano_grapi:
-    image: fbartels/kopano_core:8.7.85.0.f3999a9
+    image: fbartels/kopano_core:10.0.5.169.0c5bb08@sha256:eded116e9ee9a740d2d5495257e568958c7e86ebf9c16de4933e2534f1f755bf
     container_name: kopano_grapi
     restart: always
     volumes:
@@ -99,7 +99,7 @@ services:
       - kopano-net
 
   kopano_kapi:
-    image: fbartels/kopano_core:8.7.85.0.f3999a9
+    image: fbartels/kopano_core:10.0.5.169.0c5bb08@sha256:eded116e9ee9a740d2d5495257e568958c7e86ebf9c16de4933e2534f1f755bf
     container_name: kopano_kapi
     restart: always
     depends_on:
@@ -126,7 +126,7 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:1.1.1
+    image: fbartels/kopano_kwmserver:1.2.0@sha256:fc4c196d5b23ac75e91254f666693022ba8ac7000307fbc91e038a0ed4f6075b
     container_name: kopano_kwmserver
     restart: always
     command: wrapper.sh
@@ -150,7 +150,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:2.1.0_0
+    image: fbartels/kopano_meet:2.2.2_0@sha256:07bb49a1312b5d2fcc47c0b95ca8764cead9640158739ea1a776824090500ef8
     container_name: kopano_meet
     restart: always
     environment:
