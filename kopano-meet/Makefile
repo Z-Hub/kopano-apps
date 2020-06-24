@@ -29,7 +29,7 @@ appcenter-files: generate-docs
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
-	pandoc appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
+	pandoc --email-obfuscation=none appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
 	pandoc  --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
 	pandoc appcenter/Full_Description.md -t HTML -o appcenter/Full_Description
 	pandoc  --ascii appcenter/Full_Description_DE.md -t HTML -o appcenter/Full_Description_DE

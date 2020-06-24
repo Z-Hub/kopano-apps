@@ -4,7 +4,7 @@
 
 With this update Kopano Meet is compatible with the current in development version of Kwmbridge, a "selective forwarding unit" (SFU for short) for Meet. A SFU is typically used to reduce bandwidth requirements on the sender side through the means of rather sending audio/video to a central point instead to each participant individually. While with todays technology this breaks end to end encryption of calls, Kwmbridge is still a component that an administrator can setup in his own environment.
 
-If you want to help beta testing Kwmbridge and provide feedback on its functionality [please reach out](mailto:feedback@kopano.io) with a description of your use case and environment.
+If you want to help beta testing Kwmbridge and provide feedback on its functionality [please reach out](mailto:feedback@kopano.io?subject=Kwmbridge%20testing) with a description of your use case and environment.
 
 - Fixes an issue with signing out of the latest OpenID Connect Provider app (app needs to be updated to 0.33.4 as well)
 - Updates components to the latest versions
