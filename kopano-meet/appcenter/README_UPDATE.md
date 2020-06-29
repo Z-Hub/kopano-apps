@@ -6,7 +6,7 @@ With this update Kopano Meet is compatible with the current in development versi
 
 If you want to help beta testing Kwmbridge and provide feedback on its functionality [please reach out](mailto:feedback@kopano.io?subject=Kwmbridge%20testing) with a description of your use case and environment.
 
-- Fixes an issue with signing out of the latest OpenID Connect Provider app (app needs to be updated to 0.33.4 as well)
+- Fixes an issue with signing out of the latest OpenID Connect Provider app (app needs to be updated to 0.33.5 as well)
 - Updates components to the latest versions
 
 ### 2.1.0-3
