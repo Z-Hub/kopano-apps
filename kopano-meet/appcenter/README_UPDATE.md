@@ -1,6 +1,6 @@
 ## Univention app for Kopano Meet
 
-### 2.2.2-1
+### 2.2.3-0
 
 With this update Kopano Meet is compatible with the current in development version of Kwmbridge, a "selective forwarding unit" (SFU for short) for Meet. A SFU is typically used to reduce bandwidth requirements on the sender side through the means of rather sending audio/video to a central point instead to each participant individually. While with todays technology this breaks end to end encryption of calls, Kwmbridge is still a component that an administrator can setup in his own environment.
 

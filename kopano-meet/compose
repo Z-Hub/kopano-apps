@@ -150,7 +150,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:2.2.2_0@sha256:07bb49a1312b5d2fcc47c0b95ca8764cead9640158739ea1a776824090500ef8
+    image: fbartels/kopano_meet:2.2.3_0@sha256:096d325b44bc6df0b4e7805c98c957a256baa4b2dc929306facbc20047deba1b
     container_name: kopano_meet
     restart: always
     environment:
