@@ -17,6 +17,13 @@ fqdn="$(ucr get kopano/docker/FQDN_MEET)"
 # hostname is defined through "$(ucr shell)", have a fallback to satisfy shellcheck
 hostname=${hostname:-127.0.0.1}
 
+serverrole="$(ucr get server/role)"
+case $serverrole in
+	domaincontroller_slave|memberserver)
+		univention-app configure kopano-meet --set kopano/docker/FQDN_SSO="$(ucr get hostname)"."$(ucr get domainname)"
+		;;
+esac
+
 # access Meet on the proper domain
 dockerize -wait "https://$fqdn/meet"
 # access Meet config document
