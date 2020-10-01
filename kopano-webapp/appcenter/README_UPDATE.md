@@ -1,5 +1,9 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14-2
+
+* adds new package `kopano4ucs-app` to this app to allow installing Kopano WebApp on a dedicated system
+
 ### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14-1
 
 * replaces beta packages of Kopano Files with the last version that was released as final
