@@ -43,6 +43,9 @@ update_env_file MEET_GUEST_REGEXP "$(ucr get kopano/docker/MEET_GUEST_REGEXP)"
 update_env_file FQDN_MEET "$(ucr get kopano/docker/FQDN_MEET)"
 # hostname for external auth
 update_env_file FQDN_SSO "$(ucr get kopano/docker/FQDN_SSO)"
+# settings related to kopano-kwmbridge (SFU)
+update_env_file ENABLE_MCU_API "$(ucr get kopano/docker/ENABLE_MCU_API)"
+update_env_file PIPELINE_FORCED_REGEXP "$(ucr get kopano/docker/PIPELINE_FORCED_REGEXP)"
 
 # source .env to have access to previously set hostname
 # shellcheck disable=SC1091

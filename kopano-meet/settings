@@ -90,3 +90,21 @@ Type = String
 InitialValue =
 Scope = outside
 Show = Settings
+
+[kopano/docker/ENABLE_MCU_API]
+Group = Conference Add-on (setup separately)
+Description = Enable API used by Kopano SFU service
+Type = List
+Values = no, yes
+Labels = No, Yes
+InitialValue = no
+Scope = outside
+Show = Settings
+
+[kopano/docker/PIPELINE_FORCED_REGEXP]
+Group = Conference Add-on (setup separately)
+Description = Regular expression specifying which group calls to route through the Kopano SFU service
+Type = String
+InitialValue = @conference/.*
+Scope = outside
+Show = Settings

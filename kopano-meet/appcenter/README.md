@@ -1,8 +1,8 @@
 # Welcome to the Kopano Meet app for UCS!
 
-Meet is the videomeeting system by Kopano. Compared to other known platforms for videomeetings you are running you new system on premise. This allows you to be digital sovereign at the highest degree. But at the same time it requires you to take care on infrastructure requirements. For example Kopano Meet makes use of the [OpenID Connect Provider app](#module=appcenter:appcenter:0:id:openid-connect-provider) to allow UCS users to login to Meet.
+Meet is the videomeeting system by Kopano. Compared to other known platforms for videomeetings you are running you new system on premise. This allows you to be digital sovereign at the highest degree. But at the same time it requires you to take care on infrastructure requirements. For example Kopano Meet makes use of the [OpenID Connect Provider app](#module=appcenter:appcenter:0:id:openid-connect-provider) to allow UCS users to login to Meet, therefore users need to have the permissions to use it for (SAML) login.
 
-### Please carefully read this text. Your Meet-appliance will not run out of the box in every environment!
+### Please carefully read this text. Your Meet installation will not run out of the box in every environment!
 
 ## 1. DNS resolution, Fully qualified domain name (FQDN)
 

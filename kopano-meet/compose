@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:0.9.1@sha256:a49789cc5b657313dd95010c4da4a17a52b61f1310b6b47d7b3bce0a4847bcd0
+    image: fbartels/kopano_web:0.12.4@sha256:fd4e7bee6dd76b2da2960444413595d3acaea555dd6e3379f0ca282c90759683
     container_name: kopano_web
     restart: always
     ports:
@@ -30,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.33.5@sha256:80f1b189222b65a843c6300d4e41099e3029d393e1bf570337a97803940bd33c
+    image: fbartels/kopano_konnect:0.33.8@sha256:19a236e3394a1828c2711a85b269761ad0c74cbc172e3602fcc4db8c55c57b93
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -75,7 +75,7 @@ services:
       - web-net
 
   kopano_grapi:
-    image: fbartels/kopano_core:10.0.5.169.0c5bb08@sha256:eded116e9ee9a740d2d5495257e568958c7e86ebf9c16de4933e2534f1f755bf
+    image: fbartels/kopano_core:10.0.6.406.1b7175d@sha256:f6083a669f515170be96e020d77a84ea7814da99feff8fca601d1830a6cc6ce8
     container_name: kopano_grapi
     restart: always
     volumes:
@@ -99,7 +99,7 @@ services:
       - kopano-net
 
   kopano_kapi:
-    image: fbartels/kopano_core:10.0.5.169.0c5bb08@sha256:eded116e9ee9a740d2d5495257e568958c7e86ebf9c16de4933e2534f1f755bf
+    image: fbartels/kopano_core:10.0.6.406.1b7175d@sha256:f6083a669f515170be96e020d77a84ea7814da99feff8fca601d1830a6cc6ce8
     container_name: kopano_kapi
     restart: always
     depends_on:
@@ -126,7 +126,7 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:1.2.0@sha256:fc4c196d5b23ac75e91254f666693022ba8ac7000307fbc91e038a0ed4f6075b
+    image: fbartels/kopano_kwmserver:1.2.0@sha256:390be924b19747b1eb43375273be09f4d72ee99628782f85a9c5e46b974fb4f1
     container_name: kopano_kwmserver
     restart: always
     command: wrapper.sh
@@ -141,6 +141,8 @@ services:
      - turn_service_url=${TURN_SERVICE_URL}
      - turn_uris=${TURN_URIS}
      - turn_server_shared_secret=${TURN_SERVER_SHARED_SECRET}
+     - enable_mcu_api=${ENABLE_MCU_API}
+     - pipeline_forced_regexp=${PIPELINE_FORCED_REGEXP}
     volumes:
       - /etc/kopano/docker/:/kopano/ssl
       - /etc/machine-id:/etc/machine-id
@@ -150,7 +152,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:2.2.3_0@sha256:096d325b44bc6df0b4e7805c98c957a256baa4b2dc929306facbc20047deba1b
+    image: fbartels/kopano_meet:2.2.3_0@sha256:6ef7a7ccbfcf70afd2bef18bfd9db4abe8d42ffe603a946b2240f9ededde416f
     container_name: kopano_meet
     restart: always
     environment:
