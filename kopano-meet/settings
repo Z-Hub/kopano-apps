@@ -98,6 +98,7 @@ Type = List
 Values = no, yes
 Labels = No, Yes
 InitialValue = no
+Required = False
 Scope = outside
 Show = Settings
 
@@ -106,5 +107,6 @@ Group = Conference Add-on (setup separately)
 Description = Regular expression specifying which group calls to route through the Kopano SFU service
 Type = String
 InitialValue = @conference/.*
+Required = False
 Scope = outside
 Show = Settings
