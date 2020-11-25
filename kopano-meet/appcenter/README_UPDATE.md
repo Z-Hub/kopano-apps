@@ -2,7 +2,6 @@
 
 ### 2.2.3-2
 
-- Exposes settings for Kwmbridge through UCS appcenter
 - Updates Kopano Konnect to allow login through the Kopano WebApp Intranet plugin (requires update of OpenID Connect Provider to at least 0.33.7)
 
 ### 2.2.3-1
