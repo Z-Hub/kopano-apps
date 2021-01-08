@@ -24,15 +24,16 @@ clean:
 
 appcenter-files: generate-docs
 	univention-appcenter-control upload --noninteractive $(ucs_version)/$(app_name)=$(app_version) \
-	appcenter/README appcenter/README_DE appcenter/README_UPDATE appcenter/README_APPLIANCE appcenter/README_APPLIANCE_DE \
+	appcenter/README appcenter/README_DE appcenter/README_UPDATE appcenter/README_UPDATE_DE appcenter/README_APPLIANCE appcenter/README_APPLIANCE_DE \
 	appliance_hook env compose configure_host preinst inst uinst settings test
 
 generate-docs:
 	pandoc appcenter/README.md -t HTML -o appcenter/README
 	pandoc --email-obfuscation=none appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE
-	pandoc  --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
+	pandoc --email-obfuscation=none appcenter/README_UPDATE.md -t HTML -o appcenter/README_UPDATE_DE
+	pandoc --ascii appcenter/README_DE.md -t HTML -o appcenter/README_DE
 	pandoc appcenter/Full_Description.md -t HTML -o appcenter/Full_Description
-	pandoc  --ascii appcenter/Full_Description_DE.md -t HTML -o appcenter/Full_Description_DE
+	pandoc --ascii appcenter/Full_Description_DE.md -t HTML -o appcenter/Full_Description_DE
 	pandoc appcenter/README_APPLIANCE.md -t HTML -o appcenter/README_APPLIANCE
 	pandoc appcenter/README_APPLIANCE_DE.md -t HTML -o appcenter/README_APPLIANCE_DE
 

@@ -9,3 +9,11 @@ The app uses `docker-compose` to spin up containers for Kopano Meet. This also m
 To override the current configuration, create a file called `docker-compose.override.yml` in `/var/lib/univention-appcenter/apps/kopano-meet/compose` with the desired options. An example for such a file can be found at https://stash.z-hub.io/projects/K4U/repos/kopano-apps/browse/kopano-meet/docker-compose.override.yml. Afterwards issue `docker-compose up -d` to restart changed containers.
 
 See https://docs.docker.com/compose/extends/ for more information.
+
+
+### Reminder for updates
+
+```
+make build-web build-konnect build-kwmserver build-meet
+make publish-web publish-konnect publish-kwmserver publish-meet
+```

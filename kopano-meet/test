@@ -25,19 +25,19 @@ case $serverrole in
 esac
 
 # access Meet on the proper domain
-dockerize -wait "https://$fqdn/meet"
+dockerize -wait "https://$fqdn/meet" -timeout 360s
 # access Meet config document
-dockerize -wait "https://$fqdn/api/config/v1/kopano/meet/config.json"
+dockerize -wait "https://$fqdn/api/config/v1/kopano/meet/config.json" -timeout 360s
 # accessing Meet via http should give a 302 redirect
-dockerize -wait http://127.0.0.1/meet/ -wait-http-skip-redirect -wait-http-status-code 302
+dockerize -wait http://127.0.0.1/meet/ -wait-http-skip-redirect -wait-http-status-code 302 -timeout 360s
 # accessing Meet on another domain should give a 302 redirect (skip tls since 127.0.0.1 is not in the cert)
-dockerize -skip-tls-verify -wait https://127.0.0.1/meet/ -wait-http-skip-redirect -wait-http-status-code 302
+dockerize -skip-tls-verify -wait https://127.0.0.1/meet/ -wait-http-skip-redirect -wait-http-status-code 302 -timeout 360s
 # accessing Meet on another domain should give a 302 redirect
-dockerize -skip-tls-verify -wait "https://$hostname/meet/" -wait-http-skip-redirect -wait-http-status-code 302
+dockerize -skip-tls-verify -wait "https://$hostname/meet/" -wait-http-skip-redirect -wait-http-status-code 302 -timeout 360s
 # access openid-config document
-dockerize -wait "https://$fqdn/meetid/.well-known/openid-configuration"
+dockerize -wait "https://$fqdn/meetid/.well-known/openid-configuration" -timeout 360s
 # access jwk document
-dockerize -wait "https://$fqdn/meetid/konnect/v1/jwks.json"
+dockerize -wait "https://$fqdn/meetid/konnect/v1/jwks.json" -timeout 360s
 # access to rest api
-dockerize -wait "https://$fqdn/api/gc/v1/" -wait-http-status-code 403
-dockerize -wait "https://$fqdn/api/kvs/v1/kv/user/kopano-meet-recents" -wait-http-status-code 403
+dockerize -wait "https://$fqdn/api/gc/v1/" -wait-http-status-code 403 -timeout 360s
+dockerize -wait "https://$fqdn/api/kvs/v1/kv/user/kopano-meet-recents" -wait-http-status-code 403 -timeout 360s

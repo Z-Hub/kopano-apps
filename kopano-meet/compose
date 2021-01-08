@@ -2,7 +2,7 @@ version: "2.0"
 
 services:
   web:
-    image: fbartels/kopano_web:0.12.4@sha256:fd4e7bee6dd76b2da2960444413595d3acaea555dd6e3379f0ca282c90759683
+    image: fbartels/kopano_web:0.12.4@sha256:c8bb7460417df9a45d3c44e7f42355b16a3f23dc0e2cfb4cc893cb510107ab54
     container_name: kopano_web
     restart: always
     ports:
@@ -30,7 +30,7 @@ services:
       - /etc/kopano/docker/:/kopano/ssl
 
   kopano_konnect:
-    image: fbartels/kopano_konnect:0.33.8@sha256:19a236e3394a1828c2711a85b269761ad0c74cbc172e3602fcc4db8c55c57b93
+    image: fbartels/kopano_konnect:0.33.11@sha256:a1725c67c8593dffd010431dbdccfe84f2b5f008ff38e370015cd5874a29b27b
     container_name: kopano_konnect
     restart: always
     depends_on:
@@ -126,7 +126,7 @@ services:
       - web-net
 
   kopano_kwmserver:
-    image: fbartels/kopano_kwmserver:1.2.0@sha256:390be924b19747b1eb43375273be09f4d72ee99628782f85a9c5e46b974fb4f1
+    image: fbartels/kopano_kwmserver:1.2.0@sha256:83c110f565646b9571bb3abddfe89a2de5de9fdf88cfbfa1620841a26517c317
     container_name: kopano_kwmserver
     restart: always
     command: wrapper.sh
@@ -152,7 +152,7 @@ services:
      - web-net
 
   kopano_meet:
-    image: fbartels/kopano_meet:2.2.3_0@sha256:6ef7a7ccbfcf70afd2bef18bfd9db4abe8d42ffe603a946b2240f9ededde416f
+    image: fbartels/kopano_meet:2.3.1_0@sha256:861a83735c83122a1d1c13787d4284aee696a84a2f3b48f00f7a0143b295a60f
     container_name: kopano_meet
     restart: always
     environment:

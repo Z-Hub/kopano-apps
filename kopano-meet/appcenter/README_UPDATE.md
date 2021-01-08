@@ -1,6 +1,20 @@
 ## Univention app for Kopano Meet
 
-### 2.2.3-2
+### 2.3.1
+
+With this update Kopano Meet is updated to the 2.3 release, which brings the following improvements and new features:
+
+- The left panel is now kept open and shows list of participants in group calls (desktop)
+- Participants without video stream are no longer visible in the video grid in group calls
+- Talking indicator in call grid, participant list and own video
+- A swipeable bottom panel is now available on mobile to access the participant list and invite functionality while in a call
+- Updated text indicators for Guest and Me markers
+- Join flow is automatically used for all direct links to a meet group
+- Meet Ui no longer is unable to start new calls if multiple remote peers hang up at the same time as yourself
+- And the usual various improvements to design, usability, translations and functionality
+- Also updates Kopano Konnect to version 0.33.11
+
+### 2.2.3-2 (unreleased)
 
 - Updates Kopano Konnect to allow login through the Kopano WebApp Intranet plugin (requires update of OpenID Connect Provider to at least 0.33.7)
 
