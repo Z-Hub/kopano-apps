@@ -2,6 +2,9 @@
 
 eval "$(ucr shell)"
 
+# TODO the own turn server configuration could have multiple space separated values
+# /var/lib/univention-appcenter/apps/kopano-meet/compose/.env: line 9: turn:turn.domain.com:443?transport=tcp: command not found
+
 update_env_file () {
     varname="$1"
     varvalue="$2"
