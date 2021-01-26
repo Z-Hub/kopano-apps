@@ -158,6 +158,7 @@ services:
     environment:
      - GRID_KONNECT=no
      - GRID_WEBAPP=${GRID_WEBAPP}
+     - GRID_CALENDAR=no
      - KCCONF_KWEBD_TLS=no
      - KCCONF_MEET_disableFullGAB=false
      - KCCONF_MEET_guests_enabled=${MEET_GUEST_BOOLALLOW}
