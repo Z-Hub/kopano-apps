@@ -1,5 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.7.0 and Kopano WebApp 4.7.0
+
+* updates integration packages for UCS 5.0
+* please have a look at the dedicated changelog for WebApp to see updates until the 4.7.0 release: [https://documentation.kopano.io/kopano_changelog/webapp.html](https://documentation.kopano.io/kopano_changelog/webapp.html)
+
 ### Changes in Kopano4UCS 1.6.6 and Kopano WebApp 3.5.14-2
 
 * adds new package `kopano4ucs-app` to this app to allow installing Kopano WebApp on a dedicated system
