@@ -1,7 +1,7 @@
 app_name=kopano-webapp
 app_version=$(shell ./version.sh)
 
-ucs_version=4.4
+ucs_version=5.0
 
 #docker_repo=fbartels
 #docker_name=univention-mattermost
@@ -12,7 +12,9 @@ all: get-binaries get-core-dependencies add-version appcenter-files
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
-	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	#univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	univention-appcenter-control new-version "4.4/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+
 
 get-core-dependencies:
 	for pkg in libgsoap-kopano libkcutil0 libkcmapi0 libmapi1 libkcfreebusy0 libkcsoap libkcssl0 libkcsync0 kopano-lang kopano-client kopano-contacts libkcicalmapi0 libvmime-kopano libkcinetmapi0 php7-mapi; do \
@@ -25,16 +27,16 @@ get-binaries: get-binaries-webapp get-binaries-mdm get-binaries-smime get-binari
 get-binaries-webapp:
 	rm -rf packages || exit 0
 	mkdir -p packages|| exit 0
-	osc getbinaries webapp:final Univention_4.3 x86_64 -d packages
+	osc getbinaries webapp:final Univention_5.0 x86_64 -d packages
 get-binaries-files:
-	osc getbinaries files:final Univention_4.3 x86_64 -d packages
+	osc getbinaries files:final Univention_5.0 x86_64 -d packages
 	wget http://ftp.de.debian.org/debian/pool/main/p/php-smbclient/php-smbclient_0.8.0-3_amd64.deb -P packages
 
 get-binaries-mdm:
-	osc getbinaries mdm:final Univention_4.3 x86_64 -d packages
+	osc getbinaries mdm:final Univention_5.0 x86_64 -d packages
 
 get-binaries-smime:
-	osc getbinaries smime:final Univention_4.3 x86_64 -d packages
+	osc getbinaries smime:final Univention_5.0 x86_64 -d packages
 
 get-binaries-kopano4ucs:
 	rm -rf kopano4ucs || exit 0

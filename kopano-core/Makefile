@@ -1,7 +1,7 @@
 app_name=kopano-core
 app_version=$(shell ./version.sh)
 
-ucs_version=4.4
+ucs_version=5.0
 
 #docker_repo=kopano
 #docker_name=univention-kopano-core
@@ -13,14 +13,14 @@ all: get-binaries add-version appcenter-files
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
 	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
-	#univention-appcenter-control new-version "4.3/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	#univention-appcenter-control new-version "4.4/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 get-binaries: get-binaries-core get-binaries-kopano4ucs
 
 get-binaries-core:
 	rm -rf packages || exit 0
 	mkdir -p packages || exit 0
-	osc getbinaries core:pre-final:dist a_aggregates Univention_4.3 x86_64 -d packages
+	osc getbinaries core:final:dist a_aggregates Univention_5.0 x86_64 -d packages
 	#osc getbinaries core:final:dist a_aggregate Univention_4.3 x86_64 -d packages
 
 get-binaries-kopano4ucs:
