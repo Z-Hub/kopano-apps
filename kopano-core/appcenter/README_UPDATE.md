@@ -1,9 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano4UCS 1.7.0 and Kopano Groupware Core 8.7.20
+### Changes in Kopano4UCS 1.7.1 and Kopano Groupware Core 8.7.20
 
 * Update integration for UCS 5.0
 * Improve logic of repository configuration to work with new style license keys and disable automatically of login at repository fails
+* Update repo signing key for Kopano repositories
 * Check [Kopano changelog](https://documentation.kopano.io/kopano_changelog/kc.html#kopano-core-8-7-20-8-7-20-0) for changes relating to Kopano Groupware Core 8.7.20
 
 ### Changes in Kopano4UCS 1.6.2
