@@ -13,5 +13,5 @@ page and start your test of the Kopano Apps.
 Have fun!
 
 PS: If you have further questions, have a look at the [Kopano4UCS
-Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano
+Wiki](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started) or [Kopano
 Forum](https://forum.kopano.io/).

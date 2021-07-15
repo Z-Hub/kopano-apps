@@ -9,4 +9,4 @@ Please install the [Kopano WebApp](#module=appcenter:appcenter:0:id:kopano-webap
 
 In case you want to connect your mobile devices to Kopano then the installation of the [Z-Push Kopano](#module=appcenter:appcenter:0:id:z-push-kopano) app is recommended as well.
 
-Please have a look at the [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U) and especially the [Getting Started](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) page for more information.
+Please have a look at the [Kopano4UCS Wiki](https://kb.kopano.io/display/K4U) and especially the [Getting Started](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started) page for more information.
