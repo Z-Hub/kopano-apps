@@ -23,4 +23,4 @@ Für die Konfiguration von Web Meetings an einem eigenen Turnserver stehen folge
 *   `kopano-meetings/spreed/turnURIs`
 *   `kopano-meetings/spreed/turnSecret`
 
-Weiterführende Informationen finden sich unter [wiki.z-hub.io](https://wiki.z-hub.io/display/K4U/Setting+up+Kopano+Web+Meetings).
+Weiterführende Informationen finden sich unter [wiki.z-hub.io](https://kb.kopano.io/display/K4U/Setting+up+Kopano+Web+Meetings).

@@ -1,10 +1,11 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
-### Changes in Kopano4UCS 1.7.0 and Kopano Groupware Core 8.7.20
+### Changes in Kopano4UCS 1.7.3 and Kopano Groupware Core 8.7.22
 
 * Update integration for UCS 5.0
 * Improve logic of repository configuration to work with new style license keys and disable automatically of login at repository fails
-* Check [Kopano changelog](https://documentation.kopano.io/kopano_changelog/kc.html#kopano-core-8-7-20-8-7-20-0) for changes relating to Kopano Groupware Core 8.7.20
+* Check [Kopano changelog](https://documentation.kopano.io/kopano_changelog/kc.html#kopano-core-8-7-22-8-7-22
+-0) for changes relating to Kopano Groupware Core 8.7.22
 
 ### Changes in Kopano4UCS 1.6.2
 
@@ -30,7 +31,7 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 ### Changes in Kopano Core 8.6.2 and Kopano4UCS 1.5.5
 
 * the integration has been updated to support the upcoming Kopano Groupware Core 8.7 release
-  * **IMPORTANT:** After updating to 8.7.x through [the Kopano apt repository](https://wiki.z-hub.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server) you will find that ´kopano-gateway´ and ´kopano-ical´ will refuse to start because of an incompatible configuration. Please execute the script `/usr/share/kopano4ucs/kopano4ucs-update-settings870.sh´ to update your configuration files. This will be done later on automatically when the Kopano Core app natively provides this release. 
+  * **IMPORTANT:** After updating to 8.7.x through [the Kopano apt repository](https://kb.kopano.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server) you will find that ´kopano-gateway´ and ´kopano-ical´ will refuse to start because of an incompatible configuration. Please execute the script `/usr/share/kopano4ucs/kopano4ucs-update-settings870.sh´ to update your configuration files. This will be done later on automatically when the Kopano Core app natively provides this release.
 * fix language selection for store creation
 * fix kopano-server not listening on port 236
 

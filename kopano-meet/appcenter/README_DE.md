@@ -18,4 +18,4 @@ Um einen anderen FQDN als den Standard-FQDN dieser UCS-Installation zu verwenden
 
 *Und jetzt viel Spaß beim Videomeeten!*
 
-PS: Wenn Sie weitere Fragen haben, schauen Sie sich das [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) oder das [Kopano Forum](https://forum.kopano.io/) an.
+PS: Wenn Sie weitere Fragen haben, schauen Sie sich das [Kopano4UCS Wiki](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started) oder das [Kopano Forum](https://forum.kopano.io/) an.

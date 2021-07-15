@@ -14,5 +14,5 @@ Kopano Apps.
 Viel Spaß dabei!
 
 PS: Wenn Sie weitere Fragen haben, schauen Sie sich das [Kopano4UCS
-Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano
+Wiki](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started) or [Kopano
 Forum](https://forum.kopano.io/) an.

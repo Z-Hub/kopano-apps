@@ -18,4 +18,4 @@ To use a different FQDN than the default one of this UCS installation please cha
 
 *Have fun!*
 
-PS: If you have further questions, have a look at the [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started) or [Kopano Forum](https://forum.kopano.io/). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html).
+PS: If you have further questions, have a look at the [Kopano4UCS Wiki](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started) or [Kopano Forum](https://forum.kopano.io/). For usage question please refer to the Kopano Meet [user manual](https://documentation.kopano.io/kopano_meet_manual/user.html).

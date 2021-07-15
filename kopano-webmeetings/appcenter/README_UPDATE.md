@@ -8,4 +8,4 @@ Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/)
 
 *   WebMeetings can now be opened in an external window
 *   spreed-webrtc has been updated
-*   Its now possible to update WebMeetings directly from the Kopano repository. See https://wiki.z-hub.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server for more details.
+*   Its now possible to update WebMeetings directly from the Kopano repository. See https://kb.kopano.io/display/K4U/Updating+Kopano+packages+directly+from+the+Kopano+download+server for more details.

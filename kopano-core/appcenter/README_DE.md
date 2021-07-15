@@ -9,4 +9,4 @@ Bitte installieren Sie die [Kopano WebApp](#module=appcenter:appcenter:0:id:kopa
 
 Sollten Sie mit mobilen Endgeräten auf Ihre Daten zugreifen wollen empfiehlt sich die Installation der [Z-Push Kopano](#module=appcenter:appcenter:0:id:z-push-kopano) App.
 
-Weitere Informationen finden Sie im [Kopano4UCS Wiki](https://wiki.z-hub.io/display/K4U) und dort speziell unter [Getting Started](https://wiki.z-hub.io/display/K4U/Documentation+-+Getting+Started).
+Weitere Informationen finden Sie im [Kopano4UCS Wiki](https://kb.kopano.io/display/K4U) und dort speziell unter [Getting Started](https://kb.kopano.io/display/K4U/Documentation+-+Getting+Started).
