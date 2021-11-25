@@ -12,8 +12,8 @@ all: get-binaries get-core-dependencies add-version appcenter-files
 
 add-version:
 	if [ -z ${app_version} ] ; then echo "no target app_version specified"; exit 13; fi
-	univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
-	#univention-appcenter-control new-version "4.4/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	#univention-appcenter-control new-version "$(ucs_version)/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
+	univention-appcenter-control new-version "4.4/$(app_name)" "$(ucs_version)/$(app_name)=$(app_version)" || true
 
 # TODO check if these are enough to satisfy package dependencies when installed separately from the core app
 get-core-dependencies:
