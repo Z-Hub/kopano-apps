@@ -1,6 +1,6 @@
 Please refer to the official [Z-Push release announcement](http://z-push.org/z-push-2-4-5-final-release/) for all changes.
 
-### Changes in Z-Push 2.6.2 and Kopano4UCS 1.7.2
+### Changes in Z-Push 2.6.2 and Kopano4UCS 1.8.0
 
 * Updates integration package for UCS 5.0.
 * Updates repo signing key for Kopano repositories
