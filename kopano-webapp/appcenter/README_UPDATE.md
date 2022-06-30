@@ -1,5 +1,10 @@
 Please see [Kopano Changelog](https://documentation.kopano.io/kopano_changelog/) for a general overview of all updates.
 
+### Changes in Kopano4UCS 1.8.3 and Kopano WebApp 5.3.0
+
+* updates integration packages for UCS 5.0
+* please have a look at the dedicated changelog for WebApp to see updates until the 5.3.0 release: [https://documentation.kopano.io/kopano_changelog/webapp.html](https://documentation.kopano.io/kopano_changelog/webapp.html)
+
 ### Changes in Kopano4UCS 1.7.2 and Kopano WebApp 5.1.0
 
 * Updates repo signing key for Kopano repositories
